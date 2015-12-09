@@ -5,18 +5,12 @@ CREATE USER 'prog'@'localhost' IDENTIFIED BY 'prog';
 GRANT ALL ON Corp.* TO 'prog'@'localhost';
 
 DROP TABLE users;
-DROP TABLE internships;
 DROP TABLE candidates;
+DROP TABLE internships;
 
 -- `date` DATETIME NOT NULL,
 -- FOREIGN KEY (email_visiteur) REFERENCES utilisateurs(email)
 
-CREATE TABLE `users` (
-`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-`login` VARCHAR(20) NOT NULL,
-`password` VARCHAR(20) NOT NULL,
-PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 CREATE TABLE `internships` (
 `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -39,9 +33,6 @@ PRIMARY KEY (`id`),
 FOREIGN KEY (`internship_id`) REFERENCES internships(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
-INSERT INTO users (`login`,`password`) VALUES 
-("corp1","corp1"), 
-("corp2","corp2");
 
 INSERT INTO internships(`post_date`,`salary`,`title`,`description`,`person_in_charge`,`phone_number`,`selected_candidate`,`provided`) VALUES
 ('2015-09-15',1100,
@@ -58,13 +49,12 @@ Réagir automatiquement ou dans un court délai de temps à des pics de charges"
 "Clemence Athee-Na",05615996713,NULL,false);
 
 INSERT INTO candidates(`student_uuid`,`internship_id`) VALUES
-("12345678901234567890",1),
-("12345678901234567890",2),
-("16743849102903030754",1),
-("56730982617254689012",1),
-("67283910044239655473",1);
+("mabille@etud.insa-toulouse.fr",1),
+("mabille@etud.insa-toulouse.fr",2),
+("meymandi@etud.insa-toulouse.fr",1),
+("hayou@etud.insa-toulouse.fr",1),
+("ghader@etud.insa-toulouse.fr",1);
 
-SELECT * FROM users;
 SELECT * FROM internships;
 SELECT * FROM candidates;
 
