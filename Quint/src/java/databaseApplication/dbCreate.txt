@@ -1,0 +1,39 @@
+CREATE DATABASE quint;
+USE quint;
+
+CREATE TABLE `user` (
+`password` VARCHAR(100),
+`admin` int(30),
+`email` VARCHAR(100),
+PRIMARY KEY (`email`)
+) ENGINE=InnoDB ;
+
+CREATE TABLE `student` ( 
+`email` varchar(100) NOT NULL, 
+`password` varchar(100) NOT NULL,
+`admin` BOOLEAN NOT NULL, 
+`prenom` varchar(100) NOT NULL, 
+`nom` varchar(100) NOT NULL, 
+`tel` varchar(100) NOT NULL, 
+`adresse` varchar(100) NOT NULL, 
+`commune` varchar(100) NOT NULL, 
+`code_postal` int(30) NOT NULL, 
+`cv` varchar(100) NOT NULL,
+`lm` varchar(100) NOT NULL,
+`conducteur` BOOLEAN NOT NULL, 
+`notif` BOOLEAN NOT NULL, 
+PRIMARY KEY (`email`)
+) ENGINE=InnoDB;
+
+
+INSERT INTO user (`password`,`email`,`admin`) 
+VALUES ("omar","ghader@etud.insa-toulouse.fr",0);
+
+INSERT INTO student(`email`,`password`,`admin`,`prenom`,`nom`) 
+VALUE ("ghader@etud.insa-toulouse.fr","omar",1,"omar","ghader");
+
+SELECT * FROM user;
+SELECT * FROM student;
+
+CREATE USER 'prog'@'localhost' IDENTIFIED BY 'prog';
+GRANT ALL ON quint.* TO 'prog'@'localhost';
