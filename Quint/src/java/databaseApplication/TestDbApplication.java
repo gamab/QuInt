@@ -23,8 +23,12 @@ public class TestDbApplication {
 
         dbHelper.listData();
         System.out.println(dbHelper.getPassword("ghader"));
+        if (dbHelper.userExists("ghader@etud", "123")) {
+            System.out.println("ALREADY CREATEEEEEEEEEEEEED");
+        } else {
+            dbHelper.addNewUser(true, "O", "G", "123", "07********", "ghader@etud", "135", "Toulouse", "31400", true, true);
 
-        dbHelper.addNewUser(true, "O", "G", "123", "07********", "ghader@etud", "135", "Toulouse", "31400", true, true);
+        }
         dbHelper.listData();
 
         // dbHelper.

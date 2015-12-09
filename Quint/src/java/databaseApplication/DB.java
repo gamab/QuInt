@@ -281,7 +281,7 @@ public class DB implements DBInterface {
             int rs1 = stmt.executeUpdate(queryCreeStudent);
 
             // envoie des mails en fonction des modification apporté par le nouveau user :
-            notifyUsers(email, true);
+//            notifyUsers(email, true);
 
         } catch (Exception ex) {
             System.err.println("In DB - addNewUser : n'a pas pu créer l'utilisateur : " + ex.getLocalizedMessage());
@@ -551,11 +551,11 @@ public class DB implements DBInterface {
     }
 
     @Override
-    public boolean userExists(String username, String password) {
+    public boolean userExists(String email, String password) {
         boolean userExists = false;
 
         String sql;
-        sql = "SELECT email,password FROM " + TABLE_UTILISATEURS + " WHERE username='" + username + "' AND password='" + password + "'";
+        sql = "SELECT email,password FROM " + TABLE_UTILISATEURS + " WHERE email='" + email + "' AND password='" + password + "'";
         // System.out.println(sql);
         ResultSet rs;
         try {
