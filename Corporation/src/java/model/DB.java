@@ -142,13 +142,30 @@ public class DB {
         }
     }
     
+    public void addCandidate(String email, int id_internship) {
+        
+        String deleteVisiteQuery = "INSERT INTO " + T_CANDIDATES + " ("
+                + T_CANDIDATES_FIELDS[0] + "," + T_CANDIDATES_FIELDS[1] + ") "
+                + "VALUES ('" + email + "','" + id_internship + "')";
+        
+        int rs = 0;
+        
+        try {
+           //suppression des visites de l'user
+            rs = stmt.executeUpdate(deleteVisiteQuery);
+       } catch (Exception ex) {
+            System.err.println("In DB - could not delete visites :"+ ex);   
+        }
+    }
+    
+    
     public static void main(String[] args) {
         DB db = new DB();
         
         db.listData();
         
-        
-        db.deleteCandidate("mabille@etud.insa-toulouse.fr", 1);
+        //db.deleteCandidate("mabille@etud.insa-toulouse.fr", 1);
+        //db.addCandidate("mabille@etud.insa-toulouse.fr", 2);
         
         db.closeConnection();
     }
