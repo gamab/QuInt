@@ -208,7 +208,23 @@ public class DB implements DBIf {
 
     @Override
     public boolean deleteProposedInternship(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String deleteProposedInternship = "DELETE FROM " + T_INTERNSHIPS
+                + " WHERE " + T_INTERNSHIPS_FIELDS[0] + "= ?";
+
+        boolean res = false;
+
+        try {
+            //prepare the request
+            PreparedStatement ps = this.conn.prepareStatement(deleteProposedInternship);
+            ps.setInt(1, id);
+
+            //execute it
+            res = (ps.executeUpdate() >= 0);
+
+        } catch (Exception ex) {
+            G_Log.e(this.getClass().getName(), "deleteProposedInternship", ex.getMessage());
+        }
+        return res;
     }
 
     @Override
@@ -236,12 +252,17 @@ public class DB implements DBIf {
         System.out.println(db.addCandidateApplication("mabille@etud.insa-toulouse.fr", 2));
 
         System.out.print("add an Internship :");
-        System.out.println(db.proposeInternship("2015-12-23", 1250, 
+        System.out.println(db.proposeInternship("2015-12-23", 1250,
                 "Etude de procédures MAC adaptées aux communications M2M dans un système satellite.",
                 "Compréhension du sujet et Etat de l’art (environ 1mois)\n"
-                        + "Implantation de la procédure dans un simulateur/émulateur qui a été précédemment développé à l’intérieur du département, en y apportant les modifications nécessaires  (environ 2-3 mois).\n"
-                        + "Mise en place de scénario et test de la procédure (environ 1 mois). Une fois l’implantation effectuée, des scénarios représentatifs seront joués afin de vérifier le bon fonctionnement  de la procédure. (1 à 2 mois).\n",
+                + "Implantation de la procédure dans un simulateur/émulateur qui a été précédemment développé à l’intérieur du département, en y apportant les modifications nécessaires  (environ 2-3 mois).\n"
+                + "Mise en place de scénario et test de la procédure (environ 1 mois). Une fois l’implantation effectuée, des scénarios représentatifs seront joués afin de vérifier le bon fonctionnement  de la procédure. (1 à 2 mois).\n",
                 "Fred M", "0612558709"));
+        
+        System.out.print("delete an Internship :");
+        System.out.println(db.deleteProposedInternship(3));
+        
+        
 
         db.closeConnection();
     }
