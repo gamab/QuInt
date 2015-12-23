@@ -4,7 +4,6 @@ USE Corp;
 CREATE USER 'prog'@'localhost' IDENTIFIED BY 'prog';
 GRANT ALL ON Corp.* TO 'prog'@'localhost';
 
-DROP TABLE users;
 DROP TABLE candidates;
 DROP TABLE internships;
 
@@ -26,11 +25,10 @@ PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 CREATE TABLE `candidates` (
-`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 `student_uuid` VARCHAR(30) NOT NULL,
 `internship_id` INT UNSIGNED NOT NULL,
-PRIMARY KEY (`id`),
-FOREIGN KEY (`internship_id`) REFERENCES internships(`id`)
+PRIMARY KEY (`student_uuid`,`internship_id`),
+FOREIGN KEY (`internship_id`) REFERENCES internships(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 
