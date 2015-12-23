@@ -5,7 +5,7 @@
  */
 package model;
 
-import Logger.G_Log;
+import logger.G_Log;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
