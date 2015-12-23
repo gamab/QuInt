@@ -33,7 +33,6 @@ public class CorporationWS {
      */
     @WebMethod(operationName = "proposeInternship")
     public boolean proposeInternship(@WebParam(name = "postDate") String postDate, @WebParam(name = "salary") int salary, @WebParam(name = "title") String title, @WebParam(name = "description") String description, @WebParam(name = "personInCharge") String personInCharge, @WebParam(name = "phoneNumber") String phoneNumber, @WebParam(name = "department") String department) {
-        //TODO write your implementation code here:
         DB db = new DB();
         
         boolean res = db.proposeInternship(postDate, salary, title, description, personInCharge, phoneNumber, department);
@@ -42,4 +41,22 @@ public class CorporationWS {
         
         return res;
     }
+    
+    /**
+     * Function that deletes a proposed internship (internships table).
+     *
+     * @param id - The id of the proposal to remove from the internships table
+     * @return result - Wether it has been deleted or not
+     */
+    @WebMethod(operationName = "deleteProposedInternship")
+    public boolean deleteProposedInternship(@WebParam(name = "id") int id) {
+        DB db = new DB();
+        
+        boolean res = db.deleteProposedInternship(id);
+        
+        db.closeConnection();
+        
+        return res;
+    }
+
 }
