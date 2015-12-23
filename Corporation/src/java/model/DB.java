@@ -258,7 +258,30 @@ public class DB implements DBIf {
 
     @Override
     public InternshipProposal getProposedInternship(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String getEveryInternships = "SELECT * FROM " + T_INTERNSHIPS;
+
+        InternshipProposal res = null;
+
+        try {
+            ResultSet rs = this.stmt.executeQuery(getEveryInternships);
+            if (rs.next()) {
+                String postDate = rs.getString(T_INTERNSHIPS_FIELDS[1]);
+                int salary = rs.getInt(T_INTERNSHIPS_FIELDS[2]);
+                String title = rs.getString(T_INTERNSHIPS_FIELDS[3]);
+                String description = rs.getString(T_INTERNSHIPS_FIELDS[4]);
+                String personInCharge = rs.getString(T_INTERNSHIPS_FIELDS[5]);
+                String phoneNumber = rs.getString(T_INTERNSHIPS_FIELDS[6]);
+                String selectedCandidate = rs.getString(T_INTERNSHIPS_FIELDS[7]);
+                boolean provided = rs.getBoolean(T_INTERNSHIPS_FIELDS[8]);
+
+                res = new InternshipProposal(id, postDate, salary, title, description, personInCharge, phoneNumber, selectedCandidate, provided);
+            }
+
+        } catch (SQLException ex) {
+            G_Log.e(this.getClass().getName(), "getProposedInternship", ex.getMessage());
+        }
+
+        return res;
     }
 
     @Override
@@ -292,6 +315,9 @@ public class DB implements DBIf {
             System.out.println(intProp.toString());
         }
 
+        System.out.println("get a given internships :");
+        System.out.println(db.getProposedInternship(1));
+        
         db.closeConnection();
     }
 }

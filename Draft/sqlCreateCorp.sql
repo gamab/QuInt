@@ -37,14 +37,14 @@ INSERT INTO internships(`post_date`,`salary`,`title`,`description`,`person_in_ch
 "Caractérisation temps réel d’un démonstrateur «Time-Triggered Ethernet» et ARINC653",
 "Airbus Defence and Space (Toulouse) recherche un(e) stagiaire (h/f) pour une durée de 6 mois.
 Le « Time-Triggered Ethernet » (TTE) est une technologie réseau qui utilise un séquencement temporel pour fournir des communications déterministes temps-réel sur l'Ethernet. Le TTE permet l'utilisation de 3 types de trafic (Time-Triggered, Rate Constrained, équivalent à l'AFDX, et « Best Effort »), une grande précision de datation des données, la synchronisation du réseau par une source temporel interne/externe, etc.",
-"Didier Pirou",0561615234,NULL,false),
+"Didier Pirou","0561615234",NULL,false),
 ('2015-10-12',800,"Cloud management (H/F) Toulouse",
 "S'intégrer avec nos outils et notre environnement
 Définir des profils pour nos applicatifs
 Faciliter le déploiement de N versions d'une application en parallèle pour tester de nouvelles versions
 Faciliter les livraisons continues, si possible de type « Zero downtime »
 Réagir automatiquement ou dans un court délai de temps à des pics de charges",
-"Clemence Athee-Na",0561599671,NULL,false);
+"Clemence Athee-Na","0561599671",NULL,false);
 
 INSERT INTO candidates(`student_uuid`,`internship_id`) VALUES
 ("mabille@etud.insa-toulouse.fr",1),
