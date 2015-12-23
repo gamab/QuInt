@@ -95,7 +95,7 @@ public class CorporationWS {
 
         return res;
     }
-    
+
     /**
      * Function that retrieves from the internships table a given the internship
      *
@@ -112,6 +112,21 @@ public class CorporationWS {
 
         return res;
     }
-    
 
+    /**
+     * Function that retrieves all the candidates for a given internship
+     *
+     * @param id - The id of the internship
+     * @return result - An arraylist containing all the students uuid (email)
+     */
+    @WebMethod(operationName = "listCandidates")
+    public ArrayList<String> listCandidates(int id){
+        DB db = new DB();
+
+        ArrayList<String> res = db.listCandidates(id);
+
+        db.closeConnection();
+
+        return res;
+    }
 }
