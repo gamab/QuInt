@@ -36,14 +36,14 @@ public class CorporationWS {
     @WebMethod(operationName = "proposeInternship")
     public boolean proposeInternship(@WebParam(name = "postDate") String postDate, @WebParam(name = "salary") int salary, @WebParam(name = "title") String title, @WebParam(name = "description") String description, @WebParam(name = "personInCharge") String personInCharge, @WebParam(name = "phoneNumber") String phoneNumber, @WebParam(name = "department") String department) {
         DB db = new DB();
-        
+
         boolean res = db.proposeInternship(postDate, salary, title, description, personInCharge, phoneNumber, department);
-        
+
         db.closeConnection();
-        
+
         return res;
     }
-    
+
     /**
      * Function that deletes a proposed internship (internships table).
      *
@@ -53,14 +53,14 @@ public class CorporationWS {
     @WebMethod(operationName = "deleteProposedInternship")
     public boolean deleteProposedInternship(@WebParam(name = "id") int id) {
         DB db = new DB();
-        
+
         boolean res = db.deleteProposedInternship(id);
-        
+
         db.closeConnection();
-        
+
         return res;
     }
-    
+
     /**
      * Function that retrieves from the internships table all the internships
      *
@@ -69,12 +69,31 @@ public class CorporationWS {
     @WebMethod(operationName = "listProposedInternships")
     public ArrayList<InternshipProposal> listProposedInternships() {
         DB db = new DB();
-        
+
         ArrayList<InternshipProposal> res = db.listProposedInternships();
-        
+
         db.closeConnection();
-        
-        return res;        
+
+        return res;
+    }
+
+    /**
+     * Function that retrieves from the internships table all the internships
+     * for a given department
+     *
+     * @param department - The department concerned (GEI, GP, GC, GMM, GM, GB,
+     * GPE)
+     * @return result - An arraylist containing every internship
+     */
+    @WebMethod(operationName = "listProposedInternshipsForDepartment")
+    public ArrayList<InternshipProposal> listProposedInternshipsForDepartment(String department) {
+        DB db = new DB();
+
+        ArrayList<InternshipProposal> res = db.listProposedInternshipsForDepartment(department);
+
+        db.closeConnection();
+
+        return res;
     }
 
 }
