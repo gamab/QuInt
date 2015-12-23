@@ -17,10 +17,11 @@ public class InternshipProposal {
     private String description;
     private String personInCharge;
     private String phoneNumber;
+    private String department;
     private String selectedCandidate;
     private boolean provided;
 
-    public InternshipProposal(int id, String postDate, int salary, String title, String description, String personInCharge, String phoneNumber, String selectedCandidate, boolean provided) {
+    public InternshipProposal(int id, String postDate, int salary, String title, String description, String personInCharge, String phoneNumber, String department, String selectedCandidate, boolean provided) {
         this.id = id;
         this.postDate = postDate;
         this.salary = salary;
@@ -28,6 +29,7 @@ public class InternshipProposal {
         this.description = description;
         this.personInCharge = personInCharge;
         this.phoneNumber = phoneNumber;
+        this.department = department;
         this.selectedCandidate = selectedCandidate;
         this.provided = provided;
     }
@@ -60,6 +62,10 @@ public class InternshipProposal {
         return phoneNumber;
     }
 
+    public String getDepartment() {
+        return department;
+    }
+    
     public String getSelectedCandidate() {
         return selectedCandidate;
     }
@@ -96,6 +102,10 @@ public class InternshipProposal {
         this.phoneNumber = phoneNumber;
     }
 
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+    
     public void setSelectedCandidate(String selectedCandidate) {
         this.selectedCandidate = selectedCandidate;
     }
@@ -120,10 +130,13 @@ public class InternshipProposal {
         res.append(personInCharge);
         res.append("','phoneNumber':'");
         res.append(phoneNumber);
+        res.append("','department':'");
+        res.append(department);
         res.append("','selectedCandidate':'");
         res.append(selectedCandidate);
         res.append("','provided':");
         res.append(provided);
+        res.append("}");
         return res.toString();
     }
 }
