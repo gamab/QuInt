@@ -286,7 +286,20 @@ public class DB implements DBIf {
 
     @Override
     public ArrayList<String> listCandidates(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String listCand = "SELECT " + T_CANDIDATES_FIELDS[0] + " FROM " + T_CANDIDATES + " WHERE " + T_CANDIDATES_FIELDS[1] + " = " + id;
+        
+        ArrayList<String> res = new ArrayList<>();
+        
+        try {
+            ResultSet rs = this.stmt.executeQuery(listCand);
+            while (rs.next()) {
+                res.add(rs.getString(T_CANDIDATES_FIELDS[0]));
+            }
+
+        } catch (SQLException ex) {
+            G_Log.e(this.getClass().getName(), "getProposedInternship", ex.getMessage());
+        }
+        return res;
     }
 
     public static void main(String[] args) {
@@ -318,6 +331,12 @@ public class DB implements DBIf {
         System.out.println("get a given internships :");
         System.out.println(db.getProposedInternship(1));
         
+        
+        System.out.println("list candidates for a given internship :");
+        for (String id : db.listCandidates(1)) {
+            System.out.println(id);
+        }
+
         db.closeConnection();
     }
 }
