@@ -95,5 +95,23 @@ public class CorporationWS {
 
         return res;
     }
+    
+    /**
+     * Function that retrieves from the internships table a given the internship
+     *
+     * @param id - The id of the proposal to retrieve
+     * @return result - The internship proposal or null
+     */
+    @WebMethod(operationName = "getProposedInternship")
+    public InternshipProposal getProposedInternship(int id) {
+        DB db = new DB();
+
+        InternshipProposal res = db.getProposedInternship(id);
+
+        db.closeConnection();
+
+        return res;
+    }
+    
 
 }
