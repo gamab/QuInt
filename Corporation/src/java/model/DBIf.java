@@ -48,8 +48,8 @@ public interface DBIf {
      * @param salary - The salary proposed for this internship
      * @param title - The title of the internship
      * @param description - The description of the internship
-     * @param personInCharge - The person that will be in charge on the
-     * company side
+     * @param personInCharge - The person that will be in charge on the company
+     * side
      * @param phoneNumber - The phone number of this person
      * @param department - The department can be GEI, GP, GM, GMM, GPE, GB
      * @return result - Wether it has been added or not
@@ -71,6 +71,16 @@ public interface DBIf {
      * @return result - An arraylist containing every internship
      */
     public ArrayList<InternshipProposal> listProposedInternships();
+
+    /**
+     * Function that retrieves from the internships table all the internships
+     * for a given department
+     *
+     * @param department - The department concerned (GEI, GP, GC, GMM, GM, GB,
+     * GPE)
+     * @return result - An arraylist containing every internship
+     */
+    public ArrayList<InternshipProposal> listProposedInternshipsForDepartment(String department);
 
     /**
      * Function that retrieves from the internships table a given the internship

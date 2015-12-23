@@ -257,15 +257,45 @@ public class DB implements DBIf {
 
         return res;
     }
+    
+    @Override
+    public ArrayList<InternshipProposal> listProposedInternshipsForDepartment(String department) {
+        String getEveryInternships = "SELECT * FROM " + T_INTERNSHIPS
+                + " WHERE " + T_INTERNSHIPS_FIELDS[7] + " = ?";
+
+        ArrayList<InternshipProposal> res = new ArrayList<>();
+
+        try {
+            ResultSet rs = this.stmt.executeQuery(getEveryInternships);
+            while (rs.next()) {
+                int id = rs.getInt(T_INTERNSHIPS_FIELDS[0]);
+                String postDate = rs.getString(T_INTERNSHIPS_FIELDS[1]);
+                int salary = rs.getInt(T_INTERNSHIPS_FIELDS[2]);
+                String title = rs.getString(T_INTERNSHIPS_FIELDS[3]);
+                String description = rs.getString(T_INTERNSHIPS_FIELDS[4]);
+                String personInCharge = rs.getString(T_INTERNSHIPS_FIELDS[5]);
+                String phoneNumber = rs.getString(T_INTERNSHIPS_FIELDS[6]);
+                String selectedCandidate = rs.getString(T_INTERNSHIPS_FIELDS[8]);
+                boolean provided = rs.getBoolean(T_INTERNSHIPS_FIELDS[9]);
+
+                res.add(new InternshipProposal(id, postDate, salary, title, description, personInCharge, phoneNumber, department, selectedCandidate, provided));
+            }
+
+        } catch (SQLException ex) {
+            G_Log.e(this.getClass().getName(), "listProposedInternships", ex.getMessage());
+        }
+
+        return res;
+    }
 
     @Override
     public InternshipProposal getProposedInternship(int id) {
-        String getEveryInternships = "SELECT * FROM " + T_INTERNSHIPS;
+        String getInternship = "SELECT * FROM " + T_INTERNSHIPS;
 
         InternshipProposal res = null;
 
         try {
-            ResultSet rs = this.stmt.executeQuery(getEveryInternships);
+            ResultSet rs = this.stmt.executeQuery(getInternship);
             if (rs.next()) {
                 String postDate = rs.getString(T_INTERNSHIPS_FIELDS[1]);
                 int salary = rs.getInt(T_INTERNSHIPS_FIELDS[2]);
