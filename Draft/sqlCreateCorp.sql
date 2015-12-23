@@ -44,7 +44,7 @@ Définir des profils pour nos applicatifs
 Faciliter le déploiement de N versions d'une application en parallèle pour tester de nouvelles versions
 Faciliter les livraisons continues, si possible de type « Zero downtime »
 Réagir automatiquement ou dans un court délai de temps à des pics de charges",
-"Clemence Athee-Na",05615996713,NULL,false);
+"Clemence Athee-Na",0561599671,NULL,false);
 
 INSERT INTO candidates(`student_uuid`,`internship_id`) VALUES
 ("mabille@etud.insa-toulouse.fr",1),

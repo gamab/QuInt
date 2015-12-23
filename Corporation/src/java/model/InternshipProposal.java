@@ -10,7 +10,8 @@ package model;
  * @author gb
  */
 public class InternshipProposal {
-    private String post_date;
+    private int id;
+    private String postDate;
     private int salary;
     private String title;
     private String description;
@@ -19,8 +20,9 @@ public class InternshipProposal {
     private String selectedCandidate;
     private boolean provided;
 
-    public InternshipProposal(String post_date, int salary, String title, String description, String personInCharge, String phoneNumber, String selectedCandidate, boolean provided) {
-        this.post_date = post_date;
+    public InternshipProposal(int id, String postDate, int salary, String title, String description, String personInCharge, String phoneNumber, String selectedCandidate, boolean provided) {
+        this.id = id;
+        this.postDate = postDate;
         this.salary = salary;
         this.title = title;
         this.description = description;
@@ -30,8 +32,12 @@ public class InternshipProposal {
         this.provided = provided;
     }
 
-    public String getPost_date() {
-        return post_date;
+    public int getId() {
+        return id;
+    }
+            
+    public String getPostDate() {
+        return postDate;
     }
 
     public int getSalary() {
@@ -62,8 +68,12 @@ public class InternshipProposal {
         return provided;
     }
 
-    public void setPost_date(String post_date) {
-        this.post_date = post_date;
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public void setPostDate(String postDate) {
+        this.postDate = postDate;
     }
 
     public void setSalary(int salary) {
@@ -92,5 +102,28 @@ public class InternshipProposal {
 
     public void setProvided(boolean provided) {
         this.provided = provided;
+    }
+    
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        res.append("{'id':");
+        res.append(id);
+        res.append(",'postDate':'");
+        res.append(postDate);
+        res.append("','salary':");
+        res.append(salary);
+        res.append(",'title':'");
+        res.append(title);
+        res.append("','description':'");
+        res.append(description);
+        res.append("','personInCharge':'");
+        res.append(personInCharge);
+        res.append("','phoneNumber':'");
+        res.append(phoneNumber);
+        res.append("','selectedCandidate':'");
+        res.append(selectedCandidate);
+        res.append("','provided':");
+        res.append(provided);
+        return res.toString();
     }
 }

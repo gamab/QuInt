@@ -229,7 +229,31 @@ public class DB implements DBIf {
 
     @Override
     public ArrayList<InternshipProposal> listProposedInternships() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String getEveryInternships = "SELECT * FROM " + T_INTERNSHIPS;
+
+        ArrayList<InternshipProposal> res = new ArrayList<>();
+
+        try {
+            ResultSet rs = this.stmt.executeQuery(getEveryInternships);
+            while (rs.next()) {
+                int id = rs.getInt(T_INTERNSHIPS_FIELDS[0]);
+                String postDate = rs.getString(T_INTERNSHIPS_FIELDS[1]);
+                int salary = rs.getInt(T_INTERNSHIPS_FIELDS[2]);
+                String title = rs.getString(T_INTERNSHIPS_FIELDS[3]);
+                String description = rs.getString(T_INTERNSHIPS_FIELDS[4]);
+                String personInCharge = rs.getString(T_INTERNSHIPS_FIELDS[5]);
+                String phoneNumber = rs.getString(T_INTERNSHIPS_FIELDS[6]);
+                String selectedCandidate = rs.getString(T_INTERNSHIPS_FIELDS[7]);
+                boolean provided = rs.getBoolean(T_INTERNSHIPS_FIELDS[8]);
+
+                res.add(new InternshipProposal(id, postDate, salary, title, description, personInCharge, phoneNumber, selectedCandidate, provided));
+            }
+
+        } catch (SQLException ex) {
+            G_Log.e(this.getClass().getName(), "listProposedInternships", ex.getMessage());
+        }
+
+        return res;
     }
 
     @Override
@@ -251,18 +275,22 @@ public class DB implements DBIf {
         System.out.print("add Candidate Application :");
         System.out.println(db.addCandidateApplication("mabille@etud.insa-toulouse.fr", 2));
 
-        System.out.print("add an Internship :");
-        System.out.println(db.proposeInternship("2015-12-23", 1250,
-                "Etude de procédures MAC adaptées aux communications M2M dans un système satellite.",
-                "Compréhension du sujet et Etat de l’art (environ 1mois)\n"
-                + "Implantation de la procédure dans un simulateur/émulateur qui a été précédemment développé à l’intérieur du département, en y apportant les modifications nécessaires  (environ 2-3 mois).\n"
-                + "Mise en place de scénario et test de la procédure (environ 1 mois). Une fois l’implantation effectuée, des scénarios représentatifs seront joués afin de vérifier le bon fonctionnement  de la procédure. (1 à 2 mois).\n",
-                "Fred M", "0612558709"));
-        
+        /*System.out.print("add an Internship :");
+         System.out.println(db.proposeInternship("2015-12-23", 1250,
+         "Etude de procédures MAC adaptées aux communications M2M dans un système satellite.",
+         "Compréhension du sujet et Etat de l’art (environ 1mois)\n"
+         + "Implantation de la procédure dans un simulateur/émulateur qui a été précédemment développé à l’intérieur du département, en y apportant les modifications nécessaires  (environ 2-3 mois).\n"
+         + "Mise en place de scénario et test de la procédure (environ 1 mois). Une fois l’implantation effectuée, des scénarios représentatifs seront joués afin de vérifier le bon fonctionnement  de la procédure. (1 à 2 mois).\n",
+         "Fred M", "0612558709"));
+         */
         System.out.print("delete an Internship :");
         System.out.println(db.deleteProposedInternship(3));
-        
-        
+
+        System.out.println("List proposed internships :");
+        ArrayList<InternshipProposal> intProps = db.listProposedInternships();
+        for (InternshipProposal intProp : intProps) {
+            System.out.println(intProp.toString());
+        }
 
         db.closeConnection();
     }
