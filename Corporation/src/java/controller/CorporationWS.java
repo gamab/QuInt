@@ -5,10 +5,12 @@
  */
 package controller;
 
+import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import model.DB;
+import model.InternshipProposal;
 
 /**
  *
@@ -57,6 +59,22 @@ public class CorporationWS {
         db.closeConnection();
         
         return res;
+    }
+    
+    /**
+     * Function that retrieves from the internships table all the internships
+     *
+     * @return result - An arraylist containing every internship
+     */
+    @WebMethod(operationName = "listProposedInternships")
+    public ArrayList<InternshipProposal> listProposedInternships() {
+        DB db = new DB();
+        
+        ArrayList<InternshipProposal> res = db.listProposedInternships();
+        
+        db.closeConnection();
+        
+        return res;        
     }
 
 }
