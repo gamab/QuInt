@@ -50,7 +50,6 @@ public class DB implements DBIf {
             stmt = conn.createStatement();
         } catch (Exception e) {
             System.err.println("In DB - connect : " + e.getLocalizedMessage());
-
         }
 
     }
@@ -121,12 +120,12 @@ public class DB implements DBIf {
             rs.close();
 
         } catch (SQLException ex) {
-            G_Log.e(this.getClass().getName(), "listDB" , ex.getMessage());
+            G_Log.e(this.getClass().getName(), "listDB", ex.getMessage());
         }
     }
 
     @Override
-    public boolean deleteCandidateApplication(String email, int id_internship) {
+    public boolean deleteCandidateApplication(String email, int idInternship) {
 
         String deleteCandidates = "DELETE FROM " + T_CANDIDATES
                 + " WHERE " + T_CANDIDATES_FIELDS[0] + "= ?"
@@ -138,19 +137,19 @@ public class DB implements DBIf {
             //prepare the request
             PreparedStatement ps = this.conn.prepareStatement(deleteCandidates);
             ps.setString(1, email);
-            ps.setInt(2, id_internship);
+            ps.setInt(2, idInternship);
 
             //execute it
             res = (ps.executeUpdate() >= 0);
 
         } catch (Exception ex) {
-            G_Log.e(this.getClass().getName(), "deleteCandidateApplication" , ex.getMessage());
+            G_Log.e(this.getClass().getName(), "deleteCandidateApplication", ex.getMessage());
         }
         return res;
     }
 
     @Override
-    public boolean addCandidateApplication(String email, int id_internship) {
+    public boolean addCandidateApplication(String email, int idInternship) {
 
         String addCandidate = "INSERT INTO " + T_CANDIDATES + " ("
                 + T_CANDIDATES_FIELDS[0] + "," + T_CANDIDATES_FIELDS[1] + ") "
@@ -162,33 +161,49 @@ public class DB implements DBIf {
             //prepare the request
             PreparedStatement ps = this.conn.prepareStatement(addCandidate);
             ps.setString(1, email);
-            ps.setInt(2, id_internship);
+            ps.setInt(2, idInternship);
 
             //execute it
             res = (ps.executeUpdate() >= 0);
 
         } catch (Exception ex) {
-            G_Log.e(this.getClass().getName(), "addCandidateApplication" , ex.getMessage());
+            G_Log.e(this.getClass().getName(), "addCandidateApplication", ex.getMessage());
         }
         return res;
     }
 
-    public static void main(String[] args) {
-        DB db = new DB();
-
-        //db.listDB();
-
-        System.out.print("delete Candidate Application :");
-        System.out.println(db.deleteCandidateApplication("mabille@etud.insa-toulouse.fr", 2));
-        System.out.print("add Candidate Application :");
-        System.out.println(db.addCandidateApplication("mabille@etud.insa-toulouse.fr", 2));
-        
-        db.closeConnection();
-    }
-
     @Override
-    public boolean proposeInternship(String post_date, int salary, String title, String description, String person_in_charge, String phone_number) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean proposeInternship(String postDate, int salary, String title, String description, String personInCharge, String phoneNumber) {
+        //Prepare the sql request to add an internship to the internships table
+        StringBuilder addInternship = new StringBuilder();
+        addInternship.append("INSERT INTO " + T_INTERNSHIPS + " (");
+        addInternship.append(T_INTERNSHIPS_FIELDS[1]);
+        for (int i = 2; i < T_INTERNSHIPS_FIELDS.length; i++) {
+            addInternship.append(",");
+            addInternship.append(T_INTERNSHIPS_FIELDS[i]);
+        }
+        addInternship.append(") VALUES ");
+        addInternship.append("( ? , ? , ? , ? , ? , ? , NULL , false)");
+
+        boolean res = false;
+        try {
+            //prepare the request
+            PreparedStatement ps = this.conn.prepareStatement(addInternship.toString());
+            ps.setString(1, postDate);
+            ps.setInt(2, salary);
+            ps.setString(3, title);
+            ps.setString(4, description);
+            ps.setString(5, personInCharge);
+            ps.setString(6, phoneNumber);
+
+            //execute it
+            res = (ps.executeUpdate() >= 0);
+
+        } catch (Exception ex) {
+            G_Log.e(this.getClass().getName(), "proposeInternship", ex.getMessage());
+        }
+        return res;
+
     }
 
     @Override
@@ -209,5 +224,25 @@ public class DB implements DBIf {
     @Override
     public ArrayList<String> listCandidates(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void main(String[] args) {
+        DB db = new DB();
+
+        //db.listDB();
+        System.out.print("delete Candidate Application :");
+        System.out.println(db.deleteCandidateApplication("mabille@etud.insa-toulouse.fr", 2));
+        System.out.print("add Candidate Application :");
+        System.out.println(db.addCandidateApplication("mabille@etud.insa-toulouse.fr", 2));
+
+        System.out.print("add an Internship :");
+        System.out.println(db.proposeInternship("2015-12-23", 1250, 
+                "Etude de procédures MAC adaptées aux communications M2M dans un système satellite.",
+                "Compréhension du sujet et Etat de l’art (environ 1mois)\n"
+                        + "Implantation de la procédure dans un simulateur/émulateur qui a été précédemment développé à l’intérieur du département, en y apportant les modifications nécessaires  (environ 2-3 mois).\n"
+                        + "Mise en place de scénario et test de la procédure (environ 1 mois). Une fois l’implantation effectuée, des scénarios représentatifs seront joués afin de vérifier le bon fonctionnement  de la procédure. (1 à 2 mois).\n",
+                "Fred M", "0612558709"));
+
+        db.closeConnection();
     }
 }

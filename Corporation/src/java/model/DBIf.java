@@ -24,37 +24,37 @@ public interface DBIf {
      * applications (candidates table).
      *
      * @param email - The email identifying the candidate
-     * @param id_internship - The id identifying the internship
+     * @param idInternship - The id identifying the internship
      * @return result - Wether it has been added or not
      */
-    public boolean addCandidateApplication(String email, int id_internship);
+    public boolean addCandidateApplication(String email, int idInternship);
 
     /**
      * Function that removes an application for a given internship from the list
      * of applications (candidates table).
      *
      * @param email - The email identifying the candidate
-     * @param id_internship - The id identifying the internship
+     * @param idInternship - The id identifying the internship
      * @return result - Wether it has been deleted or not
      */
-    public boolean deleteCandidateApplication(String email, int id_internship);
+    public boolean deleteCandidateApplication(String email, int idInternship);
 
     //--------------------FOR CORPO USERS--------------------
     /**
      * Function that adds an internship to the proposed internships (internships
      * table).
      *
-     * @param post_date - The date of the proposal : YYYY-MM-DD
+     * @param postDate - The date of the proposal : YYYY-MM-DD
      * @param salary - The salary proposed for this internship
      * @param title - The title of the internship
      * @param description - The description of the internship
-     * @param person_in_charge - The person that will be in charge on the
+     * @param personInCharge - The person that will be in charge on the
      * company side
-     * @param phone_number - The phone number of this person
+     * @param phoneNumber - The phone number of this person
      * @return result - Wether it has been added or not
      */
-    public boolean proposeInternship(String post_date, int salary, String title, String description,
-            String person_in_charge, String phone_number);
+    public boolean proposeInternship(String postDate, int salary, String title, String description,
+            String personInCharge, String phoneNumber);
 
     /**
      * Function that deletes a proposed internship (internships table).
