@@ -20,6 +20,50 @@ import model.InternshipProposal;
 public class CorporationWS {
 
     /**
+     * Function that list what is inside the database
+     */
+    @WebMethod(operationName = "listDB")
+    public void listDB() {
+        DB db = new DB();
+        db.listDB();
+        db.closeConnection();
+    }
+
+    //--------------------FOR STUDENTS--------------------
+    /**
+     * Function that adds an application for a given internship to the list of
+     * applications (candidates table).
+     *
+     * @param email - The email identifying the candidate
+     * @param idInternship - The id identifying the internship
+     * @return result - Wether it has been added or not
+     */
+    @WebMethod(operationName = "addCandidateApplication")
+    public boolean addCandidateApplication(String email, int idInternship) {
+        DB db = new DB();
+        boolean res = db.addCandidateApplication(email, idInternship);
+        db.closeConnection();
+        return res;
+    }
+
+    /**
+     * Function that removes an application for a given internship from the list
+     * of applications (candidates table).
+     *
+     * @param email - The email identifying the candidate
+     * @param idInternship - The id identifying the internship
+     * @return result - Wether it has been deleted or not
+     */
+    @WebMethod(operationName = "deleteCandidateApplication")
+    public boolean deleteCandidateApplication(String email, int idInternship) {
+        DB db = new DB();
+        boolean res = db.deleteCandidateApplication(email, idInternship);
+        db.closeConnection();
+        return res;
+    }
+
+    //--------------------FOR CORPO USERS--------------------
+    /**
      * Function that adds an internship to the proposed internships (internships
      * table).
      *
@@ -36,11 +80,11 @@ public class CorporationWS {
     @WebMethod(operationName = "proposeInternship")
     public boolean proposeInternship(@WebParam(name = "postDate") String postDate, @WebParam(name = "salary") int salary, @WebParam(name = "title") String title, @WebParam(name = "description") String description, @WebParam(name = "personInCharge") String personInCharge, @WebParam(name = "phoneNumber") String phoneNumber, @WebParam(name = "department") String department) {
         DB db = new DB();
-
+        
         boolean res = db.proposeInternship(postDate, salary, title, description, personInCharge, phoneNumber, department);
-
+        
         db.closeConnection();
-
+        
         return res;
     }
 
@@ -53,11 +97,11 @@ public class CorporationWS {
     @WebMethod(operationName = "deleteProposedInternship")
     public boolean deleteProposedInternship(@WebParam(name = "id") int id) {
         DB db = new DB();
-
+        
         boolean res = db.deleteProposedInternship(id);
-
+        
         db.closeConnection();
-
+        
         return res;
     }
 
@@ -69,11 +113,11 @@ public class CorporationWS {
     @WebMethod(operationName = "listProposedInternships")
     public ArrayList<InternshipProposal> listProposedInternships() {
         DB db = new DB();
-
+        
         ArrayList<InternshipProposal> res = db.listProposedInternships();
-
+        
         db.closeConnection();
-
+        
         return res;
     }
 
@@ -88,11 +132,11 @@ public class CorporationWS {
     @WebMethod(operationName = "listProposedInternshipsForDepartment")
     public ArrayList<InternshipProposal> listProposedInternshipsForDepartment(String department) {
         DB db = new DB();
-
+        
         ArrayList<InternshipProposal> res = db.listProposedInternshipsForDepartment(department);
-
+        
         db.closeConnection();
-
+        
         return res;
     }
 
@@ -105,11 +149,11 @@ public class CorporationWS {
     @WebMethod(operationName = "getProposedInternship")
     public InternshipProposal getProposedInternship(int id) {
         DB db = new DB();
-
+        
         InternshipProposal res = db.getProposedInternship(id);
-
+        
         db.closeConnection();
-
+        
         return res;
     }
 
@@ -120,13 +164,13 @@ public class CorporationWS {
      * @return result - An arraylist containing all the students uuid (email)
      */
     @WebMethod(operationName = "listCandidates")
-    public ArrayList<String> listCandidates(int id){
+    public ArrayList<String> listCandidates(int id) {
         DB db = new DB();
-
+        
         ArrayList<String> res = db.listCandidates(id);
-
+        
         db.closeConnection();
-
+        
         return res;
     }
 }
