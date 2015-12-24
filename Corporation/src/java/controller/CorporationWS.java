@@ -39,7 +39,7 @@ public class CorporationWS {
      * @return result - Wether it has been added or not
      */
     @WebMethod(operationName = "addCandidateApplication")
-    public boolean addCandidateApplication(String email, int idInternship) {
+    public boolean addCandidateApplication(@WebParam(name = "email") String email,@WebParam(name = "idInternship") int idInternship) {
         DB db = new DB();
         boolean res = db.addCandidateApplication(email, idInternship);
         db.closeConnection();
@@ -55,7 +55,7 @@ public class CorporationWS {
      * @return result - Wether it has been deleted or not
      */
     @WebMethod(operationName = "deleteCandidateApplication")
-    public boolean deleteCandidateApplication(String email, int idInternship) {
+    public boolean deleteCandidateApplication(@WebParam(name = "email") String email,@WebParam(name = "idInternship") int idInternship) {
         DB db = new DB();
         boolean res = db.deleteCandidateApplication(email, idInternship);
         db.closeConnection();
@@ -123,17 +123,18 @@ public class CorporationWS {
 
     /**
      * Function that retrieves from the internships table all the internships
-     * for a given department
+     * for a given set of filters
      *
      * @param department - The department concerned (GEI, GP, GC, GMM, GM, GB,
-     * GPE)
+     * GPE) can be null or empty
+     * @param location - The location concerned (31100, 31400, ...) can be null or empty
      * @return result - An arraylist containing every internship
      */
-    @WebMethod(operationName = "listProposedInternshipsForDepartment")
-    public ArrayList<InternshipProposal> listProposedInternshipsForDepartment(String department) {
+    @WebMethod(operationName = "listProposedInternshipsFiltered")
+    public ArrayList<InternshipProposal> listProposedInternshipsFiltered(@WebParam(name = "departement") String department, @WebParam(name = "location") String location) {
         DB db = new DB();
         
-        ArrayList<InternshipProposal> res = db.listProposedInternshipsForDepartment(department);
+        ArrayList<InternshipProposal> res = db.listProposedInternshipsFiltered(department,location);
         
         db.closeConnection();
         
