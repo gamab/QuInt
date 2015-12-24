@@ -28,7 +28,7 @@ public class DB implements DBIf {
     static final String PASS = "prog";
 
     static final String T_INTERNSHIPS = "internships";
-    static final String[] T_INTERNSHIPS_FIELDS = {"id", "post_date", "salary", "title", "description", "person_in_charge", "phone_number", "department", "selected_candidate", "provided"};
+    static final String[] T_INTERNSHIPS_FIELDS = {"id", "post_date", "salary", "title", "description", "person_in_charge", "phone_number", "department", "location", "selected_candidate", "provided"};
 
     static final String T_CANDIDATES = "candidates";
     static final String[] T_CANDIDATES_FIELDS = {"student_uuid", "internship_id"};
@@ -173,7 +173,7 @@ public class DB implements DBIf {
     }
 
     @Override
-    public boolean proposeInternship(String postDate, int salary, String title, String description, String personInCharge, String phoneNumber, String department) {
+    public boolean proposeInternship(String postDate, int salary, String title, String description, String personInCharge, String phoneNumber, String department, String location) {
         //Prepare the sql request to add an internship to the internships table
         StringBuilder addInternship = new StringBuilder();
         addInternship.append("INSERT INTO " + T_INTERNSHIPS + " (");
@@ -183,7 +183,7 @@ public class DB implements DBIf {
             addInternship.append(T_INTERNSHIPS_FIELDS[i]);
         }
         addInternship.append(") VALUES ");
-        addInternship.append("( ? , ? , ? , ? , ? , ? , ?, NULL , false)");
+        addInternship.append("( ? , ? , ? , ? , ? , ? , ?, ?, NULL , false)");
 
         boolean res = false;
         try {
@@ -196,6 +196,7 @@ public class DB implements DBIf {
             ps.setString(5, personInCharge);
             ps.setString(6, phoneNumber);
             ps.setString(7, department);
+            ps.setString(8, location);
 
             //execute it
             res = (ps.executeUpdate() >= 0);
@@ -245,10 +246,11 @@ public class DB implements DBIf {
                 String personInCharge = rs.getString(T_INTERNSHIPS_FIELDS[5]);
                 String phoneNumber = rs.getString(T_INTERNSHIPS_FIELDS[6]);
                 String department = rs.getString(T_INTERNSHIPS_FIELDS[7]);
-                String selectedCandidate = rs.getString(T_INTERNSHIPS_FIELDS[8]);
-                boolean provided = rs.getBoolean(T_INTERNSHIPS_FIELDS[9]);
+                String location = rs.getString(T_INTERNSHIPS_FIELDS[8]);
+                String selectedCandidate = rs.getString(T_INTERNSHIPS_FIELDS[9]);
+                boolean provided = rs.getBoolean(T_INTERNSHIPS_FIELDS[10]);
 
-                res.add(new InternshipProposal(id, postDate, salary, title, description, personInCharge, phoneNumber, department, selectedCandidate, provided));
+                res.add(new InternshipProposal(id, postDate, salary, title, description, personInCharge, phoneNumber, department, location, selectedCandidate, provided));
             }
 
         } catch (SQLException ex) {
@@ -275,10 +277,11 @@ public class DB implements DBIf {
                 String description = rs.getString(T_INTERNSHIPS_FIELDS[4]);
                 String personInCharge = rs.getString(T_INTERNSHIPS_FIELDS[5]);
                 String phoneNumber = rs.getString(T_INTERNSHIPS_FIELDS[6]);
-                String selectedCandidate = rs.getString(T_INTERNSHIPS_FIELDS[8]);
-                boolean provided = rs.getBoolean(T_INTERNSHIPS_FIELDS[9]);
+                String location = rs.getString(T_INTERNSHIPS_FIELDS[8]);
+                String selectedCandidate = rs.getString(T_INTERNSHIPS_FIELDS[9]);
+                boolean provided = rs.getBoolean(T_INTERNSHIPS_FIELDS[10]);
 
-                res.add(new InternshipProposal(id, postDate, salary, title, description, personInCharge, phoneNumber, department, selectedCandidate, provided));
+                res.add(new InternshipProposal(id, postDate, salary, title, description, personInCharge, phoneNumber, department, location, selectedCandidate, provided));
             }
 
         } catch (SQLException ex) {
@@ -304,10 +307,11 @@ public class DB implements DBIf {
                 String personInCharge = rs.getString(T_INTERNSHIPS_FIELDS[5]);
                 String phoneNumber = rs.getString(T_INTERNSHIPS_FIELDS[6]);
                 String department = rs.getString(T_INTERNSHIPS_FIELDS[7]);
-                String selectedCandidate = rs.getString(T_INTERNSHIPS_FIELDS[8]);
-                boolean provided = rs.getBoolean(T_INTERNSHIPS_FIELDS[9]);
+                String location = rs.getString(T_INTERNSHIPS_FIELDS[8]);
+                String selectedCandidate = rs.getString(T_INTERNSHIPS_FIELDS[9]);
+                boolean provided = rs.getBoolean(T_INTERNSHIPS_FIELDS[10]);
 
-                res = new InternshipProposal(id, postDate, salary, title, description, personInCharge, phoneNumber, department, selectedCandidate, provided);
+                res = new InternshipProposal(id, postDate, salary, title, description, personInCharge, phoneNumber, department, location, selectedCandidate, provided);
             }
 
         } catch (SQLException ex) {
@@ -350,7 +354,7 @@ public class DB implements DBIf {
          "Compréhension du sujet et Etat de l’art (environ 1mois)\n"
          + "Implantation de la procédure dans un simulateur/émulateur qui a été précédemment développé à l’intérieur du département, en y apportant les modifications nécessaires  (environ 2-3 mois).\n"
          + "Mise en place de scénario et test de la procédure (environ 1 mois). Une fois l’implantation effectuée, des scénarios représentatifs seront joués afin de vérifier le bon fonctionnement  de la procédure. (1 à 2 mois).\n",
-         "Fred M", "0612558709", "GEI"));
+         "Fred M", "0612558709", "GEI", "31100"));
         
         //System.out.print("delete an Internship :");
         //System.out.println(db.deleteProposedInternship(3));

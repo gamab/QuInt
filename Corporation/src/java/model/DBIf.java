@@ -52,10 +52,11 @@ public interface DBIf {
      * side
      * @param phoneNumber - The phone number of this person
      * @param department - The department can be GEI, GP, GM, GMM, GPE, GB
+     * @param location - The postal code where the internship will take place
      * @return result - Wether it has been added or not
      */
     public boolean proposeInternship(String postDate, int salary, String title, String description,
-            String personInCharge, String phoneNumber, String department);
+            String personInCharge, String phoneNumber, String department, String location);
 
     /**
      * Function that deletes a proposed internship (internships table).

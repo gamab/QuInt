@@ -78,10 +78,10 @@ public class CorporationWS {
      * @return result - Wether it has been added or not
      */
     @WebMethod(operationName = "proposeInternship")
-    public boolean proposeInternship(@WebParam(name = "postDate") String postDate, @WebParam(name = "salary") int salary, @WebParam(name = "title") String title, @WebParam(name = "description") String description, @WebParam(name = "personInCharge") String personInCharge, @WebParam(name = "phoneNumber") String phoneNumber, @WebParam(name = "department") String department) {
+    public boolean proposeInternship(@WebParam(name = "postDate") String postDate, @WebParam(name = "salary") int salary, @WebParam(name = "title") String title, @WebParam(name = "description") String description, @WebParam(name = "personInCharge") String personInCharge, @WebParam(name = "phoneNumber") String phoneNumber, @WebParam(name = "department") String department,  @WebParam(name = "location") String location) {
         DB db = new DB();
         
-        boolean res = db.proposeInternship(postDate, salary, title, description, personInCharge, phoneNumber, department);
+        boolean res = db.proposeInternship(postDate, salary, title, description, personInCharge, phoneNumber, department, location);
         
         db.closeConnection();
         

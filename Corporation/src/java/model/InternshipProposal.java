@@ -18,10 +18,11 @@ public class InternshipProposal {
     private String personInCharge;
     private String phoneNumber;
     private String department;
+    private String location;
     private String selectedCandidate;
     private boolean provided;
 
-    public InternshipProposal(int id, String postDate, int salary, String title, String description, String personInCharge, String phoneNumber, String department, String selectedCandidate, boolean provided) {
+    public InternshipProposal(int id, String postDate, int salary, String title, String description, String personInCharge, String phoneNumber, String department, String location, String selectedCandidate, boolean provided) {
         this.id = id;
         this.postDate = postDate;
         this.salary = salary;
@@ -32,6 +33,7 @@ public class InternshipProposal {
         this.department = department;
         this.selectedCandidate = selectedCandidate;
         this.provided = provided;
+        this.location = location;
     }
 
     public int getId() {
@@ -70,6 +72,10 @@ public class InternshipProposal {
         return selectedCandidate;
     }
 
+    public String getLocation() {
+        return location;
+    }
+    
     public boolean isProvided() {
         return provided;
     }
@@ -114,6 +120,10 @@ public class InternshipProposal {
         this.provided = provided;
     }
     
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    
     public String toString() {
         StringBuilder res = new StringBuilder();
         res.append("{'id':");
@@ -132,6 +142,8 @@ public class InternshipProposal {
         res.append(phoneNumber);
         res.append("','department':'");
         res.append(department);
+        res.append("','location':'");
+        res.append(location);
         res.append("','selectedCandidate':'");
         res.append(selectedCandidate);
         res.append("','provided':");
