@@ -77,12 +77,13 @@ public interface DBIf {
      * Function that retrieves from the internships table all the internships
      * for a given set of filters
      *
+     * @param date - The maximum age, older entries will be ignored
      * @param department - The department concerned (GEI, GP, GC, GMM, GM, GB,
      * GPE) can be null or empty
      * @param location - The location concerned (31100, 31400, ...) can be null or empty
      * @return result - An arraylist containing every internship
      */
-    public ArrayList<InternshipProposal> listProposedInternshipsFiltered(String department, String location);
+    public ArrayList<InternshipProposal> listProposedInternshipsFiltered(String date, String department, String location);
 
     /**
      * Function that retrieves from the internships table a given the internship

@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -261,37 +263,70 @@ public class DB implements DBIf {
     }
 
     @Override
-    public ArrayList<InternshipProposal> listProposedInternshipsFiltered(String department, String location) {
+    public ArrayList<InternshipProposal> listProposedInternshipsFiltered(String date, String department, String location) {
         boolean departProvided = (department != null) && !(department.isEmpty());
         boolean locationProvided = (location != null) && !(location.isEmpty());
-        
+        boolean dateProvided = (date != null) && !(date.isEmpty());
+
         ArrayList<InternshipProposal> res = new ArrayList<>();
-        String getEveryInternships;
+        String getEveryInternships = "SELECT * FROM " + T_INTERNSHIPS;
         PreparedStatement ps;
 
         try {
-            if (departProvided && locationProvided) {
-                getEveryInternships = "SELECT * FROM " + T_INTERNSHIPS
-                        + " WHERE " + T_INTERNSHIPS_FIELDS[7] + " = ?"
+            if (departProvided && locationProvided && dateProvided) {
+                getEveryInternships += " WHERE " + T_INTERNSHIPS_FIELDS[7] + " = ?"
+                        + " AND " + T_INTERNSHIPS_FIELDS[8] + " = ?"
+                        + " AND " + T_INTERNSHIPS_FIELDS[1] + " >= ?";
+                ps = this.conn.prepareStatement(getEveryInternships);
+                ps.setString(1, department);
+                ps.setString(2, location);
+                ps.setString(3, date);
+            } else if (departProvided && dateProvided) {
+                getEveryInternships += " WHERE " + T_INTERNSHIPS_FIELDS[7] + " = ?"
+                        + " AND " + T_INTERNSHIPS_FIELDS[1] + " >= ?";
+                ps = this.conn.prepareStatement(getEveryInternships);
+                ps.setString(1, department);
+                ps.setString(2, date);
+            } else if (locationProvided && dateProvided) {
+                getEveryInternships += " WHERE " + T_INTERNSHIPS_FIELDS[8] + " = ?"
+                        + " AND " + T_INTERNSHIPS_FIELDS[1] + " >= ?";
+                ps = this.conn.prepareStatement(getEveryInternships);
+                ps.setString(1, location);
+                ps.setString(2, date);
+            } else if (departProvided && locationProvided) {
+                getEveryInternships += " WHERE " + T_INTERNSHIPS_FIELDS[7] + " = ?"
                         + " AND " + T_INTERNSHIPS_FIELDS[8] + " = ?";
                 ps = this.conn.prepareStatement(getEveryInternships);
                 ps.setString(1, department);
                 ps.setString(2, location);
             } else if (departProvided) {
-                getEveryInternships = "SELECT * FROM " + T_INTERNSHIPS
-                        + " WHERE " + T_INTERNSHIPS_FIELDS[7] + " = ?";
+                getEveryInternships += " WHERE " + T_INTERNSHIPS_FIELDS[7] + " = ?";
                 ps = this.conn.prepareStatement(getEveryInternships);
                 ps.setString(1, department);
             } else if (locationProvided) {
-                getEveryInternships = "SELECT * FROM " + T_INTERNSHIPS
-                        + " WHERE " + T_INTERNSHIPS_FIELDS[8] + " = ?";
+                getEveryInternships += " WHERE " + T_INTERNSHIPS_FIELDS[8] + " = ?";
                 ps = this.conn.prepareStatement(getEveryInternships);
                 ps.setString(1, location);
+            } else if (dateProvided) {
+                getEveryInternships += " WHERE " + T_INTERNSHIPS_FIELDS[1] + " >= ?";
+                ps = this.conn.prepareStatement(getEveryInternships);
+                ps.setString(1, date);
             } else {
-                getEveryInternships = "SELECT * FROM " + T_INTERNSHIPS;
                 ps = this.conn.prepareStatement(getEveryInternships);
             }
 
+            res = this.listProposedInternshipsExecute(ps);
+        } catch (SQLException ex) {
+            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return res;
+    }
+
+    private ArrayList<InternshipProposal> listProposedInternshipsExecute(PreparedStatement ps) {
+        ArrayList<InternshipProposal> res = new ArrayList<>();
+
+        try {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -367,57 +402,75 @@ public class DB implements DBIf {
 
     public static void main(String[] args) {
         DB db = new DB();
+        ArrayList<InternshipProposal> intProps;
 
         //db.listDB();
-        /*
-         System.out.print("delete Candidate Application :");
-         System.out.println(db.deleteCandidateApplication("mabille@etud.insa-toulouse.fr", 2));
-         System.out.print("add Candidate Application :");
-         System.out.println(db.addCandidateApplication("mabille@etud.insa-toulouse.fr", 2));
-
-         System.out.print("add an Internship :");
+        //System.out.print("delete Candidate Application :");
+        //System.out.println(db.deleteCandidateApplication("mabille@etud.insa-toulouse.fr", 2));
+        //System.out.print("add Candidate Application :");
+        //System.out.println(db.addCandidateApplication("mabille@etud.insa-toulouse.fr", 2));
+        /*System.out.print("add an Internship :");
          System.out.println(db.proposeInternship("2015-12-23", 1250,
          "Etude de procédures MAC adaptées aux communications M2M dans un système satellite.",
          "Compréhension du sujet et Etat de l’art (environ 1mois)\n"
          + "Implantation de la procédure dans un simulateur/émulateur qui a été précédemment développé à l’intérieur du département, en y apportant les modifications nécessaires  (environ 2-3 mois).\n"
          + "Mise en place de scénario et test de la procédure (environ 1 mois). Une fois l’implantation effectuée, des scénarios représentatifs seront joués afin de vérifier le bon fonctionnement  de la procédure. (1 à 2 mois).\n",
-         "Fred M", "0612558709", "GEI", "31100"));
-
-         //System.out.print("delete an Internship :");
-         //System.out.println(db.deleteProposedInternship(3));
+         "Fred M", "0612558709", "GEI", "31100"));*/
+        //System.out.print("delete an Internship :");
+        //System.out.println(db.deleteProposedInternship(3));
+        /*
          System.out.println("List proposed internships :");
          ArrayList<InternshipProposal> intProps = db.listProposedInternships();
          for (InternshipProposal intProp : intProps) {
          System.out.println(intProp.toString());
          }
-
-         System.out.println("get a given internships :");
-         System.out.println(db.getProposedInternship(1));
-
-         System.out.println("list candidates for a given internship :");
+         */
+        //System.out.println("get a given internships :");
+        //System.out.println(db.getProposedInternship(1));
+        /*System.out.println("list candidates for a given internship :");
          for (String id : db.listCandidates(1)) {
          System.out.println(id);
-         }
-         */
-        ArrayList<InternshipProposal> intProps;
-        System.out.println("List proposed internships in 31400 :");
-        intProps = db.listProposedInternshipsFiltered("", "31400");
+         }*/
+        /*System.out.println("List proposed internships in 31400 :");
+         intProps = db.listProposedInternshipsFiltered("","","31400");
+         for (InternshipProposal intProp : intProps) {
+         System.out.println(intProp.toString());
+         }*/
+        /*System.out.println("List proposed internships for GEI :");
+         intProps = db.listProposedInternshipsFiltered("","GEI","");
+         for (InternshipProposal intProp : intProps) {
+         System.out.println(intProp.toString());
+         }*/
+        /*System.out.println("List proposed internships after the 1rst of december :");
+         intProps = db.listProposedInternshipsFiltered("2015-12-01","","");
+         for (InternshipProposal intProp : intProps) {
+         System.out.println(intProp.toString());
+         }*/
+        /*System.out.println("List proposed internships for GEI in 31400 :");
+         intProps = db.listProposedInternshipsFiltered("","GEI", "31400");
+         for (InternshipProposal intProp : intProps) {
+         System.out.println(intProp.toString());
+         }*/
+        /*System.out.println("List proposed internships for GEI after the 1rst of december :");
+         intProps = db.listProposedInternshipsFiltered("2015-12-01","GEI", "");
+         for (InternshipProposal intProp : intProps) {
+         System.out.println(intProp.toString());
+         }*/
+        /*System.out.println("List proposed internships in 31700 after the 1rst of december :");
+         intProps = db.listProposedInternshipsFiltered("2015-12-01","", "31700");
+         for (InternshipProposal intProp : intProps) {
+         System.out.println(intProp.toString());
+         }*/
+        /*System.out.println("List proposed internships for GEI after the 1rst of december in 31100 :");
+        intProps = db.listProposedInternshipsFiltered("2015-12-01", "GEI", "31100");
         for (InternshipProposal intProp : intProps) {
             System.out.println(intProp.toString());
-        }
-        /*
-         System.out.println("List proposed internships for GEI :");
-         intProps = db.listProposedInternshipsFiltered("GEI", "");
-         for (InternshipProposal intProp : intProps) {
-         System.out.println(intProp.toString());
-         }
-
-         System.out.println("List proposed internships for GEI in 31400 :");
-         intProps = db.listProposedInternshipsFiltered("GEI", "31400");
-         for (InternshipProposal intProp : intProps) {
-         System.out.println(intProp.toString());
-         }
-         */
+        }*/
+        /*System.out.println("List proposed internships without specifying any filter :");
+        intProps = db.listProposedInternshipsFiltered("", "", "");
+        for (InternshipProposal intProp : intProps) {
+            System.out.println(intProp.toString());
+        }*/
         db.closeConnection();
     }
 }

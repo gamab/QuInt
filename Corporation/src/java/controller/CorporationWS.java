@@ -125,16 +125,17 @@ public class CorporationWS {
      * Function that retrieves from the internships table all the internships
      * for a given set of filters
      *
+     * @param date - The maximum age, older entries will be ignored
      * @param department - The department concerned (GEI, GP, GC, GMM, GM, GB,
      * GPE) can be null or empty
      * @param location - The location concerned (31100, 31400, ...) can be null or empty
      * @return result - An arraylist containing every internship
      */
     @WebMethod(operationName = "listProposedInternshipsFiltered")
-    public ArrayList<InternshipProposal> listProposedInternshipsFiltered(@WebParam(name = "departement") String department, @WebParam(name = "location") String location) {
+    public ArrayList<InternshipProposal> listProposedInternshipsFiltered(@WebParam(name = "date") String date, @WebParam(name = "departement") String department, @WebParam(name = "location") String location) {
         DB db = new DB();
         
-        ArrayList<InternshipProposal> res = db.listProposedInternshipsFiltered(department,location);
+        ArrayList<InternshipProposal> res = db.listProposedInternshipsFiltered(date,department,location);
         
         db.closeConnection();
         
@@ -148,7 +149,7 @@ public class CorporationWS {
      * @return result - The internship proposal or null
      */
     @WebMethod(operationName = "getProposedInternship")
-    public InternshipProposal getProposedInternship(int id) {
+    public InternshipProposal getProposedInternship(@WebParam(name = "id") int id) {
         DB db = new DB();
         
         InternshipProposal res = db.getProposedInternship(id);
@@ -165,7 +166,7 @@ public class CorporationWS {
      * @return result - An arraylist containing all the students uuid (email)
      */
     @WebMethod(operationName = "listCandidates")
-    public ArrayList<String> listCandidates(int id) {
+    public ArrayList<String> listCandidates(@WebParam(name = "id") int id) {
         DB db = new DB();
         
         ArrayList<String> res = db.listCandidates(id);

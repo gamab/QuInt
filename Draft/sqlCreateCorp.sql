@@ -47,15 +47,15 @@ Faciliter le déploiement de N versions d'une application en parallèle pour tes
 Faciliter les livraisons continues, si possible de type « Zero downtime »
 Réagir automatiquement ou dans un court délai de temps à des pics de charges",
 "Clemence Athee-Na","0561599671","GEI","31400",NULL,false),
-("2015-12-23", 1250,"Etude de procédures MAC adaptées aux communications M2M dans un système satellite.",
+('2015-12-23', 1250,"Etude de procédures MAC adaptées aux communications M2M dans un système satellite.",
 "Compréhension du sujet et Etat de l’art (environ 1mois)
  Implantation de la procédure dans un simulateur/émulateur qui a été précédemment développé à l’intérieur du département, en y apportant les modifications nécessaires  (environ 2-3 mois).
  Mise en place de scénario et test de la procédure (environ 1 mois). Une fois l’implantation effectuée, des scénarios représentatifs seront joués afin de vérifier le bon fonctionnement  de la procédure. (1 à 2 mois).",
 "Fred M", "0612558709", "GEI", "31100",NULL,FALSE),
-("2016-01-10", 1000,"Stage chargé-e de la virtualisation réseau et openstack.",
+('2016-01-10', 1000,"Stage chargé-e de la virtualisation réseau et openstack.",
 "Il y aura des experts pour vous aider dans vos études et expérimentations.
 Mais vous serez autonomes dans vos réalisations, et vous aurez accès aux infrastructures pour les mener à bien.
-Vous vous documenterez sur le SDN. Vous maquetterez sur des plates-formes de tests, rédigerez des documents et présentations.
+Vous vous documenterez sur le SDN. Vous maquett	erez sur des plates-formes de tests, rédigerez des documents et présentations.
 (VMware, Openstack, Linux, Windows, Juniper, Cisco)","Albert D", "0607701235", "GEI", "31700",NULL,FALSE);
 
 INSERT INTO candidates(`student_uuid`,`internship_id`) VALUES
