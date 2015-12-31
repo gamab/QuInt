@@ -64,17 +64,11 @@ public interface DBInterface {
     
     public void setAdminRight(String email,String admin);
 
-    public boolean editLocation(String email, int lieu_travail_id);
-
-    public boolean deleteLocation(String email, String newlieu_travail_id);
-    public boolean editWorkLocation(int lieu_travail_id, String newNom_lieu, String adresse,String commune, String code_postal);
-    public boolean deleteWorkLocation(int id, String newlieu_travail_nom) ;
-
     public void setPassword(String email, String password);
 
     public void editUserProfile(String email, String nom, String prenom, String adresse,
             String tel, String commune, String code_postal, String conducteur, String notif);
-    
+  
     public boolean emailAlreadyUsed(String email);
     
     /**
@@ -83,85 +77,15 @@ public interface DBInterface {
      */
     public void rememberUserLogIn(String email);
 
-    public boolean userExists(String email, String password);
+    public boolean userPasswordMatch(String email, String password);
 
     public boolean isUserInDB(String email);
     
     public boolean isUSerAdmin(String email);
-//    public ArrayList<Commune> getAllCommunes();
-    public List<Student> getAllDrivers();
 
-    public List<Student> searchRoute(String mCity, String mWorkplace);
+    public List<Student> getAllStudents();
 
-    public ArrayList<String> getAllWorkplaces();
-
-    /*
-     ADMIN REPORTS :
-     */
-    /**
-     * Renvoie le nombre de connections ayant eu lieu entre les dates dateDeb
-     * heureDeb et dateFin heureFin
-     *
-     * @param dateDeb "AAAA-MM-JJ"
-     * @param heureDeb "HH:MM:SS"
-     * @param dateFin "AAAA-MM-JJ"
-     * @param heureFin "HH:MM:SS"
-     * @return le nombre de connections ou -1 si quelque chose s'est mal passé.
-     */
-    public int getNumberOfConnectionBetween(String dateDeb, String heureDeb, String dateFin, String heureFin);
-
-    /**
-     * Donne la liste de couple Commune/Lieu de travail/nombre utilisateurs
-     * interesses
-     *
-     * @return la liste de couple Commune/Lieu de travail avec le nombre
-     * d'utilisateurs interesses par ce trajet (ce couple) ou null s'il n'y a
-     * pas de couple Commune/Lieu de travail
-     */
-//    public ArrayList<CoupleCommuneLieuTravail> getAllNumberOfUserByCoupleCommuneAndWorkplace();
-
-    /**
-     * Donne le nombre de personnes interessees par un trajet depuis une
-     * commune(code postal) vers un lieu de travail
-     *
-     * @param commune la commune des utilisateurs vises
-     * @param codePostal le code postal associe a celle-ci
-     * @param lieuTravail le lieu de travail des utilisateurs vises
-     * @return le nombre d'utilisateurs interesses par un trajet entre
-     * commune(code postal) et un lieu de travail
-     */
-    public int getNumberOfUserForCoupleCommuneAndWorkplace(String commune, String codePostal, String lieuTravail);
-
-    /**
-     * Donne le pourcentage de conducteurs
-     *
-     * @return le pourcentage de conducteurs
-     * -1.0 si il y a eu erreur dans la requête
-     */
-    public double getPercentOfDrivers();
-
-    /**
-     * Donne le nombre de conducteurs
-     *
-     * @return le nombre de conducteurs<br/>
-     * -1 si il y a eu erreur dans la requête
-     */
-    public int getNumberOfDrivers();
-
-    /**
-     * Donne le nombre de non conducteurs
-     *
-     * @return le nombre de non conducteurs<br/>
-     * -1 si il y a eu erreur dans la requête
-     * 100.0 si il n'y a pas de conducteurs
-     */
-    public int getNumberOfNonDrivers();
-    
-    /**
-     * Donne le nombre de gens
-     *
-     * @return le nombre de gens<br/>
-     * -1 si il y a eu erreur dans la requête
-     */
+    public List<Student> searchStudent(String prenom, String nom);
+  
     public int getNumberOfUsers();
 }

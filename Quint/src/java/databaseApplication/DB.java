@@ -218,74 +218,50 @@ public class DB implements DBInterface {
 
     }
 
-    /*
-    @Override
-    public int addNewUser(int admin, String prenom, String nom, String password, String tel, String email, String adresse, String commune, int code_postal, int lieu_travail_id, String heure_depart, String heure_retour, String jours_travail, int conducteur, int notif) {
-    
-    try {
-    
-    String query = " INSERT INTO `utilisateurs` (`tel`, `admin` ,`prenom` ,`nom` ,`password` ,`email` ,`adresse` ,`commune` ,`code_postal` ,`lieu_travail_id` ,`heure_depart` ,`heure_retour` ,`jours_travail` ,`conducteur` ,`notif`)VALUES (";
-    
-    //query += "'"+id + "','" +admin+"',";
-    query += "'" + tel + "','" + admin + "',";
-    query += "'" + prenom + "','" + nom + "',";
-    query += "'" + password + "','" + email + "',";
-    query += "'" + adresse + "','" + commune + "',";
-    query += "'" + code_postal + "','" + lieu_travail_id + "',";
-    query += "'" + heure_depart + "','" + heure_retour + "',";
-    query += "'" + jours_travail + "','" + conducteur + "',";
-    query += "'" + notif + "');";
-    
-    //System.out.println(query);
-    int rs = stmt.executeUpdate(query);
-    
-    } catch (Exception ex) {
-    Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
-    return -1;
-    }
-    return 0;
-    }
-     */
     @Override
     public int addNewUser(boolean admin, String prenom, String nom, String password, String tel, String email, String adresse, String commune, String codePostal, boolean conducteur, boolean notif) {
         int adminConv = (admin) ? 1 : 0;
         int conducteurConv = (conducteur) ? 1 : 0;
         int notifConv = (notif) ? 1 : 0;
-        String cv="";
-        String lm="";
-        
-        try {
+        String cv = "";
+        String lm = "";
+        if (!isUserInDB(email)) {
+            try {
 
-            String queryCreeUtilisateur = " INSERT INTO `" + TABLE_UTILISATEURS + "` (`password`,`email`,`admin`)VALUES (";
+                String queryCreeUtilisateur = " INSERT INTO `" + TABLE_UTILISATEURS + "` (`password`,`email`,`admin`)VALUES (";
 
-            queryCreeUtilisateur += "'" + password + "','" + email + "',";
-            queryCreeUtilisateur += "" + admin + ");";
+                queryCreeUtilisateur += "'" + password + "','" + email + "',";
+                queryCreeUtilisateur += "" + admin + ");";
 
-            System.out.println("In DB - addNewUser : query : " + queryCreeUtilisateur);
-            int rs = stmt.executeUpdate(queryCreeUtilisateur);
+                System.out.println("In DB - addNewUser : query : " + queryCreeUtilisateur);
+                int rs = stmt.executeUpdate(queryCreeUtilisateur);
 
-            String queryCreeStudent = " INSERT INTO " + TABLE_STUDENT + " (`cv`,`lm`,`tel`, `admin` ,`prenom` ,`nom` ,`password` ,`email` ,`adresse` ,`commune` ,`code_postal` ,`conducteur` ,`notif`)VALUES (";
+                String queryCreeStudent = " INSERT INTO " + TABLE_STUDENT + " (`cv`,`lm`,`tel`, `admin` ,`prenom` ,`nom` ,`password` ,`email` ,`adresse` ,`commune` ,`code_postal` ,`conducteur` ,`notif`)VALUES (";
 
-            //query += "'"+id + "','" +admin+"',";
-            queryCreeStudent += "'" + cv + "','" + lm + "',";
-            queryCreeStudent += "'" + tel + "','" + adminConv + "',";
-            queryCreeStudent += "'" + prenom + "','" + nom + "',";
-            queryCreeStudent += "'" + password + "','" + email + "',";
-            queryCreeStudent += "'" + adresse + "','" + commune + "',";
-            queryCreeStudent += "'" + codePostal + "','" + conducteurConv + "',";
-            queryCreeStudent += "'" + notifConv + "');";
+                //query += "'"+id + "','" +admin+"',";
+                queryCreeStudent += "'" + cv + "','" + lm + "',";
+                queryCreeStudent += "'" + tel + "','" + adminConv + "',";
+                queryCreeStudent += "'" + prenom + "','" + nom + "',";
+                queryCreeStudent += "'" + password + "','" + email + "',";
+                queryCreeStudent += "'" + adresse + "','" + commune + "',";
+                queryCreeStudent += "'" + codePostal + "','" + conducteurConv + "',";
+                queryCreeStudent += "'" + notifConv + "');";
 
-            System.out.println("In DB - addNewUser : query : " + queryCreeStudent);
+                System.out.println("In DB - addNewUser : query : " + queryCreeStudent);
 
-            //System.out.println(query);
-            int rs1 = stmt.executeUpdate(queryCreeStudent);
+                //System.out.println(query);
+                int rs1 = stmt.executeUpdate(queryCreeStudent);
 
-            // envoie des mails en fonction des modification apporté par le nouveau user :
+                // envoie des mails en fonction des modification apporté par le nouveau user :
 //            notifyUsers(email, true);
+            } catch (Exception ex) {
+                System.err.println("In DB - addNewUser : n'a pas pu créer l'utilisateur : " + ex.getLocalizedMessage());
+                return -3;
+            }
+        } else {
+            System.out.println("ALREADY EXISTS");
+            return -1;
 
-        } catch (Exception ex) {
-            System.err.println("In DB - addNewUser : n'a pas pu créer l'utilisateur : " + ex.getLocalizedMessage());
-            return -3;
         }
         return 0;
     }
@@ -358,70 +334,6 @@ public class DB implements DBInterface {
         } catch (Exception e) {
             System.err.println("IN dDB - setAdminRight - could not do the query error :" + e);
         }
-    }
-
-    @Override
-    public boolean editLocation(String email, int lieu_travail_id) {
-
-        String sql = "UPDATE " + TABLE_UTILISATEURS + " SET lieu_travail_id='" + lieu_travail_id + "' WHERE email='" + email + "'";
-
-        int rs;
-        try {
-            rs = stmt.executeUpdate(sql);
-
-        } catch (Exception e) {
-            // Logger.getLogger(DatabaseHelper.class.getName()).log(Level.SEVERE, null, e);
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean deleteLocation(String email, String newlieu_travail_id) {
-
-        String sql = "UPDATE " + TABLE_UTILISATEURS + " SET lieu_travail_id='" + "' WHERE email='" + email + "'";
-
-        int rs;
-        try {
-            rs = stmt.executeUpdate(sql);
-
-        } catch (Exception e) {
-            // Logger.getLogger(DatabaseHelper.class.getName()).log(Level.SEVERE, null, e);
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean editWorkLocation(int lieu_travail_id, String newNom_lieu, String adresse, String commune, String code_postal) {
-
-        String sql = "UPDATE " + TABLE_STUDENT + " SET nom_lieu='" + newNom_lieu + "' , adresse='" + adresse + "', code_postal='" + code_postal + "'  , commune='" + commune + "'  WHERE id=" + lieu_travail_id + "";
-
-        int rs;
-        try {
-            rs = stmt.executeUpdate(sql);
-
-        } catch (Exception e) {
-            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, e);
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean deleteWorkLocation(int id, String newlieu_travail_nom) {
-
-        String sql = "DELETE FROM " + TABLE_STUDENT + " WHERE nom_lieu='" + newlieu_travail_nom + "' AND id='" + id + "';";
-
-        int rs;
-        try {
-            rs = stmt.executeUpdate(sql);
-
-        } catch (Exception e) {
-            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, e);
-            return false;
-        }
-        return true;
     }
 
     @Override
@@ -551,7 +463,7 @@ public class DB implements DBInterface {
     }
 
     @Override
-    public boolean userExists(String email, String password) {
+    public boolean userPasswordMatch(String email, String password) {
         boolean userExists = false;
 
         String sql;
@@ -592,25 +504,13 @@ public class DB implements DBInterface {
     }
 
     @Override
-    public List<Student> getAllDrivers() {
-        List<Student> conducteurs = new ArrayList<>();
-        String lieu_travail_nom;
-        String lieu_travail_adresse;
+    public List<Student> getAllStudents() {
+        List<Student> students = new ArrayList<>();
         String sql_lieu = "SELECT * FROM " + TABLE_STUDENT;
 
         ResultSet rs;
         try {
-
             rs = stmt.executeQuery(sql_lieu);
-            rs.next();
-            String lieu_travail_nom1 = rs.getString("nom_lieu");
-            String lieu_travail_adresse1 = rs.getString("adresse");
-            rs.next();
-            String lieu_travail_nom2 = rs.getString("nom_lieu");
-            String lieu_travail_adresse2 = rs.getString("adresse");
-            String sql = "SELECT * FROM " + TABLE_UTILISATEURS + " WHERE conducteur=1";
-
-            rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 //Retrieve by column prenom
                 int admin = rs.getInt("admin");
@@ -622,44 +522,29 @@ public class DB implements DBInterface {
                 String email = rs.getString("email");
                 String adresse = rs.getString("adresse");
                 String commune = rs.getString("commune");
-                String heure_depart = rs.getString("heure_depart");
-                String heure_retour = rs.getString("heure_retour");
                 int code_postal = rs.getInt("code_postal");
-                int lieu_travail_id = rs.getInt("lieu_travail_id");
-                String jours_travail = rs.getString("jours_travail");
+
                 //Display values
-                if (lieu_travail_id == 1) {
-                    lieu_travail_nom = lieu_travail_nom1;
-                    lieu_travail_adresse = lieu_travail_adresse1;
-                } else {
-                    lieu_travail_nom = lieu_travail_nom2;
-                    lieu_travail_adresse = lieu_travail_adresse2;
-                }
-//                conducteurs.add(new Student(email, "", admin, prenom, nom, tel, adresse, commune, code_postal, lieu_travail_nom, lieu_travail_id, heure_depart, heure_retour, jours_travail, conducteur, notif, lieu_travail_adresse));
+                students.add(new Student(email, "", admin, prenom,
+                        nom, tel, adresse, commune,
+                        code_postal, "", "", conducteur,
+                        notif));
             }
 
         } catch (Exception e) {
 
         }
-        return conducteurs;
+        return students;
     }
 
     @Override
-    public List<Student> searchRoute(String mCity, String lieu_travail) {
-        List<Student> routes = new ArrayList<>();
-
-        String sql_lieu = "SELECT * FROM " + TABLE_STUDENT + " Where nom_lieu='" + lieu_travail + "'";
+    public List<Student> searchStudent(String prenom, String nom) {
+        List<Student> students = new ArrayList<>();
 
         ResultSet rs;
         try {
 
-            rs = stmt.executeQuery(sql_lieu);
-            rs.next();
-            int lieu_travail_id = rs.getInt("id");
-            String lieu_travail_nom = rs.getString("nom_lieu");
-            String lieu_travail_adresse = rs.getString("adresse");
-            System.out.println(lieu_travail + "," + lieu_travail_id);
-            String sql = "SELECT * FROM " + TABLE_UTILISATEURS + " Where conducteur=1 AND code_postal='" + mCity + "' AND lieu_travail_id='" + lieu_travail_id + "'";
+            String sql = "SELECT * FROM " + TABLE_STUDENT + " Where prenom='" + prenom + "' and nom='" + nom + "'";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 //Retrieve by column prenom
@@ -668,21 +553,19 @@ public class DB implements DBInterface {
                 int conducteur = rs.getInt("conducteur");
                 int notif = rs.getInt("notif");
                 String tel = rs.getString("tel");
-                String prenom = rs.getString("prenom");
-                String nom = rs.getString("nom");
                 String email = rs.getString("email");
                 String adresse = rs.getString("adresse");
                 String commune = rs.getString("commune");
                 int code_postal = rs.getInt("code_postal");
 
                 //Display values
-//                routes.add(new Student(email, "", admin, prenom, nom, tel, adresse, commune, code_postal, lieu_travail_nom, lieu_travail_id, heure_depart, heure_retour, jours_travail, conducteur, notif, lieu_travail_adresse));
+                students.add(new Student(email, "", admin, prenom, nom, tel, adresse, commune, code_postal, "", "", conducteur, notif));
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return routes;
+        return students;
     }
 
     public List<String> getEmailToBeNotified(int code_postal, String dest) {
@@ -713,213 +596,6 @@ public class DB implements DBInterface {
         return resultEnd;
     }
 
-    @Override
-    public ArrayList<String> getAllWorkplaces() {
-        String nomLieu = "nom_lieu";
-
-        ArrayList<String> res = new ArrayList<String>() {
-        };
-
-        String sql = "SELECT " + nomLieu + " FROM " + TABLE_STUDENT;
-        ResultSet rs;
-        try {
-            rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                res.add(rs.getString(nomLieu));
-            }
-        } catch (SQLException ex) {
-            System.err.println("In DB - getAllWorkplaces : pas pu lire les résultats de la requete " + sql + "\nerreur : " + ex.getLocalizedMessage());
-        }
-
-        return res;
-    }
-
-    @Override
-    public int getNumberOfConnectionBetween(String dateDeb, String heureDeb, String dateFin, String heureFin) {
-        int nbrCon = -1;
-        String colonne = "nbr_visite";
-
-        //Petite vérification du format des dates & heures.
-        String[] verifArgu = dateDeb.split("-");
-        if (verifArgu.length != 3) {
-            System.err.println("In DB - getNumberOfConnectionBetween : dateDeb n'est pas au format AAAA-MM-JJ");
-            return nbrCon;
-        }
-        verifArgu = dateFin.split("-");
-        if (verifArgu.length != 3) {
-            System.err.println("In DB - getNumberOfConnectionBetween : dateFin n'est pas au format AAAA-MM-JJ");
-            return nbrCon;
-        }
-        verifArgu = heureDeb.split(":");
-        if (verifArgu.length != 3) {
-            System.err.println("In DB - getNumberOfConnectionBetween : heureDeb n'est pas au format HH:MM:SS");
-            return nbrCon;
-        }
-        verifArgu = heureFin.split(":");
-        if (verifArgu.length != 3) {
-            System.err.println("In DB - getNumberOfConnectionBetween : heureFin n'est pas au format HH:MM:SS");
-            return nbrCon;
-        }
-
-        //Création de la requête sql
-        String sql = "SELECT COUNT(`id`) AS " + colonne + " FROM " + TABLE_VISITES + " WHERE ";
-        sql += "(`date` >= \"" + dateDeb + " " + heureDeb + "\"";
-        sql += " && ";
-        sql += "`date` <= \"" + dateFin + " " + heureFin + "\")";
-
-        //Exécution de la requête sql
-        ResultSet rs;
-        try {
-            rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-                nbrCon = rs.getInt(colonne);
-            }
-        } catch (SQLException ex) {
-            System.err.println("In DB - getNumberOfConnectionBetween : pas pu lire les résultats de la requete " + sql + "\nerreur : " + ex.getLocalizedMessage());
-        }
-
-        return nbrCon;
-    }
-
-    @Override
-    public int getNumberOfUserForCoupleCommuneAndWorkplace(String commune, String codePostal, String lieuTravail) {
-        //Declaration des variables que l'on va utiliser
-        int res = -1;
-
-        //Declaration des parametres de la requete
-        String colonne = "COUNT(l.nom_lieu) AS nbr_utilisateurs";
-        String joinCondition = "u.lieu_travail_id = l.id";
-        String groupByCouple = "l.nom_lieu,u.commune,u.code_postal";
-        String conditionWhere = "l.nom_lieu = \"" + lieuTravail + "\" && u.commune = \"" + commune + "\" && u.code_postal = \"" + codePostal + "\"";
-
-        //Creation de la requete sql
-        String sql = "SELECT " + colonne + " "
-                + " FROM " + TABLE_UTILISATEURS + " AS u"
-                + " INNER JOIN " + TABLE_STUDENT + " AS l"
-                + " ON (" + joinCondition + ")"
-                + " WHERE (" + conditionWhere + ")"
-                + " GROUP BY " + groupByCouple;
-
-        //Execution de la requete sql
-        ResultSet rs;
-        try {
-            rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                res = rs.getInt("nbr_utilisateurs");
-            }
-        } catch (SQLException ex) {
-            System.err.println("In DB - getNumberOfUserForCoupleCommuneAndWorkplace : pas pu lire les résultats de la requete " + sql + "\nerreur : " + ex.getLocalizedMessage());
-        }
-
-        return res;
-    }
-
-//    @Override
-//    public ArrayList<CoupleCommuneLieuTravail> getAllNumberOfUserByCoupleCommuneAndWorkplace() {
-//        //Declaration des variables que l'on va utiliser
-//        ArrayList<CoupleCommuneLieuTravail> res = new ArrayList<CoupleCommuneLieuTravail>();
-//        CoupleCommuneLieuTravail coupleActuel;
-//        int nbrUtilisateurActu;
-//        String communeActu;
-//        String codePostalActu;
-//        String nomLieuTravailActu;
-//
-//        //Declaration des parametres de la requete
-//        String[] colonnes = {"COUNT(l.nom_lieu) AS nbr_utilisateurs", "u.commune", "u.code_postal", "l.nom_lieu"};
-//        String joinCondition = "u.lieu_travail_id = l.id";
-//        String groupByCouple = "l.nom_lieu,u.commune,u.code_postal";
-//
-//        //Creation de la requete sql
-//        String sql = "SELECT " + colonnes[0] + ", " + colonnes[1] + ", " + colonnes[2] + ", " + colonnes[3] + " "
-//                + " FROM " + TABLE_UTILISATEURS + " AS u"
-//                + " INNER JOIN " + TABLE_STUDENT + " AS l"
-//                + " ON (" + joinCondition + ")"
-//                + " GROUP BY " + groupByCouple;
-//
-//        //Execution de la requete sql
-//        ResultSet rs;
-//        try {
-//            rs = stmt.executeQuery(sql);
-//            while (rs.next()) {
-//                nbrUtilisateurActu = rs.getInt("nbr_utilisateurs");
-//                communeActu = rs.getString("commune");
-//                codePostalActu = rs.getString("code_postal");
-//                nomLieuTravailActu = rs.getString("nom_lieu");
-//                coupleActuel = new CoupleCommuneLieuTravail(nbrUtilisateurActu, communeActu, codePostalActu, nomLieuTravailActu);
-//                res.add(coupleActuel);
-//            }
-//        } catch (SQLException ex) {
-//            System.err.println("In DB - getNumberOfUserByCoupleCommuneAndWorkplace : pas pu lire les résultats de la requete " + sql + "\nerreur : " + ex.getLocalizedMessage());
-//        }
-//
-//        return res;
-//    }
-//
-    @Override
-    public double getPercentOfDrivers() {
-        double percent = 0.0;
-        double nombre_utilisateurs = 0.0;
-
-        String sql = "SELECT COUNT(email) AS nombre_utilisateurs,"
-                + " SUM(CASE WHEN conducteur=1 THEN 1 ELSE 0 END) AS nombre_conducteurs"
-                + " FROM " + TABLE_UTILISATEURS;
-
-        ResultSet rs;
-        try {
-            rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-                nombre_utilisateurs = (double) rs.getInt("nombre_utilisateurs");
-                if (nombre_utilisateurs != 0.0d) {
-                    percent = (double) rs.getInt("nombre_conducteurs") / nombre_utilisateurs * 100.0d;
-                } else {
-                    return 100.0d;
-                }
-            }
-        } catch (SQLException ex) {
-            System.err.println("In DB - getPercentOfDrivers : pas pu lire les résultats de la requete " + sql + "\nerreur : " + ex.getLocalizedMessage());
-            percent = -1.0d;
-        }
-
-        return percent;
-    }
-
-    @Override
-    public int getNumberOfDrivers() {
-        int conducteurs = 0;
-
-        String sql = "SELECT COUNT(email) AS nombre_conducteurs FROM " + TABLE_UTILISATEURS + " WHERE conducteur = 1";
-        ResultSet rs;
-        try {
-            rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-                conducteurs = rs.getInt("nombre_conducteurs");
-            }
-        } catch (SQLException ex) {
-            System.err.println("In DB - getNumbersOfDrivers : pas pu lire les résultats de la requete " + sql + "\nerreur : " + ex.getLocalizedMessage());
-            conducteurs = -1;
-        }
-
-        return conducteurs;
-    }
-
-    @Override
-    public int getNumberOfNonDrivers() {
-        int nonConducteurs = 0;
-
-        String sql = "SELECT COUNT(email) AS nombre_non_conducteurs FROM " + TABLE_UTILISATEURS + " WHERE conducteur = 0";
-        ResultSet rs;
-        try {
-            rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-                nonConducteurs = rs.getInt("nombre_non_conducteurs");
-            }
-        } catch (SQLException ex) {
-            System.err.println("In DB - getNumbersOfNonDrivers : pas pu lire les résultats de la requete " + sql + "\nerreur : " + ex.getLocalizedMessage());
-            nonConducteurs = -1;
-        }
-
-        return nonConducteurs;
-    }
 
     @Override
     public int getNumberOfUsers() {
@@ -940,162 +616,4 @@ public class DB implements DBInterface {
         return utilisateurs;
     }
 
-//test addUser, ShowDatabase,deleteUSer...
-//    @Override
-//    public ArrayList<Commune> getAllCommunes() {
-//        String nomLieu = "commune";
-//
-//        ArrayList<Commune> res = new ArrayList<Commune>() {
-//        };
-//        //SELECT distinct name FROM info WHERE status = 1 ORDER BY id
-//        String sql = "SELECT distinct code_postal," + nomLieu + " FROM " + TABLE_UTILISATEURS;
-//        ResultSet rs;
-//        try {
-//            rs = stmt.executeQuery(sql);
-//            while (rs.next()) {
-//                res.add(new Commune(rs.getString(nomLieu), rs.getString("code_postal")));
-//            }
-//        } catch (SQLException ex) {
-//            System.err.println("In DB - getAllWorkplaces : pas pu lire les résultats de la requete " + sql + "\nerreur : " + ex.getLocalizedMessage());
-//        }
-//
-//        return res;
-//    }
-//
-    public static void testGetNumberOfConnectionBetween() {
-        System.out.println("##########################################");
-        System.out.println("###test de getNumberOfConnectionBetween###");
-        DB dbHelper = new DB();
-
-        String dateDeb = "2014-12-07";
-        String heureDeb = "00:00:00";
-        String dateFin = "2014-12-31";
-        String heureFin = "23:59:59";
-        int nbrCon = dbHelper.getNumberOfConnectionBetween(dateDeb, heureDeb, dateFin, heureFin);
-        System.out.printf("Nbr Connection : entre %s %s <-> %s %s : \n", dateDeb, heureDeb, dateFin, heureFin);
-        System.out.println("Attendu : " + 2);
-        System.out.println("Obtenu  : " + nbrCon);
-
-        dateDeb = "2014-07";
-        heureDeb = "00:00:00";
-        dateFin = "2014-12-31";
-        heureFin = "23:59:59";
-        nbrCon = dbHelper.getNumberOfConnectionBetween(dateDeb, heureDeb, dateFin, heureFin);
-        System.out.printf("Nbr Connection : entre %s %s <-> %s %s : \n", dateDeb, heureDeb, dateFin, heureFin);
-        System.out.println("Attendu : " + -1);
-        System.out.println("Obtenu  : " + nbrCon);
-
-        dateDeb = "2014-12-07";
-        heureDeb = "00:00";
-        dateFin = "2014-12-31";
-        heureFin = "23:59:59";
-        nbrCon = dbHelper.getNumberOfConnectionBetween(dateDeb, heureDeb, dateFin, heureFin);
-        System.out.printf("Nbr Connection : entre %s %s <-> %s %s : \n", dateDeb, heureDeb, dateFin, heureFin);
-        System.out.println("Attendu : " + -1);
-        System.out.println("Obtenu  : " + nbrCon);
-
-        dateDeb = "2014-12-07";
-        heureDeb = "00:00:00";
-        dateFin = "2014-31";
-        heureFin = "23:59:59";
-        nbrCon = dbHelper.getNumberOfConnectionBetween(dateDeb, heureDeb, dateFin, heureFin);
-        System.out.printf("Nbr Connection : entre %s %s <-> %s %s : \n", dateDeb, heureDeb, dateFin, heureFin);
-        System.out.println("Attendu : " + -1);
-        System.out.println("Obtenu  : " + nbrCon);
-
-        dateDeb = "2014-12-07";
-        heureDeb = "00:00:00";
-        dateFin = "2014-12-31";
-        heureFin = "23:59:";
-        nbrCon = dbHelper.getNumberOfConnectionBetween(dateDeb, heureDeb, dateFin, heureFin);
-        System.out.printf("Nbr Connection : entre %s %s <-> %s %s : \n", dateDeb, heureDeb, dateFin, heureFin);
-        System.out.println("Attendu : " + -1);
-        System.out.println("Obtenu  : " + nbrCon);
-
-        System.out.println("##########################################");
-    }
-
-//    public static void testGetAllNumberOfUserByCoupleCommuneAndWorkplace() {
-//        System.out.println("##########################################");
-//        System.out.println("###test de getAllNumberOfUserByCoupleCommuneAndWorkplace###");
-//        DB dbHelper = new DB();
-//        ArrayList<CoupleCommuneLieuTravail> res = dbHelper.getAllNumberOfUserByCoupleCommuneAndWorkplace();
-//
-//        System.out.printf("Attendu : \n%s\t|%s\t|%s|\t%s\n", 1, "Sopra_Group_Ent1", "Toulouse", "31100");
-//        System.out.printf("%s\t|%s\t|%s|\t%s\n", 2, "Sopra_Group_Ent2", "Toulouse", "31100");
-//
-//        System.out.printf("Obtenu  :\n");
-//        for (CoupleCommuneLieuTravail c : res) {
-//            System.out.printf("%s\t|%s\t|%s|\t%s\n", c.getNbrUtilisateurs(), c.getNomLieuTravail(), c.getCommune(), c.getCodePostal());
-//        }
-//        System.out.println("##########################################");
-//    }
-    public static void testGetNumberOfUserForCoupleCommuneAndWorkplace() {
-        System.out.println("##########################################");
-        System.out.println("###test de getNumberOfUserForCoupleCommuneAndWorkplace###");
-        DB dbHelper = new DB();
-        String commune = "Toulouse";
-        String codePostal = "31100";
-        String lieuTravail = "Sopra_Group_Ent1";
-        String lieuTravail2 = "Sopra_Group_Ent2";
-        String lieuTravail3 = "Inexistant";
-
-        int res = dbHelper.getNumberOfUserForCoupleCommuneAndWorkplace(commune, codePostal, lieuTravail);
-        System.out.printf("Attendu : for %s(%s),%s :\t%s\n", commune, codePostal, lieuTravail, 1);
-        System.out.printf("Obtenu  : for %s(%s),%s :\t%s\n", commune, codePostal, lieuTravail, res);
-        res = dbHelper.getNumberOfUserForCoupleCommuneAndWorkplace(commune, codePostal, lieuTravail2);
-        System.out.printf("Attendu : for %s(%s),%s :\t%s\n", commune, codePostal, lieuTravail2, 2);
-        System.out.printf("Obtenu  : for %s(%s),%s :\t%s\n", commune, codePostal, lieuTravail2, res);
-        res = dbHelper.getNumberOfUserForCoupleCommuneAndWorkplace(commune, codePostal, lieuTravail3);
-        System.out.printf("Attendu : for %s(%s),%s :\t%s\n", commune, codePostal, lieuTravail3, -1);
-        System.out.printf("Obtenu  : for %s(%s),%s :\t%s\n", commune, codePostal, lieuTravail3, res);
-        System.out.println("##########################################");
-    }
-
-    public static void testGetPercentOfDrivers() {
-        System.out.println("##########################################");
-        System.out.println("###test de getPercentOfDrivers###");
-        System.out.println("##########################################");
-
-        DB dbHelper = new DB();
-        System.out.println("Cherche le poucentage de conducteurs.");
-        System.out.println("Attendu : 66.66667%");
-        System.out.println("Obtenu  : " + dbHelper.getPercentOfDrivers());
-    }
-
-    public static void testGetNumberOfDrivers() {
-        System.out.println("##########################################");
-        System.out.println("###test de getNumberOfDrivers###");
-        System.out.println("##########################################");
-
-        DB dbHelper = new DB();
-        System.out.println("Cherche le nombre de conducteurs.");
-        System.out.println("Attendu : 2");
-        System.out.println("Obtenu  : " + dbHelper.getNumberOfDrivers());
-
-    }
-
-    public static void testGetNumberOfNonDrivers() {
-        System.out.println("##########################################");
-        System.out.println("###test de getNumberOfNonDrivers###");
-        System.out.println("##########################################");
-
-        DB dbHelper = new DB();
-        System.out.println("Cherche le nombre de non conducteurs.");
-        System.out.println("Attendu : 1");
-        System.out.println("Obtenu  : " + dbHelper.getNumberOfNonDrivers());
-
-    }
-
-    public static void testGetNumberOfUsers() {
-        System.out.println("##########################################");
-        System.out.println("###test de getNumberOfUser###");
-        System.out.println("##########################################");
-
-        DB dbHelper = new DB();
-        System.out.println("Cherche le nombre d'utilisateurs.");
-        System.out.println("Attendu : 3");
-        System.out.println("Obtenu  : " + dbHelper.getNumberOfUsers());
-
-    }
 }

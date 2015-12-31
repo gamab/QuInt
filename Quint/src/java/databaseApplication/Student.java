@@ -25,7 +25,7 @@ public class Student {
     private int conducteur;
     private int notif;
 
-    public Student(String email, String uuid, String password, int admin, String prenom, String nom, String tel, String adresse, String commune, String cv, int code_postal, int conducteur, int notif) {
+    public Student(String email, String password, int admin, String prenom, String nom, String tel, String adresse, String commune, int code_postal, String cv,String lm, int conducteur, int notif) {
         this.email = email;
         this.password = password;
         this.admin = admin;
@@ -35,10 +35,13 @@ public class Student {
         this.adresse = adresse;
         this.commune = commune;
         this.cv = cv;
+        this.lm=lm;
         this.code_postal = code_postal;
         this.conducteur = conducteur;
         this.notif = notif;
     }
+
+
 
     public String getEmail() {
         return email;
