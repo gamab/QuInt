@@ -1,10 +1,4 @@
-<%-- 
-    Document   : rediger
-    Created on : 12/09/2015, 03:28:52 PM
-    Author     : Gueldir
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,13 +10,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>QuInt - Nouvelle offre</title>
+    <title>QuInt - Offres de stages</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
@@ -52,7 +52,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">QuInt v1.0</a>
+                <a class="navbar-brand" href="index.jsp">QuInt v1.0</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -69,7 +69,7 @@
                                         <em>Hier</em>
                                     </span>
                                 </div>
-                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite à...</div>
+                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite Ã ...</div>
                             </a>
                         </li>
                         <li class="divider"></li>
@@ -90,10 +90,10 @@
                                 <div>
                                     <strong>IBM</strong>
                                     <span class="pull-right text-muted">
-                                        <em>Aujourd'hui à 15:32</em>
+                                        <em>Aujourd'hui Ã  15:32</em>
                                     </span>
                                 </div>
-                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite à...</div>
+                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite Ã ...</div>
                             </a>
                         </li>
                         <li class="divider"></li>
@@ -112,10 +112,10 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profil.html"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
+                        <li><a href="profil.jsp"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
+                        <li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> Se DÃ©connecter</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -128,10 +128,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
+                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
                         </li>
                         <li>
-                            <a href="offre.html"><i class="fa fa-table fa-fw"></i> Mes offres</a>
+                            <a href="etat.jsp"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
+                        </li>
+                        <li>
+                            <a href="offres.jsp"><i class="fa fa-table fa-fw"></i> Mes offres</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
@@ -140,10 +143,10 @@
                                     <a href="etudiants.jsp">Par étudiant</a>
                                 </li>
                                 <li>
-                                    <a href="offre.jsp">Par offre de stage</a>
+                                    <a href="candidatures.jsp">Par candidatures</a>
                                 </li>
                                 <li>
-                                    <a href="candidatures.jsp">Par candidatures</a>
+                                    <a href="offres.jsp">Par offre de stage</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -161,42 +164,48 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Votre offre de stage</h1>
+                        <h1 class="page-header">Offres de Stages</h1>
                         <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Nouvelle offre
-                        </div>
-                        <!-- .panel-heading -->
-                        <div class="panel-body">
-                            <form role="form">
-                                <div class="form-group">
-                                    <label>Titre</label>
-                                    <input class="form-control">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Liste des Offres de Stages
+                                        </div>
+                                        <!-- /.panel-heading -->
+                                        <div class="panel-body">
+                                            <div class="dataTable_wrapper">
+                                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Intitulé</th>
+                                                            <th>Candidatures</th>
+                                                            <th>Département</th>
+                                                            <th>Date d'Apparition</th>
+                                                            <th>Location</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <c:forEach var="offre" items="${offres}" varStatus="loop">
+                                                            <tr>
+                                                                <td><a href="description.jsp">${offre.title}</a></td>
+                                                                <td><a href="#">${offre.applications}</a></td>
+                                                                <td>${offre.departement}</td>
+                                                                <td>${offre.date}</td>
+                                                                <td>${offre.location}</td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                                <a role="button" class="btn btn-primary col-md-2" href="modifier.jsp" >Ajouter</a>
+                                            </div>
+                                        </div>
+                                        <!-- /.panel-body -->
+                                    </div>
+                                    <!-- /.panel -->
                                 </div>
-                                <div class="form-group">
-                                    <label>Contenu</label>
-                                    <textarea class="form-control" rows="3"></textarea>
-                                </div>    
-                                <div class="form-group">
-                                    <label>Entreprise / Département</label>
-                                    <input class="form-control">
-                                </div>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class="fa fa-eur"></i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Gratification">
-                                </div>
-                                <button type="submit" class="btn btn-success col-md-2 col-md-offset-0">Publier</button>
-                                <button type="submit" class="btn btn-primary col-md-2 col-md-offset-1">Enregistrer</button>
-                                <a href="offre.jsp" ><button type="button" class="btn btn-danger col-md-2 col-md-offset-5">Annuler</button></a>
-                            </form>
-                        </div>
-                        <!-- .panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
+                                <!-- /.col-lg-12 -->
+            </div>
                 <!-- /.col-lg-12 -->
             </div>
                     </div>
@@ -220,8 +229,21 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
+    <!-- DataTables JavaScript -->
+    <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    </script>
 
 </body>
 

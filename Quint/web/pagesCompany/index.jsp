@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +52,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">QuInt v1.0</a>
+                <a class="navbar-brand" href="index.jsp">QuInt v1.0</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -68,7 +69,7 @@
                                         <em>Hier</em>
                                     </span>
                                 </div>
-                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite à...</div>
+                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite Ã ...</div>
                             </a>
                         </li>
                         <li class="divider"></li>
@@ -89,10 +90,10 @@
                                 <div>
                                     <strong>IBM</strong>
                                     <span class="pull-right text-muted">
-                                        <em>Aujourd'hui à 15:32</em>
+                                        <em>Aujourd'hui Ã  15:32</em>
                                     </span>
                                 </div>
-                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite à...</div>
+                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite Ã ...</div>
                             </a>
                         </li>
                         <li class="divider"></li>
@@ -111,10 +112,10 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profil.html"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
+                        <li><a href="profil.jsp"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
+                        <li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> Se DÃ©connecter</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -127,10 +128,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
+                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
                         </li>
                         <li>
-                            <a href="offre.jsp"><i class="fa fa-table fa-fw"></i> Mes offres</a>
+                            <a href="etat.jsp"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
+                        </li>
+                        <li>
+                            <a href="AfficherOffres.do"><i class="fa fa-table fa-fw"></i> Mes offres</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
@@ -139,10 +143,10 @@
                                     <a href="etudiants.jsp">Par étudiant</a>
                                 </li>
                                 <li>
-                                    <a href="offre.jsp">Par offre de stage</a>
+                                    <a href="candidatures.jsp">Par candidatures</a>
                                 </li>
                                 <li>
-                                    <a href="candidatures.jsp">Par candidatures</a>
+                                    <a href="offres.jsp">Par offre de stage</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -194,7 +198,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">1</div>
-                                    <div>Demande(s) Validée(s)!</div>
+                                    <div>Demande(s) ValidÃ©e(s)!</div>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +242,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">2</div>
-                                    <div>Demande(s) Refusée(s)!</div>
+                                    <div>Demande(s) RefusÃ©e(s)!</div>
                                 </div>
                             </div>
                         </div>
@@ -257,7 +261,7 @@
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Vos Démarches
+                            <i class="fa fa-clock-o fa-fw"></i> Vos DÃ©marches
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -272,8 +276,8 @@
                                             </p>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>Bonjour Mr Ayyoub, Je me permet de vous contacter suite à notre entretien téléphonique. Je vous confirme notre intérêt et nous
-                                                souhaitons vous faire une proposition de stage. J'aimerai avoir votre réponse dans un délai inférieur à une semaine...</p>
+                                            <p>Bonjour Mr Ayyoub, Je me permet de vous contacter suite Ã  notre entretien tÃ©lÃ©phonique. Je vous confirme notre intÃ©rÃªt et nous
+                                                souhaitons vous faire une proposition de stage. J'aimerai avoir votre rÃ©ponse dans un dÃ©lai infÃ©rieur Ã  une semaine...</p>
                                         </div>
                                     </div>
                                 </li>
@@ -287,8 +291,8 @@
                                             </p>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>Votre demande de validation de stage est mise en attente. Elle sera soit validée soit refusée par les responsables d'études dans 
-                                                les plus brefs délais.</p>
+                                            <p>Votre demande de validation de stage est mise en attente. Elle sera soit validÃ©e soit refusÃ©e par les responsables d'Ã©tudes dans 
+                                                les plus brefs dÃ©lais.</p>
                                         </div>
                                     </div>
                                 </li>
@@ -302,8 +306,8 @@
                                             </p>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>Votre demande de stage a été refusée par le responsable de sécurité.</p>
-                                            <p>Motif: Localisation du stage dangereuse pour l'étudiant.</p>
+                                            <p>Votre demande de stage a Ã©tÃ© refusÃ©e par le responsable de sÃ©curitÃ©.</p>
+                                            <p>Motif: Localisation du stage dangereuse pour l'Ã©tudiant.</p>
                                         </div>
                                     </div>
                                 </li>
@@ -346,7 +350,7 @@
                                             </p>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>Votre demande de stage a été validée par les responsables d'études.</p>
+                                            <p>Votre demande de stage a Ã©tÃ© validÃ©e par les responsables d'Ã©tudes.</p>
                                         </div>
                                     </div>
                                 </li>
@@ -366,27 +370,27 @@
                         <div class="panel-body">
                             <div class="list-group">
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> Stage - Ingénieur Développement Java/J2EE
+                                    <i class="fa fa-comment fa-fw"></i> Stage - IngÃ©nieur DÃ©veloppement Java/J2EE
                                     <span class="pull-right text-muted small"><em>4 minutes ago</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> Stage - Ingénieur Développement C++
+                                    <i class="fa fa-twitter fa-fw"></i> Stage - IngÃ©nieur DÃ©veloppement C++
                                     <span class="pull-right text-muted small"><em>12 minutes ago</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Stage - Ingénieur Développement Java/J2EE
+                                    <i class="fa fa-envelope fa-fw"></i> Stage - IngÃ©nieur DÃ©veloppement Java/J2EE
                                     <span class="pull-right text-muted small"><em>27 minutes ago</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> CDI - Ingénieur Développement Java/J2EE
+                                    <i class="fa fa-tasks fa-fw"></i> CDI - IngÃ©nieur DÃ©veloppement Java/J2EE
                                     <span class="pull-right text-muted small"><em>43 minutes ago</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> CDD - Stagiaire/Alternant en Télécom
+                                    <i class="fa fa-upload fa-fw"></i> CDD - Stagiaire/Alternant en TÃ©lÃ©com
                                     <span class="pull-right text-muted small"><em>11:32 AM</em>
                                     </span>
                                 </a>

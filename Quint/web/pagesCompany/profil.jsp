@@ -1,10 +1,4 @@
-<%-- 
-    Document   : rediger
-    Created on : 12/09/2015, 03:28:52 PM
-    Author     : Gueldir
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>QuInt - Nouvelle offre</title>
+    <title>QuInt - Profil de l'Ã©tudiant</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -52,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">QuInt v1.0</a>
+                <a class="navbar-brand" href="index.jsp">QuInt v1.0</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -69,7 +63,7 @@
                                         <em>Hier</em>
                                     </span>
                                 </div>
-                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite à...</div>
+                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite Ã ...</div>
                             </a>
                         </li>
                         <li class="divider"></li>
@@ -90,10 +84,10 @@
                                 <div>
                                     <strong>IBM</strong>
                                     <span class="pull-right text-muted">
-                                        <em>Aujourd'hui à 15:32</em>
+                                        <em>Aujourd'hui Ã  15:32</em>
                                     </span>
                                 </div>
-                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite à...</div>
+                                <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite Ã ...</div>
                             </a>
                         </li>
                         <li class="divider"></li>
@@ -112,10 +106,10 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profil.html"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
+                        <li><a href="profil.jsp"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
+                        <li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> Se DÃ©connecter</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -128,10 +122,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
+                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
                         </li>
                         <li>
-                            <a href="offre.html"><i class="fa fa-table fa-fw"></i> Mes offres</a>
+                            <a href="etat.jsp"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
+                        </li>
+                        <li>
+                            <a href="offres.jsp"><i class="fa fa-table fa-fw"></i> Mes offres</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
@@ -140,10 +137,10 @@
                                     <a href="etudiants.jsp">Par étudiant</a>
                                 </li>
                                 <li>
-                                    <a href="offre.jsp">Par offre de stage</a>
+                                    <a href="candidatures.jsp">Par candidatures</a>
                                 </li>
                                 <li>
-                                    <a href="candidatures.jsp">Par candidatures</a>
+                                    <a href="offres.jsp">Par offre de stage</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -155,43 +152,58 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Votre offre de stage</h1>
+                        <h1 class="page-header">Mon Profil</h1>
                         <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Nouvelle offre
+                            Mes Informations
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
-                            <form role="form">
-                                <div class="form-group">
-                                    <label>Titre</label>
-                                    <input class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label>Contenu</label>
-                                    <textarea class="form-control" rows="3"></textarea>
-                                </div>    
-                                <div class="form-group">
-                                    <label>Entreprise / Département</label>
-                                    <input class="form-control">
-                                </div>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class="fa fa-eur"></i>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Gratification">
-                                </div>
-                                <button type="submit" class="btn btn-success col-md-2 col-md-offset-0">Publier</button>
-                                <button type="submit" class="btn btn-primary col-md-2 col-md-offset-1">Enregistrer</button>
-                                <a href="offre.jsp" ><button type="button" class="btn btn-danger col-md-2 col-md-offset-5">Annuler</button></a>
-                            </form>
+                            <div class="row">
+                                <!--div class="col-lg-6"-->
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label>Nom</label>
+                                            <input class="form-control" placeholder="Hayou">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>PrÃ©nom</label>
+                                            <input class="form-control" placeholder="Ayyoub">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>E-Mail</label>
+                                            <p class="form-control-static">hayou@etud.insa-toulouse.fr</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>FiliÃ¨re</label>
+                                            <select class="form-control">
+                                                <option>5ISS</option>
+                                                <option>5IL</option>
+                                                <option>5SEC</option>
+                                                <option>4IR-RT</option>
+                                                <option>4IR-I</option>
+                                                <option>4AE</option>
+                                                <option>4GM</option>
+                                                <option>4GC</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>CV</label>
+                                            <input type="file">
+                                        </div>
+                                        <button type="submit" class="btn btn-default col-md-4" data-toggle="modal" data-target="#enregistre">Sauvegarder</button>
+                                        <button type="reset" class="btn btn-default col-md-4 col-md-offset-4">RÃ©initialiser</button>
+                                    </form>
+                                <!--/div-->
+                            </div>
+                            <!-- /.row (nested) -->
                         </div>
                         <!-- .panel-body -->
                     </div>
