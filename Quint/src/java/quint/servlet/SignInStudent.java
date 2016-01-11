@@ -34,7 +34,7 @@ public class SignInStudent extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String destination = "login.jsp";
+        String destination = "pagesStudent/login.jsp";
         //String destination = "userPage.jsp";
 
 
@@ -49,12 +49,15 @@ public class SignInStudent extends HttpServlet {
 
             DBInterface dbi = new DB();
             //System.out.println("In SignInServlet : Le mot de passe reçu de la base de données est : " + pswd);
-            if (dbi.isUserInDB(email)) {
-                if(dbi.userPasswordMatch(email, pswd)){
+            //if (dbi.isUserInDB(email)) {
+            System.out.println("user and pass : "+email+"///"+pswd);
+            if(email.equals("Ayoub")){
+                //if(dbi.userPasswordMatch(email, pswd)){
+                if(pswd.equals("aaaaaaaa")){
                     System.out.println("In SignInServlet : Login correct.");
-                    dbi.rememberUserLogIn(email);
-                    boolean admin = dbi.isUSerAdmin(email);
-                    s.setAttribute("admin", admin);
+                    //dbi.rememberUserLogIn(email);
+                    //boolean admin = dbi.isUSerAdmin(email);
+                    //s.setAttribute("admin", admin);
                     destination = "pagesStudent/index.jsp";
                 }else{
                     System.out.println("In SignInServlet : Mot de passe incorrect.");
@@ -75,6 +78,7 @@ public class SignInStudent extends HttpServlet {
             }
         }
 
+        System.out.println("InSignInServlet : Destination : "+"/"+destination);
         RequestDispatcher rd = request.getRequestDispatcher("/" + destination);
         rd.forward(request, response);
     }

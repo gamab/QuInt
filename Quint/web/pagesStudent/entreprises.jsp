@@ -58,7 +58,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">QuInt v1.0</a>
+                <a class="navbar-brand" href="index.jsp">QuInt v1.0</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -104,7 +104,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a class="text-center" href="messages.html">
+                            <a class="text-center" href="messages.jsp">
                                 <strong>Consulter tous les messages</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
@@ -118,10 +118,10 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profil.html"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
+                        <li><a href="profil.jsp"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
+                        <li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -134,22 +134,22 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
+                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
                         </li>
                         <li>
-                            <a href="etat.html"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
+                            <a href="etat.jsp"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
                         </li>
                         <li>
-                            <a href="messages.html"><i class="fa fa-table fa-fw"></i> Messages</a>
+                            <a href="messages.jsp"><i class="fa fa-table fa-fw"></i> Messages</a>
                         </li>   
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="entreprises.html">Par Entreprise</a>
+                                    <a href="entreprises.jsp">Par Entreprise</a>
                                 </li>
                                 <li>
-                                    <a href="offres.html">Par offre de Stage</a>
+                                    <a href="offres.jsp">Par offre de Stage</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
