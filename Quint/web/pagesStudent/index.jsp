@@ -121,7 +121,7 @@
                         <li><a href="profil.jsp"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
+                        <li><a href="/Quint/SignOutStudent.do"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

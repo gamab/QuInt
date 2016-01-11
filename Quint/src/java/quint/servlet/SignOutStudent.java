@@ -32,8 +32,9 @@ public class SignOutStudent extends HttpServlet {
             s.invalidate();
         }
         //Redirection to the Login page
-        String destination = "login.jsp";
-        RequestDispatcher rd = request.getRequestDispatcher(destination);
+        String destination = "pagesStudent/login.jsp";
+        System.out.println("InSignOut : destination = "+destination);
+        RequestDispatcher rd = request.getRequestDispatcher("/"+destination);
         rd.forward(request, response);
     }
 
