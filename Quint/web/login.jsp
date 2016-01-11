@@ -1,3 +1,10 @@
+<%-- 
+    Document   : login
+    Created on : 9 déc. 2015, 16:01:11
+    Author     : Ayyoub
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +40,23 @@
 </head>
 
 <body>
-
+    <%!
+        String email = "";
+        String pswd = "";
+        String msgErreur = "";
+        HttpSession s = null;
+    %>
+    <%
+        s = request.getSession();
+        if (s != null && !s.isNew() && s.getAttribute("email") != null && s.getAttribute("password") != null) {
+            email = (String) s.getAttribute("email");
+            pswd = (String) s.getAttribute("password");
+        }
+        if (s.getAttribute("msgErreur") != null) {
+            msgErreur = (String) s.getAttribute("msgErreur");
+        }
+    %>
+    
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -42,13 +65,26 @@
                         <h3 class="panel-title">Veuillez vous connecter</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <%-- Si il y a un message d'erreur on l'affiche dans un encadré --%>
+                        <% if (msgErreur != "") {%>
+                        <div class ="alert alert-danger" role="alert">
+                            <span class ="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class ="sr-only">Error</span>
+                            <%=msgErreur%>
+                            <%
+                                s.removeAttribute("msgErreur");
+                                msgErreur = "";
+                            %>
+                        </div>
+                        <% }%>
+                        
+                        <form role="form" role="form" class="form-horizontal" method="post" action="/QuInt/SignInStudent.do" accept-charset="utf-8">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" value="<%=email%>" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Mot de Passe" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Mot de Passe" name="password" type="password" value="<%=pswd%>">
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -56,7 +92,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Se Connecter</a>
+                                <a type="submit" class="btn btn-lg btn-success btn-block">Se Connecter</a>
                             </fieldset>
                         </form>
                     </div>

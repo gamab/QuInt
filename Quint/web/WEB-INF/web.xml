@@ -5,6 +5,10 @@
         <servlet-class>controleur.loginServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SignInStudent</servlet-name>
+        <servlet-class>quint.servlet.SignInStudent</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>afficher</servlet-name>
         <servlet-class>controleur.afficher</servlet-class>
     </servlet>
@@ -19,6 +23,10 @@
     <servlet-mapping>
         <servlet-name>AfficherOffres</servlet-name>
         <url-pattern>/AfficherOffres.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignInStudent</servlet-name>
+        <url-pattern>/SignInStudent.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AjouterOffre</servlet-name>

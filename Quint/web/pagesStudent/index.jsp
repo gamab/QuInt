@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : 11 janv. 2016, 11:56:59
+    Author     : Ayyoub
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,7 +104,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a class="text-center" href="#">
+                            <a class="text-center" href="messages.html">
                                 <strong>Consulter tous les messages</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
@@ -132,6 +139,9 @@
                         <li>
                             <a href="etat.html"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
                         </li>
+                        <li>
+                            <a href="messages.html"><i class="fa fa-table fa-fw"></i> Messages</a>
+                        </li> 
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -175,7 +185,7 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Consulter Vos Messages</span>
+                                <span class="pull-left" href="messages.html">Consulter Vos Messages</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -197,7 +207,7 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Plus d'Information</span>
+                                <span class="pull-left" href="etat.html">Plus d'Information</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -219,7 +229,7 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Plus d'Information</span>
+                                <span class="pull-left" href="etat.html">Plus d'Information</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -241,7 +251,7 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Plus d'Information</span>
+                                <span class="pull-left" href="etat.html">Plus d'Information</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -389,7 +399,7 @@
                                 </a>
                             </div>
                             <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">Voir Toutes les Offres</a>
+                            <a href="offres.html" class="btn btn-default btn-block">Voir Toutes les Offres</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -423,3 +433,4 @@
 </body>
 
 </html>
+

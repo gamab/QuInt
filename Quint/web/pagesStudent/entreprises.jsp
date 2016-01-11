@@ -1,3 +1,10 @@
+<%-- 
+    Document   : entreprises
+    Created on : 11 janv. 2016, 11:55:36
+    Author     : Ayyoub
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,7 +104,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a class="text-center" href="#">
+                            <a class="text-center" href="messages.html">
                                 <strong>Consulter tous les messages</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
@@ -132,6 +139,9 @@
                         <li>
                             <a href="etat.html"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
                         </li>
+                        <li>
+                            <a href="messages.html"><i class="fa fa-table fa-fw"></i> Messages</a>
+                        </li>   
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -304,3 +314,4 @@
 </body>
 
 </html>
+

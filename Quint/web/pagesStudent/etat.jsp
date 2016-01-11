@@ -1,3 +1,10 @@
+<%-- 
+    Document   : etat
+    Created on : 11 janv. 2016, 11:56:24
+    Author     : Ayyoub
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,7 +98,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a class="text-center" href="#">
+                            <a class="text-center" href="messages.html">
                                 <strong>Consulter tous les messages</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
@@ -126,6 +133,9 @@
                         <li>
                             <a href="etat.html"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
                         </li>
+                        <li>
+                            <a href="messages.html"><i class="fa fa-table fa-fw"></i> Messages</a>
+                        </li> 
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -172,11 +182,12 @@
                                             <h3>Consultant Java/J2EE :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                             <h4>Entreprise : </h4> Capgemini Aerospace and Defence.
                                             <h4>Remunération : </h4> 1200€/mois
-                                           <div>
-                                                <button type="button" class="btn btn-primary col-md-2">Information</button>
-                                                <button type="button" class="btn btn-success col-md-2 col-md-offset-3">Accepter</button>
-                                                <button type="button" class="btn btn-danger col-md-2 col-md-offset-3">Refuser</button>
-                                           </div> 
+                                            <h4>Etat : </h4> Acceptée.
+                                           <center>
+                                            <div>
+                                                <button type="button" class="btn btn-primary">Information</button>
+                                           </div>
+                                           </center> 
                                         </div>
                                         
                                     </div>
@@ -192,11 +203,12 @@
                                             <h3>Consultant DevOps :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                             <h4>Entreprise : </h4> Sogeti High Tech.
                                             <h4>Remunération : </h4> 1200€/mois
+                                            <h4>Etat : </h4> En attente.
+                                           <center>
                                             <div>
-                                                <button type="button" class="btn btn-primary col-md-2">Information</button>
-                                                <button type="button" class="btn btn-success col-md-2 col-md-offset-3">Accepter</button>
-                                                <button type="button" class="btn btn-danger col-md-2 col-md-offset-3">Refuser</button>
-                                           </div> 
+                                                <button type="button" class="btn btn-primary">Information</button>
+                                           </div>
+                                           </center> 
                                         </div>
                                     </div>
                                 </div>
@@ -211,11 +223,12 @@
                                             <h3>Developpement des IHM pour des appliacations Smart Grid :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                             <h4>Entreprise : </h4> SCLE SFE, Cofely Ineo.
                                             <h4>Remunération : </h4> 1200€/mois
+                                            <h4>Etat : </h4> En attente
+                                           <center>
                                             <div>
-                                                <button type="button" class="btn btn-primary col-md-2">Information</button>
-                                                <button type="button" class="btn btn-success col-md-2 col-md-offset-3">Accepter</button>
-                                                <button type="button" class="btn btn-danger col-md-2 col-md-offset-3">Refuser</button>
-                                           </div> 
+                                                <button type="button" class="btn btn-primary">Information</button>
+                                           </div>
+                                           </center> 
                                         </div>
                                     </div>
                                 </div>
@@ -230,11 +243,12 @@
                                             <h3>Mise en place d'un réseau d'objets connectés :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                             <h4>Entreprise : </h4> Thales Alinea Space.
                                             <h4>Remunération : </h4> 1200€/mois
+                                            <h4>Etat : </h4> Refusée
+                                           <center>
                                             <div>
-                                                <button type="button" class="btn btn-primary col-md-2">Information</button>
-                                                <button type="button" class="btn btn-success col-md-2 col-md-offset-3">Accepter</button>
-                                                <button type="button" class="btn btn-danger col-md-2 col-md-offset-3">Refuser</button>
-                                           </div> 
+                                                <button type="button" class="btn btn-primary">Information</button>
+                                           </div>
+                                           </center> 
                                         </div>
                                     </div>
                                 </div>
@@ -249,11 +263,12 @@
                                             <h3>Developpement d'application d'intelligence artificielle :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                             <h4>Entreprise : </h4> CELAD.
                                             <h4>Remunération : </h4> 1200€/mois
+                                            <h4>Etat : </h4> En attente
+                                           <center>
                                             <div>
-                                                <button type="button" class="btn btn-primary col-md-2">Information</button>
-                                                <button type="button" class="btn btn-success col-md-2 col-md-offset-3">Accepter</button>
-                                                <button type="button" class="btn btn-danger col-md-2 col-md-offset-3">Refuser</button>
-                                           </div> 
+                                                <button type="button" class="btn btn-primary">Information</button>
+                                           </div>
+                                           </center> 
                                         </div>
                                     </div>
                                 </div>
@@ -292,3 +307,4 @@
 </body>
 
 </html>
+

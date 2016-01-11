@@ -1,3 +1,10 @@
+<%-- 
+    Document   : offres
+    Created on : 11 janv. 2016, 11:58:13
+    Author     : Ayyoub
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>QuInt - Liste des Entreprises</title>
+    <title>QuInt - Offres de Stages</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -97,7 +104,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a class="text-center" href="#">
+                            <a class="text-center" href="messages.html">
                                 <strong>Consulter tous les messages</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
@@ -133,6 +140,9 @@
                             <a href="etat.html"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
                         </li>
                         <li>
+                            <a href="messages.html"><i class="fa fa-table fa-fw"></i> Messages</a>
+                        </li> 
+                        <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -157,13 +167,13 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Entreprises</h1>
+                        <h1 class="page-header">Offres de Stages</h1>
                         <div class="row">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            Liste des Entreprises
+                                            Liste des Offres de Stages
                                         </div>
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
@@ -171,86 +181,54 @@
                                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <thead>
                                                         <tr>
+                                                            <th>Intitulé</th>
                                                             <th>Entreprise</th>
-                                                            <th>Nombre d'Offres</th>
-                                                            <th>Dernière Modification</th>
+                                                            <th>Filière</th>
+                                                            <th>Date d'Apparition</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr class="odd gradeX">
+                                                            <td><a href="#">Stage Développement JAVA/J2EE</a></td>
                                                             <td><a href="#">Capgemini</a></td>
-                                                            <td>24</td>
+                                                            <td>Informatique/Réseaux</td>
                                                             <td>06/12/2015</td>
                                                         </tr>
                                                         <tr class="odd gradeX">
+                                                            <td><a href="#">Stage Cloud Computing</a></td>
+                                                            <td><a href="#">Solucom</a></td>
+                                                            <td>Informatique/Réseaux</td>
+                                                            <td>08/12/2015</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td><a href="#">Stage Développement JAVA/Android</a></td>
                                                             <td><a href="#">Sogeti</a></td>
-                                                            <td>22</td>
+                                                            <td>Informatique/Réseaux</td>
                                                             <td>06/12/2015</td>
                                                         </tr>
                                                         <tr class="odd gradeX">
-                                                            <td><a href="#">Thales Alinea Space</a></td>
-                                                            <td>11</td>
-                                                            <td>01/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">CELAD</a></td>
-                                                            <td>14</td>
-                                                            <td>03/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">IBM</a></td>
-                                                            <td>10</td>
-                                                            <td>02/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Orange</a></td>
-                                                            <td>7</td>
-                                                            <td>03/11/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Bouygues Telecom</a></td>
-                                                            <td>11</td>
-                                                            <td>21/11/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Airbus</a></td>
-                                                            <td>13</td>
-                                                            <td>10/11/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Sopra Steria</a></td>
-                                                            <td>20</td>
-                                                            <td>03/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">SQLI</a></td>
-                                                            <td>25</td>
-                                                            <td>08/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
+                                                            <td><a href="#">Stage Développement C++</a></td>
                                                             <td><a href="#">Scle Sfe</a></td>
-                                                            <td>7</td>
-                                                            <td>07/12/2015</td>
+                                                            <td>Informatique/Réseaux</td>
+                                                            <td>09/12/2015</td>
                                                         </tr>
                                                         <tr class="odd gradeX">
-                                                            <td><a href="#">Cofely Ineo</a></td>
-                                                            <td>12</td>
-                                                            <td>06/12/2015</td>
+                                                            <td><a href="#">Stage Consultatn Big Data</a></td>
+                                                            <td><a href="#">Capgemini</a></td>
+                                                            <td>Informatique/Réseaux</td>
+                                                            <td>04/12/2015</td>
                                                         </tr>
                                                         <tr class="odd gradeX">
-                                                            <td><a href="#">EDF</a></td>
-                                                            <td>5</td>
+                                                            <td><a href="#">Stage Smart Grid</a></td>
+                                                            <td><a href="#">Capgemini</a></td>
+                                                            <td>Informatique/Réseaux</td>
                                                             <td>01/12/2015</td>
                                                         </tr>
                                                         <tr class="odd gradeX">
-                                                            <td><a href="#">SII</a></td>
-                                                            <td>11</td>
-                                                            <td>06/11/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Amadeus</a></td>
-                                                            <td>20</td>
-                                                            <td>08/12/2015</td>
+                                                            <td><a href="#">Stage Gestion de VM pour l'Automatisation de Calcul</a></td>
+                                                            <td><a href="#">Thales Alinea Space</a></td>
+                                                            <td>Informatique/Réseaux</td>
+                                                            <td>21/11/2015</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -304,3 +282,4 @@
 </body>
 
 </html>
+
