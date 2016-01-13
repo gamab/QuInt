@@ -46,6 +46,27 @@
 </head>
 
 <body>
+    
+    <%!
+        String email = "";
+        String pswd = "";
+        String messages = "";
+        String attente = "";
+        String refuse = "";
+        String validee = "";
+        HttpSession s = null;
+    %>
+    <%
+        s = request.getSession();
+        if (s != null && !s.isNew() && s.getAttribute("email") != null && s.getAttribute("password") != null) {
+            email = (String) s.getAttribute("email");
+            pswd = (String) s.getAttribute("password");
+            messages = (String) s.getAttribute("messages");
+            attente = (String) s.getAttribute("attente");
+            refuse = (String) s.getAttribute("refuse");
+            validee = (String) s.getAttribute("validee");
+        }
+    %>
 
     <div id="wrapper">
 
@@ -121,7 +142,7 @@
                         <li><a href="profil.jsp"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/Quint/SignOutStudent.do"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
+                        <li><a href="SignOutStudent.do"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -164,7 +185,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Accueil</h1>
+                    <h1 class="page-header">Bonjour, <%=email%> ! </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -178,7 +199,7 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">10</div>
+                                    <div class="huge"><%=messages%></div>
                                     <div>Nouveaux Messages!</div>
                                 </div>
                             </div>
@@ -200,7 +221,7 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">1</div>
+                                    <div class="huge"><%=validee%></div>
                                     <div>Demande(s) Validée(s)!</div>
                                 </div>
                             </div>
@@ -222,7 +243,7 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">3</div>
+                                    <div class="huge"><%=attente%></div>
                                     <div>Demande(s) En Attente!</div>
                                 </div>
                             </div>
@@ -244,7 +265,7 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">2</div>
+                                    <div class="huge"><%=refuse%></div>
                                     <div>Demande(s) Refusée(s)!</div>
                                 </div>
                             </div>

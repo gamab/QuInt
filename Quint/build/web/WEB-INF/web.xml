@@ -38,7 +38,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignInStudent</servlet-name>
-        <url-pattern>/SignInStudent.do</url-pattern>
+        <url-pattern>/pagesStudent/SignInStudent.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AjouterOffre</servlet-name>
@@ -54,11 +54,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignOutStudent</servlet-name>
-        <url-pattern>/SignOutStudent.do</url-pattern>
+        <url-pattern>/pagesStudent/SignOutStudent.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ShowMainPage</servlet-name>
-        <url-pattern>/ShowMainPage</url-pattern>
+        <url-pattern>/pagesStudent/ShowMainPage.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ModifierProfil</servlet-name>

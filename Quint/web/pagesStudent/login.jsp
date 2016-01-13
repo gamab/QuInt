@@ -76,7 +76,7 @@
                         <h3 class="panel-title">Veuillez vous connecter</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="post" action="/Quint/SignInStudent.do" accept-charset="utf-8">
+                        <form role="form" method="post" action="SignInStudent.do" accept-charset="utf-8">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Email" name="email" id="UserUsername" value="<%=email%>">

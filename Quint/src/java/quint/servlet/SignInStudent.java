@@ -58,7 +58,7 @@ public class SignInStudent extends HttpServlet {
                     //dbi.rememberUserLogIn(email);
                     //boolean admin = dbi.isUSerAdmin(email);
                     //s.setAttribute("admin", admin);
-                    destination = "pagesStudent/index.jsp";
+                    destination = "pagesStudent/ShowMainPage.do";
                 }else{
                     System.out.println("In SignInServlet : Mot de passe incorrect.");
                     s.setAttribute("msgErreur", "Mot de passe incorrect.");

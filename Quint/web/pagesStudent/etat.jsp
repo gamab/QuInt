@@ -115,7 +115,7 @@
                         <li><a href="profil.jsp"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/Quint/SignOutStudent.do"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
+                        <li><a href="SignOutStudent.do"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -166,7 +166,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Demandes de stages faites par les étudiants
+                            Demandes de stages faite par l'étudiant
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
