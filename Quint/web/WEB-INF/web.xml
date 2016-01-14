@@ -32,9 +32,13 @@
         <servlet-name>ModifierProfil</servlet-name>
         <servlet-class>quint.servlet.ModifierProfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AfficherEtudiants</servlet-name>
+        <servlet-class>Controller.Company.AfficherEtudiants</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AfficherOffres</servlet-name>
-        <url-pattern>/AfficherOffres.do</url-pattern>
+        <url-pattern>/pagesCompany/afficheroffres.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignInStudent</servlet-name>
@@ -42,7 +46,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AjouterOffre</servlet-name>
-        <url-pattern>/AjouterOffre.do</url-pattern>
+        <url-pattern>/pagesCompany/ajouteroffre.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ModifierProfil</servlet-name>
         <url-pattern>/ModifierProfil.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfficherEtudiants</servlet-name>
+        <url-pattern>/pagesCompany/afficheretudiants.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
