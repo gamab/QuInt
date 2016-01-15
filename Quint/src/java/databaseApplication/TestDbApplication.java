@@ -5,6 +5,8 @@
  */
 package databaseApplication;
 
+import controller.CorporationWS;
+import controller.CorporationWS_Service;
 import databaseapplication.AppDb_Service;
 import databaseapplication.DbWebService_Service;
 import java.util.ArrayList;
@@ -40,6 +42,11 @@ public class TestDbApplication {
          DbWebService_Service helloWorldService = new DbWebService_Service();
          databaseapplication.DbWebService db=helloWorldService.getDbWebServicePort();
          System.out.println( db.getAllStudents());
+         
+         CorporationWS_Service corporationWS_Service=new CorporationWS_Service();
+         CorporationWS corporationWS=corporationWS_Service.getCorporationWSPort();
+         System.out.println(corporationWS.listCandidates(1));
+         
     }//end main
 
 }
