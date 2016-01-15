@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://databaseApplication/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://databaseApplication/">
+
+<xs:element name="addNewUser" type="tns:addNewUser"/>
+
+<xs:element name="addNewUserResponse" type="tns:addNewUserResponse"/>
+
+<xs:element name="deleteUser" type="tns:deleteUser"/>
+
+<xs:element name="deleteUserResponse" type="tns:deleteUserResponse"/>
+
+<xs:element name="editUserProfile" type="tns:editUserProfile"/>
+
+<xs:element name="editUserProfileResponse" type="tns:editUserProfileResponse"/>
+
+<xs:element name="emailAlreadyUsed" type="tns:emailAlreadyUsed"/>
+
+<xs:element name="emailAlreadyUsedResponse" type="tns:emailAlreadyUsedResponse"/>
+
+<xs:element name="getAllStudents" type="tns:getAllStudents"/>
+
+<xs:element name="getAllStudentsResponse" type="tns:getAllStudentsResponse"/>
+
+<xs:element name="getNumberOfUsers" type="tns:getNumberOfUsers"/>
+
+<xs:element name="getNumberOfUsersResponse" type="tns:getNumberOfUsersResponse"/>
+
+<xs:element name="getPassword" type="tns:getPassword"/>
+
+<xs:element name="getPasswordResponse" type="tns:getPasswordResponse"/>
+
+<xs:element name="hello" type="tns:hello"/>
+
+<xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:element name="isUSerAdmin" type="tns:isUSerAdmin"/>
+
+<xs:element name="isUSerAdminResponse" type="tns:isUSerAdminResponse"/>
+
+<xs:element name="isUserInDB" type="tns:isUserInDB"/>
+
+<xs:element name="isUserInDBResponse" type="tns:isUserInDBResponse"/>
+
+<xs:element name="listData" type="tns:listData"/>
+
+<xs:element name="listDataResponse" type="tns:listDataResponse"/>
+
+<xs:element name="queryInfo" type="tns:queryInfo"/>
+
+<xs:element name="queryInfoResponse" type="tns:queryInfoResponse"/>
+
+<xs:element name="searchStudent" type="tns:searchStudent"/>
+
+<xs:element name="searchStudentResponse" type="tns:searchStudentResponse"/>
+
+<xs:element name="setAdminRight" type="tns:setAdminRight"/>
+
+<xs:element name="setAdminRightResponse" type="tns:setAdminRightResponse"/>
+
+<xs:element name="setPassword" type="tns:setPassword"/>
+
+<xs:element name="setPasswordResponse" type="tns:setPasswordResponse"/>
+
+<xs:element name="userPasswordMatch" type="tns:userPasswordMatch"/>
+
+<xs:element name="userPasswordMatchResponse" type="tns:userPasswordMatchResponse"/>
+
+<xs:complexType name="isUserInDB">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isUserInDBResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getNumberOfUsers">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getNumberOfUsersResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setPassword">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setPasswordResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="setAdminRight">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="setAdminRightResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="searchStudent">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="searchStudentResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:student" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="student">
+<xs:sequence>
+<xs:element name="admin" type="xs:int"/>
+<xs:element name="adresse" type="xs:string" minOccurs="0"/>
+<xs:element name="code_postal" type="xs:int"/>
+<xs:element name="commune" type="xs:string" minOccurs="0"/>
+<xs:element name="conducteur" type="xs:int"/>
+<xs:element name="cv" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="nom" type="xs:string" minOccurs="0"/>
+<xs:element name="notif" type="xs:int"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="prenom" type="xs:string" minOccurs="0"/>
+<xs:element name="tel" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAllStudents">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getAllStudentsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:student" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteUser">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteUserResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="emailAlreadyUsed">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="emailAlreadyUsedResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isUSerAdmin">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isUSerAdminResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="userPasswordMatch">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="userPasswordMatchResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editUserProfile">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+<xs:element name="arg2" type="xs:string" minOccurs="0"/>
+<xs:element name="arg3" type="xs:string" minOccurs="0"/>
+<xs:element name="arg4" type="xs:string" minOccurs="0"/>
+<xs:element name="arg5" type="xs:string" minOccurs="0"/>
+<xs:element name="arg6" type="xs:string" minOccurs="0"/>
+<xs:element name="arg7" type="xs:string" minOccurs="0"/>
+<xs:element name="arg8" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editUserProfileResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="queryInfo">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="queryInfoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:student" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getPassword">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getPasswordResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addNewUser">
+<xs:sequence>
+<xs:element name="arg0" type="xs:boolean"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+<xs:element name="arg2" type="xs:string" minOccurs="0"/>
+<xs:element name="arg3" type="xs:string" minOccurs="0"/>
+<xs:element name="arg4" type="xs:string" minOccurs="0"/>
+<xs:element name="arg5" type="xs:string" minOccurs="0"/>
+<xs:element name="arg6" type="xs:string" minOccurs="0"/>
+<xs:element name="arg7" type="xs:string" minOccurs="0"/>
+<xs:element name="arg8" type="xs:string" minOccurs="0"/>
+<xs:element name="arg9" type="xs:boolean"/>
+<xs:element name="arg10" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addNewUserResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listData">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listDataResponse">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>

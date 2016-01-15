@@ -20,6 +20,10 @@
         <servlet-name>AjouterOffre</servlet-name>
         <servlet-class>Controller.Company.AjouterOffre</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WSApplicationDb</servlet-name>
+        <servlet-class>databaseApplication.WSApplicationDb</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AfficherOffres</servlet-name>
         <url-pattern>/AfficherOffres.do</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>afficher</servlet-name>
         <url-pattern>/afficher.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WSApplicationDb</servlet-name>
+        <url-pattern>/WSApplicationDb.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
