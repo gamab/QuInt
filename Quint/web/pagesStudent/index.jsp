@@ -46,6 +46,27 @@
 </head>
 
 <body>
+    
+    <%!
+        String email = "";
+        String pswd = "";
+        String messages = "";
+        String attente = "";
+        String refuse = "";
+        String validee = "";
+        HttpSession s = null;
+    %>
+    <%
+        s = request.getSession();
+        if (s != null && !s.isNew() && s.getAttribute("email") != null && s.getAttribute("password") != null) {
+            email = (String) s.getAttribute("email");
+            pswd = (String) s.getAttribute("password");
+            messages = (String) s.getAttribute("messages");
+            attente = (String) s.getAttribute("attente");
+            refuse = (String) s.getAttribute("refuse");
+            validee = (String) s.getAttribute("validee");
+        }
+    %>
 
     <div id="wrapper">
 
@@ -58,7 +79,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">QuInt v1.0</a>
+                <a class="navbar-brand" href="index.jsp">QuInt v1.0</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -104,7 +125,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a class="text-center" href="messages.html">
+                            <a class="text-center" href="messages.jsp">
                                 <strong>Consulter tous les messages</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
@@ -118,10 +139,10 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profil.html"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
+                        <li><a href="profil.jsp"><i class="fa fa-user fa-fw"></i> Mon Profil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
+                        <li><a href="SignOutStudent.do"><i class="fa fa-sign-out fa-fw"></i> Se Déconnecter</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -134,22 +155,22 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
+                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
                         </li>
                         <li>
-                            <a href="etat.html"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
+                            <a href="etat.jsp"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
                         </li>
                         <li>
-                            <a href="messages.html"><i class="fa fa-table fa-fw"></i> Messages</a>
+                            <a href="messages.jsp"><i class="fa fa-table fa-fw"></i> Messages</a>
                         </li> 
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="entreprises.html">Par Entreprise</a>
+                                    <a href="entreprises.jsp">Par Entreprise</a>
                                 </li>
                                 <li>
-                                    <a href="offres.html">Par offre de Stage</a>
+                                    <a href="offres.jsp">Par offre de Stage</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -164,7 +185,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Accueil</h1>
+                    <h1 class="page-header">Bonjour, <%=email%> ! </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -178,14 +199,14 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">10</div>
+                                    <div class="huge"><%=messages%></div>
                                     <div>Nouveaux Messages!</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left" href="messages.html">Consulter Vos Messages</span>
+                                <span class="pull-left" href="messages.jsp">Consulter Vos Messages</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -200,14 +221,14 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">1</div>
+                                    <div class="huge"><%=validee%></div>
                                     <div>Demande(s) Validée(s)!</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left" href="etat.html">Plus d'Information</span>
+                                <span class="pull-left" href="etat.jsp">Plus d'Information</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -222,14 +243,14 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">3</div>
+                                    <div class="huge"><%=attente%></div>
                                     <div>Demande(s) En Attente!</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left" href="etat.html">Plus d'Information</span>
+                                <span class="pull-left" href="etat.jsp">Plus d'Information</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -244,14 +265,14 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">2</div>
+                                    <div class="huge"><%=refuse%></div>
                                     <div>Demande(s) Refusée(s)!</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left" href="etat.html">Plus d'Information</span>
+                                <span class="pull-left" href="etat.jsp">Plus d'Information</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -399,7 +420,7 @@
                                 </a>
                             </div>
                             <!-- /.list-group -->
-                            <a href="offres.html" class="btn btn-default btn-block">Voir Toutes les Offres</a>
+                            <a href="offres.jsp" class="btn btn-default btn-block">Voir Toutes les Offres</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>

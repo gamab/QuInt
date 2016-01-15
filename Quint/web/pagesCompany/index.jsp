@@ -134,13 +134,13 @@
                             <a href="etat.jsp"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
                         </li>
                         <li>
-                            <a href="AfficherOffres.do"><i class="fa fa-table fa-fw"></i> Mes offres</a>
+                            <a href="afficheroffres.do"><i class="fa fa-table fa-fw"></i> Mes offres</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="etudiants.jsp">Par étudiant</a>
+                                    <a href="afficheretudiants.do">Par étudiant</a>
                                 </li>
                                 <li>
                                     <a href="candidatures.jsp">Par candidatures</a>

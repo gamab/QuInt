@@ -90,7 +90,7 @@
                                 <div>
                                     <strong>IBM</strong>
                                     <span class="pull-right text-muted">
-                                        <em>Aujourd'hui Ã  15:32</em>
+                                        <em>Aujourd'hui à 15:32</em>
                                     </span>
                                 </div>
                                 <div>Bonjour Mr Ayyoub, je me permets de vous contacter suite Ã ...</div>
@@ -184,7 +184,7 @@
                                         %>
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
-                                           <form accept-charset="UTF-8" action="/Corporation/AjouterOffre.do" method="post" novalidate="novalidate">
+                                           <form accept-charset="UTF-8" action="ajouteroffre.do" method="post" novalidate="novalidate">
                                                 <div class="form-group">
                                                      <label>Nom de l'offre</label>
                                                      <input class="form-control" placeholder="Position et mots clés" name="title">

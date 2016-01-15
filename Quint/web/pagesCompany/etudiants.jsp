@@ -164,7 +164,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Ãtudiants</h1>
+                            <h1 class="page-header">Étudiants</h1>
                             <div class="row">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -184,101 +184,20 @@
                                                                 <th>Niveau</th>
                                                                 <th>Stage</th>
                                                                 <th>Disponibilités</th>
-                                                                <th>Candidatures</th>
-                                                                <th>Proposer</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                         <c:forEach var="etudiant" items="${etudiants}" varStatus="loop">
                                                             <tr>
-                                                                <td><a href="#">Alexandre Demeyer</a></td>
-                                                                <td>Insa de Toulouse</td>
-                                                                <td>Informatique</td>
-                                                                <td>Bac +5</td>
-                                                                <td><button type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i></button> Non
+                                                                <td><a href="#">${etudiant.name}</a></td>
+                                                                <td>${etudiant.school}</td>
+                                                                <td>${etudiant.department}</td>
+                                                                <td>${etudiant.level}</td>
+                                                                <td><button type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i></button> ${etudiant.internship}
                                                                 </td>
-                                                                <td>02/16 > 07/16</td>
-                                                                <td>
-                                                                    <select class="btn-sm">
-                                                                        <option>Stage DÃ©veloppement JAVA/J2EE</option>
-                                                                        <option>Stage Cloud Computing</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td>
-                                                                    <a href="proposition.jsp"><select class="btn-sm">
-                                                                            <option>Stage DÃ©veloppement JAVA/Android</option>
-                                                                            <option>Stage DÃ©veloppement C++</option>
-                                                                            <option>Stage Smart Grid</option>
-                                                                        </select></a>
-                                                                </td>
+                                                                <td>${etudiant.availability}</td>
                                                             </tr>
                                                         </c:foreach>
-                                                        <tr>
-                                                            <td><a href="#">Alexandre Demeyer</a></td>
-                                                            <td>Insa de Toulouse</td>
-                                                            <td>Informatique</td>
-                                                            <td>Bac +5</td>
-                                                            <td><button type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i></button> Non
-                                                            </td>
-                                                            <td>02/16 > 07/16</td>
-                                                            <td>
-                                                                <select class="btn-sm">
-                                                                    <option>Stage DÃ©veloppement JAVA/J2EE</option>
-                                                                    <option>Stage Cloud Computing</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <a href="proposition.jsp"><select class="btn-sm">
-                                                                        <option>Stage DÃ©veloppement JAVA/Android</option>
-                                                                        <option>Stage DÃ©veloppement C++</option>
-                                                                        <option>Stage Smart Grid</option>
-                                                                    </select></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="#">Marcel Pagnol</a></td>
-                                                            <td>Insa de Toulouse</td>
-                                                            <td>RÃ©seaux</td>
-                                                            <td>Bac +5</td>
-                                                            <td><button type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i></button> Non
-                                                            </td>
-                                                            <td>06/16 > 09/16</td>
-                                                            <td style="width:5%;">
-                                                                <select class="btn-sm">
-                                                                    <option>Stage DÃ©veloppement JAVA/J2EE</option>
-                                                                    <option>Stage Cloud Computing</option>
-                                                                </select>
-                                                            </td>
-                                                            <td style="width:5%;">
-                                                                <select class="btn-sm">
-                                                                    <option>Stage DÃ©veloppement JAVA/Android</option>
-                                                                    <option>Stage DÃ©veloppement C++</option>
-                                                                    <option>Stage Smart Grid/option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="#">AmÃ©lie Poulain</a></td>
-                                                            <td>Insa de Toulouse</td>
-                                                            <td>MÃ©canique</td>
-                                                            <td>Bac +5</td>
-                                                            <td><button type="button" class="btn btn-success btn-circle"><i class="fa fa-check"></i></button> Oui
-                                                            </td>
-                                                            <td>02/16 > 29/16</td>
-                                                            <td style="width:5%;">
-                                                                <select class="btn-sm">
-                                                                    <option>Stage DÃ©veloppement JAVA/J2EE</option>
-                                                                    <option>Stage Cloud Computing</option>
-                                                                </select>
-                                                            </td>
-                                                            <td style="width:5%;">
-                                                                <select class="btn-sm">
-                                                                    <option>Stage DÃ©veloppement JAVA/Android</option>
-                                                                    <option>Stage DÃ©veloppement C++</option>
-                                                                    <option>Stage Smart Grid/option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Company;
+package quint.servlet;
 
-import Model.Company.CorpDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,16 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Gueldir
+ * @author Ayyoub
  */
-public class AfficherOffres extends HttpServlet {
-    
-    CorpDB db;
-    
-    @Override
-    public void init() {
-        db = new CorpDB();
-    }
+public class ModifierProfil extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +35,10 @@ public class AfficherOffres extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AfficherOffres</title>");            
+            out.println("<title>Servlet ModifierProfil</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AfficherOffres at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ModifierProfil at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,10 +55,8 @@ public class AfficherOffres extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
-        
-	request.setAttribute( "offres", db.listProposedInternships());
-        this.getServletContext().getRequestDispatcher( "/pagesCompany/offres.jsp" ).forward(request, response);
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -80,11 +70,7 @@ public class AfficherOffres extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        // processRequest(request, response);
-        
-	// request.setAttribute( "offres", db.listProposedInternships());
-        this.getServletContext().getRequestDispatcher( "/pagesCompany/offres.jsp" ).forward(request, response);
+        processRequest(request, response);
     }
 
     /**

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : messages
-    Created on : 11 janv. 2016, 11:57:40
+    Document   : profile
+    Created on : 11 janv. 2016, 11:58:54
     Author     : Ayyoub
 --%>
 
@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>QuInt - Messages Reçus</title>
+    <title>QuInt - Profil de l'étudiant</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -155,72 +155,62 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Mes Messages</h1>
+                        <h1 class="page-header">Mon Profil</h1>
                         <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Messages Reçus
+                            Mes Informations
                         </div>
                         <!-- .panel-heading -->
                         <div class="panel-body">
-                            <div class="panel-group" id="accordion">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Thales Alinéa Space</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in">
-                                        <div class="panel-body">
-                                            <h3>Consultant Java/J2EE :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                           <div>
-                                                <button type="button" class="btn btn-primary .col-md-4">Répondre</button>
-                                                <button type="button" class="btn btn-danger .col-md-4 .col-md-offset-4">Supprimer</button>
-                                           </div> 
+                            <div class="row">
+                                <!--div class="col-lg-6"-->
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <label>Nom</label>
+                                            <input class="form-control" placeholder="Hayou">
                                         </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Capgemini</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <h3>Consultant DevOps :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            <div>
-                                                <button type="button" class="btn btn-primary .col-md-4">Répondre</button>
-                                                <button type="button" class="btn btn-danger .col-md-4 .col-md-offset-4">Supprimer</button>
-                                           </div> 
+                                        <div class="form-group">
+                                            <label>Prénom</label>
+                                            <input class="form-control" placeholder="Ayyoub">
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">IBM</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <h3>Developpement des IHM pour des appliacations Smart Grid :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            <div>
-                                                <button type="button" class="btn btn-primary .col-md-4">Répondre</button>
-                                                <button type="button" class="btn btn-danger .col-md-4 .col-md-offset-4">Supprimer</button>
-                                           </div> 
+                                        <div class="form-group">
+                                            <label>E-Mail</label>
+                                            <p class="form-control-static">hayou@etud.insa-toulouse.fr</p>
                                         </div>
-                                    </div>
-                                </div>
+                                        <div class="form-group">
+                                            <label>Filière</label>
+                                            <select class="form-control">
+                                                <option>5ISS</option>
+                                                <option>5IL</option>
+                                                <option>5SEC</option>
+                                                <option>4IR-RT</option>
+                                                <option>4IR-I</option>
+                                                <option>4AE</option>
+                                                <option>4GM</option>
+                                                <option>4GC</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>CV</label>
+                                            <input type="file">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Lettre de Motivation</label>
+                                            <input type="file">
+                                        </div>
+                                        <button type="submit" class="btn btn-default col-md-4" data-toggle="modal" data-target="#enregistre">Sauvegarder</button>
+                                        <button type="reset" class="btn btn-default col-md-4 col-md-offset-4">Réinitialiser</button>
+                                    </form>
+                                <!--/div-->
                             </div>
+                            <!-- /.row (nested) -->
                         </div>
                         <!-- .panel-body -->
                     </div>

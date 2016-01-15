@@ -5,7 +5,6 @@
  */
 package Controller.Company;
 
-import Model.Company.CorpDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,14 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Gueldir
  */
-public class AfficherOffres extends HttpServlet {
-    
-    CorpDB db;
-    
-    @Override
-    public void init() {
-        db = new CorpDB();
-    }
+public class AfficherEtudiants extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,19 +29,9 @@ public class AfficherOffres extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AfficherOffres</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AfficherOffres at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+	// request.setAttribute( "etudiants", db.listCandidates());
+        this.getServletContext().getRequestDispatcher( "/pagesCompany/etudiants.jsp" ).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,10 +45,8 @@ public class AfficherOffres extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
-        
-	request.setAttribute( "offres", db.listProposedInternships());
-        this.getServletContext().getRequestDispatcher( "/pagesCompany/offres.jsp" ).forward(request, response);
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -80,11 +60,7 @@ public class AfficherOffres extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        // processRequest(request, response);
-        
-	// request.setAttribute( "offres", db.listProposedInternships());
-        this.getServletContext().getRequestDispatcher( "/pagesCompany/offres.jsp" ).forward(request, response);
+        processRequest(request, response);
     }
 
     /**
