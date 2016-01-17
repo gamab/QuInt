@@ -4,6 +4,7 @@
     Author     : Ayyoub
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -290,7 +291,80 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <ul class="timeline">
-                                <li>
+                                <!-- POUR AFFICHER LES MESSAGES -->
+                                <c:forEach var="msg" items="${Msgs}" varStatus="loop">
+                                    <li>
+                                        <div class="timeline-badge"><i class="fa fa-comments"></i>
+                                        </div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">${msg.split(":")[0]}</h4>
+                                                <p><small class="text-muted"><i class="fa fa-clock-o"></i> Il y a 1 jour</small>
+                                                </p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>${msg.split(":")[1]}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </c:forEach>
+                                    
+                                <!-- POUR AFFICHER LES DEMANDES EN ATTENTE -->
+                                    <c:forEach var="attente" items="${Attente}" varStatus="loop">
+                                    <li class="timeline-inverted">
+                                            <div class="timeline-badge warning"><i class="fa fa-clock-o"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">${attente.split(":")[0]}</h4>
+                                                <p><small class="text-muted"><i class="fa fa-clock-o"></i> Il y a 1 jour</small>
+                                                </p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>${attente.split(":")[1]}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </c:forEach>
+                                    
+                                <!-- POUR AFFICHER LES DEMANDES REFUSEES -->
+                                <c:forEach var="refuse" items="${Refusees}" varStatus="loop">
+                                    <li>
+                                        <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
+                                        </div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">${refuse.split("/")[0]}</h4>
+                                                <p><small class="text-muted"><i class="fa fa-clock-o"></i> Il y a 2 jour</small>
+                                                </p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>${refuse.split("/")[1]}</p>
+                                                <p>${refuse.split("/")[2]}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </c:forEach>
+                                    
+                                <!-- POUR AFFICHER LES DEMANDES VALIDEES -->
+                                <c:forEach var="val" items="${Validees}" varStatus="loop">
+                                    <li>
+                                        <div class="timeline-badge success"><i class="fa fa-check"></i>
+                                        </div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">${val.split(":")[0]}</h4>
+                                                <p><small class="text-muted"><i class="fa fa-clock-o"></i> Il y a 3 jour</small>
+                                                </p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>${val.split(":")[1]}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </c:forEach>
+                                    
+                                    
+<!--                                <li>
                                     <div class="timeline-badge"><i class="fa fa-comments"></i>
                                     </div>
                                     <div class="timeline-panel">
@@ -336,35 +410,6 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="timeline-badge info"><i class="fa fa-save"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.</p>
-                                            <hr>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fa fa-gear"></i>  <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Action</a>
-                                                    </li>
-                                                    <li><a href="#">Another action</a>
-                                                    </li>
-                                                    <li><a href="#">Something else here</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Separated link</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
                                     <div class="timeline-badge success"><i class="fa fa-check"></i>
                                     </div>
                                     <div class="timeline-panel">
@@ -377,7 +422,10 @@
                                             <p>Votre demande de stage a été validée par les responsables d'études.</p>
                                         </div>
                                     </div>
-                                </li>
+                                </li>-->
+
+
+
                             </ul>
                         </div>
                         <!-- /.panel-body -->
@@ -393,31 +441,13 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> Stage - Ingénieur Développement Java/J2EE
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> Stage - Ingénieur Développement C++
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Stage - Ingénieur Développement Java/J2EE
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> CDI - Ingénieur Développement Java/J2EE
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> CDD - Stagiaire/Alternant en Télécom
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
+                                <c:forEach var="offre" items="${Offres}" varStatus="loop">
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-briefcase fa-fw"></i> ${offre}
+                                        <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                        </span>
+                                    </a>
+                                </c:forEach>
                             </div>
                             <!-- /.list-group -->
                             <a href="offres.jsp" class="btn btn-default btn-block">Voir Toutes les Offres</a>

@@ -8,6 +8,8 @@ package quint.servlet;
 import databaseApplication.DB;
 import databaseApplication.DBInterface;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -70,6 +72,36 @@ public class ShowMainPage extends HttpServlet {
                     
                     String validee = "1";
                     s.setAttribute("validee", validee);
+                    
+                    List<String> mess = new ArrayList<String>();
+                    List<String> attentes = new ArrayList<String>();
+                    List<String> validees = new ArrayList<String>();
+                    List<String> refusees = new ArrayList<String>();
+                    List<String> offres = new ArrayList<String>();
+                    
+                    mess.add("Thales Alinea spc : Bonjour Mr Ayyoub, Je me permet de vous contacter suite à notre entretien téléphonique. Je vous confirme notre intérêt et nous\n" +
+"                                                souhaitons vous faire une proposition de stage. J'aimerai avoir votre réponse dans un délai inférieur à une semaine...");
+                    mess.add("Capgemini : Bonjour Mr Ayyoub, Je me permet de vous contacter suite à notre entretien téléphonique. Je vous confirme notre intérêt et nous\n" +
+"                                                souhaitons vous faire une proposition de stage. J'aimerai avoir votre réponse dans un délai inférieur à une semaine...");
+                    
+                    attentes.add("IBM : Votre demande de validation de stage est mise en attente. Elle sera soit validée soit refusée par les responsables d'études dans \n" +
+"                                                    les plus brefs délais.");
+                    validees.add("Capgemini : Votre demande de stage a été validée par les responsables d'études.");
+                    refusees.add("Nuclear Bungladish / Votre demande de stage a été refusée par le responsable de sécurité. / Motif: Localisation du stage dangereuse pour l'étudiant.");
+                    offres.add("Stage - Ingénieur Développement Java/J2EE");
+                    offres.add("Stage - Ingénieur Développement C++");
+                    offres.add("Stage - Ingénieur Développement HTML/PHP");
+                    offres.add("CDI - Ingénieur Développement Java/J2EE");
+                    offres.add("CDD - Stagiaire/Alternant en Télécom");
+                    
+                    s.setAttribute("Msgs", mess);
+                    s.setAttribute("Attente", attentes);
+                    s.setAttribute("Validees", validees);
+                    s.setAttribute("Refusees", refusees);
+                    s.setAttribute("Offres", offres);
+                    
+                    
+                    
                     
                     destination = "pagesStudent/index.jsp";
                 }
