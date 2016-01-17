@@ -21,10 +21,6 @@
         <servlet-class>Controller.Company.AjouterOffre</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
-        <servlet-name>WSApplicationDb</servlet-name>
-        <servlet-class>databaseApplication.WSApplicationDb</servlet-class>
-=======
         <servlet-name>SignOutStudent</servlet-name>
         <servlet-class>quint.servlet.SignOutStudent</servlet-class>
     </servlet>
@@ -39,7 +35,6 @@
     <servlet>
         <servlet-name>AfficherEtudiants</servlet-name>
         <servlet-class>Controller.Company.AfficherEtudiants</servlet-class>
->>>>>>> cd26ef30ebe61662da7d28f93f87dfd4ee135020
     </servlet>
     <servlet-mapping>
         <servlet-name>AfficherOffres</servlet-name>
@@ -62,10 +57,6 @@
         <url-pattern>/afficher.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
-        <servlet-name>WSApplicationDb</servlet-name>
-        <url-pattern>/WSApplicationDb.do</url-pattern>
-=======
         <servlet-name>SignOutStudent</servlet-name>
         <url-pattern>/pagesStudent/SignOutStudent.do</url-pattern>
     </servlet-mapping>
@@ -80,7 +71,6 @@
     <servlet-mapping>
         <servlet-name>AfficherEtudiants</servlet-name>
         <url-pattern>/pagesCompany/afficheretudiants.do</url-pattern>
->>>>>>> cd26ef30ebe61662da7d28f93f87dfd4ee135020
     </servlet-mapping>
     <session-config>
         <session-timeout>
