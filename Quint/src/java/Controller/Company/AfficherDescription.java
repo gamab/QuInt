@@ -5,12 +5,8 @@
  */
 package Controller.Company;
 
-import Model.Company.CorpDB;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,14 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Gueldir
  */
-public class AjouterOffre extends HttpServlet {
-
-    CorpDB db;
-    
-    @Override
-    public void init() {
-        db = new CorpDB();
-    }
+public class AfficherDescription extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,7 +28,13 @@ public class AjouterOffre extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
+            throws ServletException, IOException {
+        
+        String[] ids = request.getParameterValues("id");
+        int id = Integer.parseInt(ids[0]);
+	request.setAttribute( "internship", getProposedInternship(id));]);
+	request.setAttribute( "candidats", listCandidates(id));
+        this.getServletContext().getRequestDispatcher( "/pagesCompany/description.jsp" ).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -69,32 +64,6 @@ public class AjouterOffre extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        response.setContentType("text/html;charset=UTF-8");
-        
-        if (request.getParameter("publish") != null) {
-            // Récupère les valeurs du formulaire de la requete
-            String title = request.getParameter("title");
-            String description = request.getParameter("description");
-            String department = request.getParameter("department");
-            String personInCharge = request.getParameter("personInCharge");
-            String phoneNumber = request.getParameter("phoneNumber");
-            String location = request.getParameter("location");
-            int salary = Integer.parseInt(request.getParameter("salary"));
-
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-            Date date = new Date();
-            String postDate = dateFormat.format(date);
-            // Ajoute du stage à la DB
-            db.proposeInternship(postDate, salary, title, description, personInCharge, phoneNumber, department, location);
-        } else if (request.getParameter("delete") != null) {
-            // Suppression du stage dans la DB
-            // db.deleteProposedInternship();
-        }
-
-        // Redirection vers la page de retour après traitement
-        RequestDispatcher rd = request.getRequestDispatcher("/pagesCompany/afficheroffres.do");
-        rd.forward(request, response);
     }
 
     /**

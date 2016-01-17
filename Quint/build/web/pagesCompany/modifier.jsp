@@ -199,7 +199,7 @@
                                                      <label>Lieu</label>
                                                      <input class="form-control" placeholder="Toulouse" name="location">
                                                      <label>Rémunération</label>
-                                                     <input class="form-control" placeholder="> 346.05 €" name="location">
+                                                     <input class="form-control" placeholder="> 346.05 €" name="salary">
                                                  </div>                                            
                                                 <button type="submit" class="btn btn-success" name="publish">Publier</button>
                                                 <button type="submit" class="btn btn-danger" name="delete">Supprimer</button>

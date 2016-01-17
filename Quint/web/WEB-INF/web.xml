@@ -36,6 +36,14 @@
         <servlet-name>AfficherEtudiants</servlet-name>
         <servlet-class>Controller.Company.AfficherEtudiants</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AfficherDescription</servlet-name>
+        <servlet-class>Controller.Company.AfficherDescription</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModifierOffre</servlet-name>
+        <servlet-class>Controller.Company.ModifierOffre</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AfficherOffres</servlet-name>
         <url-pattern>/pagesCompany/afficheroffres.do</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>AfficherEtudiants</servlet-name>
         <url-pattern>/pagesCompany/afficheretudiants.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfficherDescription</servlet-name>
+        <url-pattern>/pagesCompany/afficherdescription.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModifierOffre</servlet-name>
+        <url-pattern>/ModifierOffre</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
