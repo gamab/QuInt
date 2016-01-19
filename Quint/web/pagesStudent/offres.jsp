@@ -4,6 +4,7 @@
     Author     : Ayyoub
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +47,26 @@
 </head>
 
 <body>
+    <%!
+        String email = "";
+        String pswd = "";
+        String messages = "";
+        String attente = "";
+        String refuse = "";
+        String validee = "";
+        HttpSession s = null;
+    %>
+    <%
+        s = request.getSession();
+        if (s != null && !s.isNew() && s.getAttribute("email") != null && s.getAttribute("password") != null) {
+            email = (String) s.getAttribute("email");
+            pswd = (String) s.getAttribute("password");
+            messages = (String) s.getAttribute("messages");
+            attente = (String) s.getAttribute("attente");
+            refuse = (String) s.getAttribute("refuse");
+            validee = (String) s.getAttribute("validee");
+        }
+    %>
 
     <div id="wrapper">
 
@@ -183,53 +204,19 @@
                                                         <tr>
                                                             <th>Intitulé</th>
                                                             <th>Entreprise</th>
-                                                            <th>Filière</th>
-                                                            <th>Date d'Apparition</th>
+                                                            <th>Département</th>
+                                                            <th>Location</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Stage Développement JAVA/J2EE</a></td>
-                                                            <td><a href="#">Capgemini</a></td>
-                                                            <td>Informatique/Réseaux</td>
-                                                            <td>06/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Stage Cloud Computing</a></td>
-                                                            <td><a href="#">Solucom</a></td>
-                                                            <td>Informatique/Réseaux</td>
-                                                            <td>08/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Stage Développement JAVA/Android</a></td>
-                                                            <td><a href="#">Sogeti</a></td>
-                                                            <td>Informatique/Réseaux</td>
-                                                            <td>06/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Stage Développement C++</a></td>
-                                                            <td><a href="#">Scle Sfe</a></td>
-                                                            <td>Informatique/Réseaux</td>
-                                                            <td>09/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Stage Consultatn Big Data</a></td>
-                                                            <td><a href="#">Capgemini</a></td>
-                                                            <td>Informatique/Réseaux</td>
-                                                            <td>04/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Stage Smart Grid</a></td>
-                                                            <td><a href="#">Capgemini</a></td>
-                                                            <td>Informatique/Réseaux</td>
-                                                            <td>01/12/2015</td>
-                                                        </tr>
-                                                        <tr class="odd gradeX">
-                                                            <td><a href="#">Stage Gestion de VM pour l'Automatisation de Calcul</a></td>
-                                                            <td><a href="#">Thales Alinea Space</a></td>
-                                                            <td>Informatique/Réseaux</td>
-                                                            <td>21/11/2015</td>
-                                                        </tr>
+                                                        <c:forEach var="offre" items="${Offres}" varStatus="loop">
+                                                            <tr class="odd gradeX">
+                                                                <td><a href="#">${offre.getTitle()}</a></td>
+                                                                <td><a href="#">ENTREPRISE</a></td>
+                                                                <td>${offre.getDepartment()}</td>
+                                                                <td>${offre.getLocation()}</td>
+                                                            </tr>
+                                                        </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </div>

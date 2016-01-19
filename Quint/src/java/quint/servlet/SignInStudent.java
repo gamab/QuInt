@@ -44,16 +44,18 @@ public class SignInStudent extends HttpServlet {
         String pswd = request.getParameter("password");
         s.setAttribute("password", pswd);
         
-        if (!email.isEmpty() && !pswd.isEmpty() && !(pswd.length() < 8)) {
+        if (!email.isEmpty() && !pswd.isEmpty()) {
             s.setAttribute("email", email);
 
             DBInterface dbi = new DB();
+            
+            DbWebService_Service dbserv = new DbWebService_Service();
+            DbWebService debe = dbserv.getDbWebServicePort();
             //System.out.println("In SignInServlet : Le mot de passe reçu de la base de données est : " + pswd);
-            //if (dbi.isUserInDB(email)) {
-            System.out.println("user and pass : "+email+"///"+pswd);
-            if(email.equals("Ayoub")){
-                //if(dbi.userPasswordMatch(email, pswd)){
-                if(pswd.equals("aaaaaaaa")){
+            if (debe.isUserInDB(email)) {
+            //if(email.equals("Ayoub")){
+                if(debe.userPasswordMatch(email, pswd)){
+                //if(pswd.equals("aaaaaaaa")){
                     System.out.println("In SignInServlet : Login correct.");
                     //dbi.rememberUserLogIn(email);
                     //boolean admin = dbi.isUSerAdmin(email);

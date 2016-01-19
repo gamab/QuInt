@@ -5,6 +5,8 @@
  */
 package quint.servlet;
 
+import controller.CorporationWS;
+import controller.CorporationWS_Service;
 import databaseApplication.DB;
 import databaseApplication.DBInterface;
 import java.io.IOException;
@@ -49,12 +51,18 @@ public class ShowMainPage extends HttpServlet {
             s.setAttribute("email", email);
 
             DBInterface dbi = new DB();
+            CorporationWS_Service corpserv = new CorporationWS_Service();
+            CorporationWS corp = corpserv.getCorporationWSPort();
             
-            //if (dbi.isUserInDB(email)) {
-            System.out.println("In ShowMainPageServlet: user and pass : "+email+"///"+pswd);
-            if(email.equals("Ayoub")){
-                //if(dbi.userPasswordMatch(email, pswd)){
-                if(pswd.equals("aaaaaaaa")){
+            DbWebService_Service dbserv = new DbWebService_Service();
+            DbWebService debe = dbserv.getDbWebServicePort();
+            
+
+            
+            if (debe.isUserInDB(email)) {
+            //if(email.equals("Ayoub")){
+                if(debe.userPasswordMatch(email, pswd)){
+                //if(pswd.equals("aaaaaaaa")){
                     System.out.println("In ShowMainPageServlet: Login correct.");
                     //dbi.rememberUserLogIn(email);
                     //boolean admin = dbi.isUSerAdmin(email);
@@ -88,11 +96,11 @@ public class ShowMainPage extends HttpServlet {
 "                                                    les plus brefs délais.");
                     validees.add("Capgemini : Votre demande de stage a été validée par les responsables d'études.");
                     refusees.add("Nuclear Bungladish / Votre demande de stage a été refusée par le responsable de sécurité. / Motif: Localisation du stage dangereuse pour l'étudiant.");
-                    offres.add("Stage - Ingénieur Développement Java/J2EE");
-                    offres.add("Stage - Ingénieur Développement C++");
-                    offres.add("Stage - Ingénieur Développement HTML/PHP");
-                    offres.add("CDI - Ingénieur Développement Java/J2EE");
-                    offres.add("CDD - Stagiaire/Alternant en Télécom");
+                    
+                    for(int i=0; i<corp.listProposedInternships().size(); i++){
+                        System.out.println("Main : j'ajoute l'offre : "+corp.listProposedInternships().get(i));
+                        offres.add(corp.listProposedInternships().get(i).getTitle());
+                    }
                     
                     s.setAttribute("Msgs", mess);
                     s.setAttribute("Attente", attentes);
@@ -101,16 +109,16 @@ public class ShowMainPage extends HttpServlet {
                     s.setAttribute("Offres", offres);
                     
                     
-                    
-                    
                     destination = "pagesStudent/index.jsp";
                 }
             }
         }
+        
 
         System.out.println("In ShowMainPageServlet : Destination : "+"/"+destination);
         RequestDispatcher rd = request.getRequestDispatcher("/" + destination);
         rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

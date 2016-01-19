@@ -171,7 +171,7 @@
                                     <a href="entreprises.jsp">Par Entreprise</a>
                                 </li>
                                 <li>
-                                    <a href="offres.jsp">Par offre de Stage</a>
+                                    <a href="AfficherOffresStudent.do">Par offre de Stage</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -450,7 +450,7 @@
                                 </c:forEach>
                             </div>
                             <!-- /.list-group -->
-                            <a href="offres.jsp" class="btn btn-default btn-block">Voir Toutes les Offres</a>
+                            <a href="AfficherOffresStudent.do" class="btn btn-default btn-block">Voir Toutes les Offres</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>
