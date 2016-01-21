@@ -5,8 +5,14 @@
  */
 package Controller.Company;
 
+import Model.Company.CorpDB;
+import static Model.Company.CorpDB.getProposedInternship;
+import databaseapplication.DbWebService;
+import databaseapplication.DbWebService_Service;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,15 +35,24 @@ public class AfficherDescription extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String[] ids = request.getParameterValues("id");
         int id = Integer.parseInt(ids[0]);
-//	request.setAttribute( "internship", getProposedInternship(id));
-//	request.setAttribute( "candidats", listCandidates(id));
-        this.getServletContext().getRequestDispatcher( "/pagesCompany/description.jsp" ).forward(request, response);
-    }
+        request.setAttribute("internships", getProposedInternship(id));
 
+        DbWebService_Service dbService = new DbWebService_Service();
+        DbWebService db = dbService.getDbWebServicePort();
+
+        List<String> emails = CorpDB.listCandidates(id);
+        List<Object> candidates = new ArrayList<>();
+        for (Iterator i = emails.iterator(); i.hasNext();) {
+            candidates.add(db.getStudent(i.next().toString()));
+        }
+        request.setAttribute("candidats", candidates);
+        this.getServletContext().getRequestDispatcher("/pagesCompany/description.jsp").forward(request, response);
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

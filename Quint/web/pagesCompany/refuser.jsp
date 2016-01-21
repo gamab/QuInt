@@ -178,7 +178,7 @@
                                                 <label>Message</label>
                                                 <textarea class="form-control" rows="3"></textarea>
                                             </div>                                            
-                                                <a role="button" class="btn btn-success disabled" href="etat.jsp" >Envoyer</a>
+                                                <a role="button" class="btn btn-success disabled" href="pagesCompany/refusercandidat.do" >Envoyer</a>
                                         </div>
                                         <!-- /.panel-body -->
                                     </div>

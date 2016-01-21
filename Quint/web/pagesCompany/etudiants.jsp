@@ -179,7 +179,6 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>Nom</th>
-                                                                <th>Ecole</th>
                                                                 <th>Filière</th>
                                                                 <th>Niveau</th>
                                                                 <th>Stage</th>
@@ -189,13 +188,12 @@
                                                         <tbody>
                                                         <c:forEach var="etudiant" items="${etudiants}" varStatus="loop">
                                                             <tr>
-                                                                <td><a href="#">${etudiant.name}</a></td>
-                                                                <td>${etudiant.school}</td>
-                                                                <td>${etudiant.department}</td>
-                                                                <td>${etudiant.level}</td>
-                                                                <td><button type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i></button> ${etudiant.internship}
+                                                                <td><a href="#">${etudiant.getNom}</a></td>
+                                                                <td>${etudiant.getDepartement}</td>
+                                                                <td>${etudiant.getNiveau}</td>
+                                                                <td><button type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i></button> ${etudiant.getStatut}
                                                                 </td>
-                                                                <td>${etudiant.availability}</td>
+                                                                <td>${etudiant.getDisponibilite}</td>
                                                             </tr>
                                                         </c:foreach>
                                                         </tbody>

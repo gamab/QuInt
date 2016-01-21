@@ -168,20 +168,30 @@
                                         <!-- .panel-heading -->
                                         <div class="panel-body">
                                             <div class="panel-body">
-                                                <c:forEach var="internship" items="${interships}" varStatus="loop">
-                                                    <h3>Titre :</h3>${internship.title}
-                                                    <h4>Description :</h4>${internship.description}
-                                                    <h4>Indemnité :</h4>${internship.salary}
-                                                    <h4>Responsable :</h4>${internship.personInCharge}
-                                                    <h4>Téléphone :</h4>${internship.phoneNumber}
-                                                    <h4>Departement :</h4>${internship.department}
-                                                    <h4>Localisation :</h4>${internship.location}
-                                                    <h4>Disponibilité :</h4>${internship.provided}
-                                                    <h5>Posté le :</h5>${internship.postDate}
-                                                </c:forEach>
+                                                <%
+                                                    String title = (String) request.getAttribute('internships').getTitle();
+                                                    String description = (String) request.getAttribute('internships').getDescription();
+                                                    String salary = (String) request.getAttribute('internships').getSalary();
+                                                    String personInCharge = (String) request.getAttribute('internships').getPersonInCharge();
+                                                    String phoneNumber = (String) request.getAttribute('internships').getPhoneNumber();
+                                                    String department = (String) request.getAttribute('internships').getDepartment();
+                                                    String location = (String) request.getAttribute('internships').getLocation();
+                                                    String provided = (String) request.getAttribute('internships').getProvided();
+                                                    String postDate = (String) request.getAttribute('internships').getPostDate();
+                                                    String id = (String) request.getAttribute('internships').getId();
+                                                %>
+                                                <h3>Titre :</h3><% out.print(title); %>
+                                                    <h4>Description :</h4><% out.print(description); %>
+                                                    <h4>Indemnité :</h4><% out.print(salary); %>
+                                                    <h4>Responsable :</h4><% out.print(personInCharge); %>
+                                                    <h4>Téléphone :</h4><% out.print(phoneNumber); %>
+                                                    <h4>Departement :</h4><% out.print(department); %>
+                                                    <h4>Localisation :</h4><% out.print(location); %>
+                                                    <h4>Disponibilité :</h4><% out.print(provided); %>
+                                                    <h5>Posté le :</h5><% out.print(postDate); %>
                                                 <div>
                                                     <a role="button" class="btn btn-success col-md-2 col-md-offset-0" href="modifier.jsp">Éditer</a>
-                                                    <button type="button" class="btn btn-danger col-md-2 col-md-offset-8">Supprimer</button>
+                                                    <a role="button" class="btn btn-danger col-md-2 col-md-offset-8" href="supprimeroffre.do?id=<% out.print(id); %>">Supprimer</button>
                                                 </div>                             
                                             </div>
                                         </div>
@@ -200,24 +210,28 @@
                                         <!-- .panel-heading -->
                                         <div class="panel-body">
                                             <div class="panel-group" id="accordion">
+                                                <% cp = 0; %>
                                                 <c:forEach var="internship" items="${interships}" varStatus="loop">
-                                                    <c:set var="number" value="${['One','Two','Three','Four','Five','Six','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']}" scope="application" />
-
+                                                    <c:set var="number" value="${['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten']}" scope="application" />
+                                                    <% cp++; %>
                                                     <div class="panel panel-default">
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">
-                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse${number}">Candidature nÂ°1 : Gabriel Mabille</a>
+                                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse${number}">Candidature n°<% out.print(cp); %> : ${internship.getNom}</a>
                                                             </h4>
                                                         </div>
                                                         <div id="collapse${number}" class="panel-collapse collapse in">
                                                             <div class="panel-body">
-                                                                <h3>Motivation :</h3>${internship.motivation}
-                                                                <h4>École : </h4>${internship.ecole}
+                                                                <h3>Motivation :</h3>${internship.getLM}
+                                                                <h4>Département : </h4>${internship.getDepartement}
+                                                                <h4>Niveau : </h4>${internship.getNiveau}
+                                                                <h4>Stage : </h4>${internship.getStatut}
+                                                                <h4>Disponibilités : </h4>${internship.getDisponibilite}
                                                                 <br><br>
                                                                 <div>
-                                                                    <a href="#" target="_blank"><button type="button" class="btn btn-primary col-md-2 col-md-offset-0">CV</button></a>
-                                                                    <button type="button" class="btn btn-success col-md-2 col-md-offset-5">Accepter</button>
-                                                                    <button type="button" class="btn btn-danger col-md-2 col-md-offset-1">Refuser</button>
+                                                                    <a href="${internship.getCV}" target="_blank"><button type="button" class="btn btn-primary col-md-2 col-md-offset-0">CV</button></a>
+                                                                    <a type="button" class="btn btn-success col-md-2 col-md-offset-5" href="pagesCompany/acceptercandidat.do">Accepter</a>
+                                                                    <a type="button" class="btn btn-danger col-md-2 col-md-offset-1" href="pagesCompany/refusercandidat.do?email=${internship.getEmail}&id=<% out.print(id); %>">Refuser</a>
                                                                 </div> 
                                                             </div>
                                                         </div>
