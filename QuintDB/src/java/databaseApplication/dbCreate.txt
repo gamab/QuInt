@@ -21,7 +21,10 @@ CREATE TABLE `student` (
 `cv` varchar(100) NOT NULL,
 `lm` varchar(100) NOT NULL,
 `conducteur` BOOLEAN NOT NULL, 
-`notif` BOOLEAN NOT NULL, 
+`classe` varchar(100) NOT NULL,
+`departement` varchar(100) NOT NULL,
+`dispoDebut` varchar(100) NOT NULL,
+`dispoFin` varchar(100) NOT NULL,
 PRIMARY KEY (`email`)
 ) ENGINE=InnoDB;
 
@@ -29,9 +32,9 @@ CREATE TABLE `usermessage` (
 `email` VARCHAR(100),
 `from` VARCHAR(100),
 `to` VARCHAR(100),
-`msg` VARCHAR(1000),
-PRIMARY KEY (`email`)
+`msg` VARCHAR(1000)
 ) ENGINE=InnoDB ;
+
 
 
 

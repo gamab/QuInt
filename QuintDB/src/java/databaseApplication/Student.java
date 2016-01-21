@@ -23,9 +23,12 @@ public class Student {
     private String lm; //lettre de motivation
     private int code_postal;
     private int conducteur;
-    private int notif;
+    private String classe;
+    private String departement;
+    private String dispoDebut;
+    private String dispoFin;
 
-    public Student(String email, String password, int admin, String prenom, String nom, String tel, String adresse, String commune, int code_postal, String cv,String lm, int conducteur, int notif) {
+    public Student(String email, String password, int admin, String prenom, String nom, String tel, String adresse, String commune, String cv, String lm, int code_postal, int conducteur, String classe, String departement, String dispoDebut, String dispoFin) {
         this.email = email;
         this.password = password;
         this.admin = admin;
@@ -35,14 +38,16 @@ public class Student {
         this.adresse = adresse;
         this.commune = commune;
         this.cv = cv;
-        this.lm=lm;
+        this.lm = lm;
         this.code_postal = code_postal;
         this.conducteur = conducteur;
-        this.notif = notif;
+        this.classe = classe;
+        this.departement = departement;
+        this.dispoDebut = dispoDebut;
+        this.dispoFin = dispoFin;
     }
 
-
-
+  
     public String getEmail() {
         return email;
     }
@@ -131,17 +136,50 @@ public class Student {
         this.conducteur = conducteur;
     }
 
-    public int getNotif() {
-        return notif;
+    public String getLm() {
+        return lm;
     }
 
-    public void setNotif(int notif) {
-        this.notif = notif;
+    public void setLm(String lm) {
+        this.lm = lm;
     }
 
+    public String getClasse() {
+        return classe;
+    }
+
+    public void setClasse(String classe) {
+        this.classe = classe;
+    }
+
+    public String getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(String departement) {
+        this.departement = departement;
+    }
+
+    public String getDispoDebut() {
+        return dispoDebut;
+    }
+
+    public void setDispoDebut(String dispoDebut) {
+        this.dispoDebut = dispoDebut;
+    }
+
+    public String getDispoFin() {
+        return dispoFin;
+    }
+
+    public void setDispoFin(String dispoFin) {
+        this.dispoFin = dispoFin;
+    }
+
+    
     @Override
     public String toString() {
-        return "User{" + "email=" + email + ", password=" + password + ", admin=" + admin + ", prenom=" + prenom + ", nom=" + nom + ", tel=" + tel + ", adresse=" + adresse + ", commune=" + commune + ", code_postal=" + code_postal + ", conducteur=" + conducteur + ", notif=" + notif + ", cv= " + cv + '}';
+        return "User{" + "email=" + email + ", password=" + password + ", admin=" + admin + ", prenom=" + prenom + ", nom=" + nom + ", tel=" + tel + ", adresse=" + adresse + ", commune=" + commune + ", code_postal=" + code_postal + ", conducteur=" + conducteur + ", cv= " + cv + '}';
     }
 
 }

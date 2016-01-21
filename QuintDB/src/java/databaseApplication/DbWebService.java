@@ -24,7 +24,7 @@ public class DbWebService {
     public String hello(@WebParam(name = "name") String txt) {
         return "Hello " + txt + " !";
     }
- 
+
     @WebMethod(operationName = "listData")
     public void listDB() {
         DB db = new DB();
@@ -32,19 +32,22 @@ public class DbWebService {
         db.listData();
         db.closeConnection();
     }
-    
-      @WebMethod(operationName = "queryInfo")
-    public Student queryInfo(String email) {
+
+    @WebMethod(operationName = "getStudent")
+    public Student getStudent(String email) {
         DB db = new DB();
-        Student student = db.queryInfo(email);
+        Student student = db.getStudent(email);
         db.closeConnection();
         return student;
     }
-    
-        @WebMethod(operationName = "addNewUser")
-    public int addNewUser(boolean admin, String prenom, String nom, String password, String tel, String email, String adresse, String commune, String codePostal, boolean conducteur, boolean notif) {
+
+    @WebMethod(operationName = "addNewUser")
+    public int addNewUser(String email, String password, int admin, String prenom, String nom, String tel, String adresse, String commune, String cv, String lm, int code_postal, int conducteur, String classe, String departement, String dispoDebut, String dispoFin) {
         DB db = new DB();
-        int res = db.addNewUser(admin, prenom, nom, password, tel, email, adresse, commune, codePostal, conducteur, notif);
+        int res = db.addNewUser(email, password, admin,
+                prenom, nom, tel, adresse,
+                commune,"","", code_postal, conducteur,
+                classe, departement, dispoDebut, dispoFin);
         db.closeConnection();
         return res;
     }
@@ -63,8 +66,8 @@ public class DbWebService {
         db.closeConnection();
         return s;
     }
-    
-        @WebMethod(operationName = "setAdminRight")
+
+    @WebMethod(operationName = "setAdminRight")
     public void setAdminRight(String email, String admin) {
         DB db = new DB();
         db.setAdminRight(email, admin);
@@ -80,9 +83,10 @@ public class DbWebService {
 
     @WebMethod(operationName = "editUserProfile")
     public void editUserProfile(String email, String nom, String prenom, String adresse,
-            String tel, String commune, String code_postal, String conducteur, String notif) {
+            String tel, String commune, String code_postal, String conducteur, 
+            String classe,String departement, String dispoDebut, String dispoFin) {
         DB db = new DB();
-        db.editUserProfile(email, nom, prenom, adresse, tel, commune, code_postal, conducteur, notif);
+        db.editUserProfile(email, nom, prenom, adresse, tel, commune, code_postal, conducteur, classe,departement,dispoDebut,dispoFin);
         db.closeConnection();
     }
 
@@ -97,7 +101,7 @@ public class DbWebService {
     @WebMethod(operationName = "userPasswordMatch")
     public boolean userPasswordMatch(String email, String password) {
         DB db = new DB();
-        boolean res = db.userPasswordMatch(email,password);
+        boolean res = db.userPasswordMatch(email, password);
         db.closeConnection();
         return res;
     }
@@ -129,7 +133,7 @@ public class DbWebService {
     @WebMethod(operationName = "searchStudent")
     public List<Student> searchStudent(String prenom, String nom) {
         DB db = new DB();
-        List<Student> students = db.searchStudent(prenom,nom);
+        List<Student> students = db.searchStudent(prenom, nom);
         db.closeConnection();
         return students;
     }

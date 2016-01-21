@@ -128,88 +128,37 @@ public class DB implements DBInterface {
         }
     }
 
-    public void notifyUsers(String email, boolean isAdded) {
-
-        // on récupère les info qui sont utiles : la commune et le lieu de travail pour trouver le trajet
-        // mais aussi si le user est conducteur , (si non alors il n'apporte rien de plus)
-        String query = "SELECT conducteur,code_postal,lieu_travail_id FROM " + TABLE_UTILISATEURS + " WHERE email='" + email + "'";
-        ResultSet rs;
-        int conducteur = 0;
-        int id_lieu_travail = 0;
-        int code_postal = 0;
-
-        try {
-            // récupération des valeurs
-            rs = stmt.executeQuery(query);
-            rs.next();
-            conducteur = rs.getInt("conducteur");
-            code_postal = rs.getInt("code_postal");
-            id_lieu_travail = rs.getInt("lieu_travail_id");
-
-        } catch (Exception e) {
-            System.err.println("In DB  - notify users: could not send the query 1 : error " + e);
-        }
-
-        //si le user est un conducteur on envoit les messages nécessaires
-        if (conducteur == 1) {
-            String nomLieuTravail = "";
-            // on cherche le nom du lieu de travail (on a que sont id)
-            String queryLieuTravail = "SELECT nom_lieu FROM " + TABLE_STUDENT + " WHERE id=" + id_lieu_travail;
-
-            try {
-                rs = stmt.executeQuery(queryLieuTravail);
-                rs.next();
-                nomLieuTravail = rs.getString("nom_lieu");
-            } catch (Exception e) {
-                System.err.println("In DB  - notify users: could not send the query 2 : error " + e);
-            }
-
-//            MailSender mailSender = new MailSender();
-            // on choisit la notification en fonction de si le user à été rajouté ou supprimé
-//            mailSender.setEmailText(isAdded);
-//            mailSender.setList(getEmailToBeNotified(code_postal,nomLieuTravail));
-//            mailSender.start();
-        }
-
-    }
-
     @Override
-    public Student queryInfo(String email) {
+    public Student getStudent(String email) {
         Student info = null;
 
-        String sql_lieu = "SELECT * FROM " + TABLE_STUDENT;
-
         ResultSet rs;
         try {
 
-            rs = stmt.executeQuery(sql_lieu);
-            rs.next();
-            String lieu_travail = rs.getString("nom_lieu");
-            String lieu_travail_adresse = rs.getString("adresse");
-            String sql = "SELECT * FROM " + TABLE_UTILISATEURS + " Where email='" + email + "'";
+            String sql = "SELECT * FROM " + TABLE_STUDENT + " Where email='" + email + "'";
 
             rs = stmt.executeQuery(sql);
-            while (rs.next()) {
+            if (rs.next()) {
                 //Retrieve by column prenom
 
+                String password="";
                 int admin = rs.getInt("admin");
-                int conducteur = rs.getInt("conducteur");
-                int notif = rs.getInt("notif");
-                String tel = rs.getString("tel");
-                String prenom = rs.getString("prenom");
-                String nom = rs.getString("nom");
-                //String email = rs.getString("email");
-                String adresse = rs.getString("adresse");
-                String commune = rs.getString("commune");
-                String heure_depart = rs.getString("heure_depart");
-                String heure_retour = rs.getString("heure_retour");
+                String prenom=rs.getString("prenom");
+                String nom=rs.getString("nom");
+                String tel=rs.getString("tel");
+                String adresse=rs.getString("adresse");
+                String commune=rs.getString("commune");
+                String cv=rs.getString("cv");
+                String lm=rs.getString("lm");
                 int code_postal = rs.getInt("code_postal");
-                int lieu_travail_id = rs.getInt("lieu_travail_id");
-                String jours_travail = rs.getString("jours_travail");
-                //Display values
+                int conducteur = rs.getInt("conducteur");
+                String classe=rs.getString("classe");
+                String departement=rs.getString("departement");
+                String dispoDebut=rs.getString("dispoDebut");
+                String dispoFin=rs.getString("dispoFin");
 
-//                info = new Student(email, "", admin, prenom, nom, tel, adresse, commune, code_postal, lieu_travail, lieu_travail_id, heure_depart, heure_retour, jours_travail, conducteur, notif, lieu_travail_adresse);
-            }
+                //Display values
+                info = new Student(email, password, admin, prenom, nom, tel, adresse, commune, cv, lm, code_postal, conducteur, classe, departement, dispoDebut, dispoFin);            }
             rs.close();
 
         } catch (SQLException ex) {
@@ -220,33 +169,32 @@ public class DB implements DBInterface {
     }
 
     @Override
-    public int addNewUser(boolean admin, String prenom, String nom, String password, String tel, String email, String adresse, String commune, String codePostal, boolean conducteur, boolean notif) {
-        int adminConv = (admin) ? 1 : 0;
-        int conducteurConv = (conducteur) ? 1 : 0;
-        int notifConv = (notif) ? 1 : 0;
-        String cv = "";
-        String lm = "";
+    public int addNewUser(String email, String password, int admin, String prenom, String nom, String tel, String adresse, String commune, String cv, String lm, int code_postal, int conducteur, String classe, String departement, String dispoDebut, String dispoFin) {
+
         if (!isUserInDB(email)) {
             try {
 
-                String queryCreeUtilisateur = " INSERT INTO `" + TABLE_UTILISATEURS + "` (`password`,`email`,`admin`)VALUES (";
+//                String queryCreeUtilisateur = " INSERT INTO `" + TABLE_STUDENT + "` (`password`,`email`,`admin`)VALUES (";
+//
+//                queryCreeUtilisateur += "'" + password + "','" + email + "',";
+//                queryCreeUtilisateur += "" + admin + ");";
+//
+//                System.out.println("In DB - addNewUser : query : " + queryCreeUtilisateur);
+//                int rs = stmt.executeUpdate(queryCreeUtilisateur);
 
-                queryCreeUtilisateur += "'" + password + "','" + email + "',";
-                queryCreeUtilisateur += "" + admin + ");";
+                String queryCreeStudent = " INSERT INTO " + TABLE_STUDENT
+                        + " (`cv`,`lm`,`tel`, `admin` ,`prenom` ,`nom` ,`password`"
+                        + ",`email` ,`adresse` ,`commune` ,`code_postal` ,`conducteur` ,`classe`,"
+                        + "`departement`,`dispoDebut`,`dispoFin`)VALUES (";
 
-                System.out.println("In DB - addNewUser : query : " + queryCreeUtilisateur);
-                int rs = stmt.executeUpdate(queryCreeUtilisateur);
-
-                String queryCreeStudent = " INSERT INTO " + TABLE_STUDENT + " (`cv`,`lm`,`tel`, `admin` ,`prenom` ,`nom` ,`password` ,`email` ,`adresse` ,`commune` ,`code_postal` ,`conducteur` ,`notif`)VALUES (";
-
-                //query += "'"+id + "','" +admin+"',";
                 queryCreeStudent += "'" + cv + "','" + lm + "',";
-                queryCreeStudent += "'" + tel + "','" + adminConv + "',";
+                queryCreeStudent += "'" + tel + "','" + admin + "',";
                 queryCreeStudent += "'" + prenom + "','" + nom + "',";
                 queryCreeStudent += "'" + password + "','" + email + "',";
                 queryCreeStudent += "'" + adresse + "','" + commune + "',";
-                queryCreeStudent += "'" + codePostal + "','" + conducteurConv + "',";
-                queryCreeStudent += "'" + notifConv + "');";
+                queryCreeStudent += "'" + code_postal + "','" + conducteur + "',";
+                queryCreeStudent += "'" + classe + "','" + departement + "',";
+                queryCreeStudent += "'" + dispoDebut + "','" + dispoFin + "');";
 
                 System.out.println("In DB - addNewUser : query : " + queryCreeStudent);
 
@@ -274,7 +222,6 @@ public class DB implements DBInterface {
         String deleteUserQuery = "DELETE FROM " + TABLE_UTILISATEURS + " WHERE email='" + email + "'";
 
         // on notifie avant la deletion car sinon on ne trouve plus les info nécessaire
-        notifyUsers(email, false);
         int rs = 0;
 
         try {
@@ -356,7 +303,8 @@ public class DB implements DBInterface {
 
     @Override
     public void editUserProfile(String email, String nom, String prenom, String adresse,
-            String tel, String commune, String code_postal, String conducteur, String notif) {
+            String tel, String commune, String code_postal, String conducteur,
+            String classe, String departement, String dispoDebut, String dispoFin) {
 
         // récupération des bonnes valeurs par rapport à la DB : string -> int ...
         // cas des boolean
@@ -367,12 +315,6 @@ public class DB implements DBInterface {
             valConducteur = 1;
         } else {
             valConducteur = 0;
-        }
-
-        if (notif != null) {
-            valNotif = 1;
-        } else {
-            valNotif = 0;
         }
 
         // on fait nos changement
@@ -386,7 +328,6 @@ public class DB implements DBInterface {
                 + "commune='" + commune + "' , "
                 + "code_postal='" + code_postal + "' , "
                 + "conducteur='" + valConducteur + "' , "
-                + "notif='" + valNotif + "' "
                 + "WHERE email='" + email + "'";
 
         int rs;
@@ -484,12 +425,13 @@ public class DB implements DBInterface {
         return userExists;
     }
 
+    @Override
     public boolean isUserInDB(String email) {
         boolean isUserInDB = false;
 
         String sql;
-        sql = "SELECT email FROM " + TABLE_UTILISATEURS + " WHERE email='" + email + "'";
-        // System.out.println(sql);
+        sql = "SELECT email FROM " + TABLE_STUDENT + " WHERE email='" + email + "'";
+        System.out.println(sql);
         ResultSet rs;
         try {
             rs = stmt.executeQuery(sql);
@@ -526,10 +468,9 @@ public class DB implements DBInterface {
                 int code_postal = rs.getInt("code_postal");
 
                 //Display values
-                students.add(new Student(email, "", admin, prenom,
-                        nom, tel, adresse, commune,
-                        code_postal, "", "", conducteur,
-                        notif));
+                students.add(new Student(email, "", admin, prenom, nom, tel, adresse,
+                        commune, "", "", code_postal, conducteur,
+                        "", "", "", ""));
             }
 
         } catch (Exception e) {
@@ -552,7 +493,6 @@ public class DB implements DBInterface {
 
                 int admin = rs.getInt("admin");
                 int conducteur = rs.getInt("conducteur");
-                int notif = rs.getInt("notif");
                 String tel = rs.getString("tel");
                 String email = rs.getString("email");
                 String adresse = rs.getString("adresse");
@@ -560,41 +500,15 @@ public class DB implements DBInterface {
                 int code_postal = rs.getInt("code_postal");
 
                 //Display values
-                students.add(new Student(email, "", admin, prenom, nom, tel, adresse, commune, code_postal, "", "", conducteur, notif));
+                students.add(new Student(email, "", admin, prenom, nom, tel, adresse,
+                        commune, "", "", code_postal, conducteur,
+                        "", "", "", ""));
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         return students;
-    }
-
-    public List<String> getEmailToBeNotified(int code_postal, String dest) {
-        List<String> resultEnd = new ArrayList<>();
-        // on récupère les info du lieu de travail
-        String sqlLieuTravail = "SELECT id FROM " + TABLE_STUDENT + " Where nom_lieu='" + dest + "'";
-        ResultSet rs;
-
-        try {
-            rs = stmt.executeQuery(sqlLieuTravail);
-            rs.next();
-            //on récupère l'ID du lieu de travail en entée de fonction (dest)
-            int lieu_travail_id = rs.getInt("id");
-
-            //on cherche les emails des personnes qui sont sur le trajet (commune->lieu travail)
-            String sqlEmail = "SELECT email FROM " + TABLE_UTILISATEURS + " WHERE code_postal='" + code_postal + "' AND lieu_travail_id='" + lieu_travail_id + "' AND notif='1'";
-            ResultSet resEmails;
-            resEmails = stmt.executeQuery(sqlEmail);
-
-            // on place nos resultats dans notre list final
-            while (resEmails.next()) {
-                resultEnd.add(resEmails.getString("email"));
-            }
-
-        } catch (Exception ex) {
-            System.err.println("In DB - getEmailToBeNotified : could not process query, error :" + ex);
-        }
-        return resultEnd;
     }
 
     @Override
@@ -615,16 +529,17 @@ public class DB implements DBInterface {
 
         return utilisateurs;
     }
-    
-    public ArrayList<Msg> getAllMessagesForUser(String email){
-        ArrayList<Msg> messages=new ArrayList<>();
-          // on récupère les info du lieu de travail
-        String sqlLieuTravail = "SELECT * From " + TABLE_MESSAGES+" Where email='"+email+"';" ;
+
+    @Override
+    public ArrayList<Msg> getAllMessagesForUser(String email) {
+        ArrayList<Msg> messages = new ArrayList<>();
+        // on récupère les info du lieu de travail
+        String sqlLieuTravail = "SELECT * From " + TABLE_MESSAGES + " Where email='" + email + "';";
         ResultSet rs;
 
         try {
             rs = stmt.executeQuery(sqlLieuTravail);
-     
+
             // on place nos resultats dans notre list final
             while (rs.next()) {
                 messages.add(new Msg(rs.getString("email"), rs.getString("from"), rs.getString("to"), rs.getString("msg")));
@@ -636,4 +551,32 @@ public class DB implements DBInterface {
         return messages;
     }
 
+    @Override
+    public int insertMessage(String email, String from, String to, String msg) {
+
+        if (isUserInDB(email)) {
+            try {
+
+                String queryCreeUtilisateur = " INSERT INTO `" + TABLE_MESSAGES + "` (`email`,`from`,`to`,`msg`)VALUES (";
+
+                queryCreeUtilisateur += "'" + email + "','" + from + "',";
+                queryCreeUtilisateur += "'" + to + "','" + msg + "')";
+
+                System.out.println("In DB - addNewUser : query : " + queryCreeUtilisateur);
+                int rs = stmt.executeUpdate(queryCreeUtilisateur);
+
+                // envoie des mails en fonction des modification apporté par le nouveau user :
+//            notifyUsers(email, true);
+            } catch (Exception ex) {
+                System.err.println("In DB - addNewUser : n'a pas pu créer l'utilisateur : " + ex.getLocalizedMessage());
+                return -3;
+            }
+        } else {
+            System.out.println("ALREADY EXISTS");
+            return -1;
+
+        }
+        return 0;
+    }
+   
 }

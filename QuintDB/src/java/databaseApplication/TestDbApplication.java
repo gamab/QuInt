@@ -6,9 +6,11 @@
 package databaseApplication;
 //
 //import controller.CorporationWS;
+
+import databaseapplication.DbWebService_Service;
+
 //import controller.CorporationWS_Service;
 //import databaseapplication.DbWebService_Service;
-
 /**
  *
  * @author omar
@@ -17,13 +19,18 @@ public class TestDbApplication {
 
     public static void main(String[] args) {
 
+        DB dbHelper = new DB();
 
+//        System.out.println(dbHelper.getStudent("ghader@etud.insa-toulouse.fr"));
+//        dbHelper.addNewUser("ghader@etud.insa-toulouse.fr", "123", 0,
+//                "Omar", "GHADER", "07********  ", "135", 
+//                "Toulouse","","", 31400, 0,
+//                "4A", "GEI", "1/1/2016", "1/10/2016");
+        
+//        dbHelper.insertMessage("ghader@etud.insa-toulouse.fr", "Omar", "Gabriel", "Hello");
+//        System.out.println(dbHelper.getAllMessagesForUser("ghader@etud.insa-toulouse.fr").get(1).getMsg());
 
-//        DB dbHelper = new DB();
-//
-//        System.out.println(dbHelper.getAllMessagesForUser("ghader@etud.insa-toulouse.fr").get(0).getMsg());
-//        dbHelper.closeConnection();
-
+        dbHelper.closeConnection();
 
 //        dbHelper.listData();
 //        System.out.println("Password is : "+ dbHelper.getPassword("ghader"));
@@ -46,7 +53,10 @@ public class TestDbApplication {
 //         CorporationWS_Service corporationWS_Service=new CorporationWS_Service();
 //         CorporationWS corporationWS=corporationWS_Service.getCorporationWSPort();
 //         System.out.println(corporationWS.listCandidates(1));
-         
+//
+        DbWebService_Service helloWorldService = new DbWebService_Service();
+        databaseapplication.DbWebService db = helloWorldService.getDbWebServicePort();
+        System.out.println(db.getStudent("ghader@etud.insa-toulouse.fr"));
     }//end main
 
 }
