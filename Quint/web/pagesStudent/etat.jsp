@@ -166,6 +166,123 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                            Demandes de convention faite par l'étudiant
+                        </div>
+                        <!-- .panel-heading -->
+                        <div class="panel-body">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Stage N°1</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <h3>Consultant Java/J2EE :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            <h4>Entreprise : </h4> Capgemini Aerospace and Defence.
+                                            <h4>Remunération : </h4> 1200€/mois
+                                            <h4>Etat : </h4> Acceptée.
+                                           <center>
+                                            <div>
+                                                <button type="button" class="btn btn-primary">Information</button>
+                                           </div>
+                                           </center> 
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Stage N°2</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <h3>Consultant DevOps :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            <h4>Entreprise : </h4> Sogeti High Tech.
+                                            <h4>Remunération : </h4> 1200€/mois
+                                            <h4>Etat : </h4> En attente.
+                                           <center>
+                                            <div>
+                                                <button type="button" class="btn btn-primary">Information</button>
+                                           </div>
+                                           </center> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Stage N°3</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <h3>Developpement des IHM pour des appliacations Smart Grid :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            <h4>Entreprise : </h4> SCLE SFE, Cofely Ineo.
+                                            <h4>Remunération : </h4> 1200€/mois
+                                            <h4>Etat : </h4> En attente
+                                           <center>
+                                            <div>
+                                                <button type="button" class="btn btn-primary">Information</button>
+                                           </div>
+                                           </center> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Stage N°4</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <h3>Mise en place d'un réseau d'objets connectés :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            <h4>Entreprise : </h4> Thales Alinea Space.
+                                            <h4>Remunération : </h4> 1200€/mois
+                                            <h4>Etat : </h4> Refusée
+                                           <center>
+                                            <div>
+                                                <button type="button" class="btn btn-primary">Information</button>
+                                           </div>
+                                           </center> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Stage N°5</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFive" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <h3>Developpement d'application d'intelligence artificielle :</h3> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            <h4>Entreprise : </h4> CELAD.
+                                            <h4>Remunération : </h4> 1200€/mois
+                                            <h4>Etat : </h4> En attente
+                                           <center>
+                                            <div>
+                                                <button type="button" class="btn btn-primary">Information</button>
+                                           </div>
+                                           </center> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .panel-body -->
+                        
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
                             Demandes de stages faite par l'étudiant
                         </div>
                         <!-- .panel-heading -->
@@ -275,10 +392,10 @@
                             </div>
                         </div>
                         <!-- .panel-body -->
+                        
                     </div>
                     <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
                     </div>
                     <!-- /.col-lg-12 -->
