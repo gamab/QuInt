@@ -7,7 +7,6 @@ package Controller.Company;
 
 import Model.Company.CorpDB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +17,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Gueldir
  */
 public class AfficherOffres extends HttpServlet {
-    
-    CorpDB db;
-    
-    @Override
-    public void init() {
-        db = new CorpDB();
-    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +30,8 @@ public class AfficherOffres extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-	request.setAttribute( "offres", db.listProposedInternships());
+	request.setAttribute( "offres", CorpDB.listProposedInternships());
+        System.out.println(CorpDB.listProposedInternships().get(0));
         this.getServletContext().getRequestDispatcher( "/pagesCompany/offres.jsp" ).forward(request, response);
     }
 
@@ -54,6 +47,8 @@ public class AfficherOffres extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {        
+        
+        processRequest(request, response);
     }
 
     /**

@@ -146,7 +146,7 @@
                                     <a href="candidatures.jsp">Par candidatures</a>
                                 </li>
                                 <li>
-                                    <a href="offres.jsp">Par offre de stage</a>
+                                    <a href="afficheroffres.do">Par offre de stage</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

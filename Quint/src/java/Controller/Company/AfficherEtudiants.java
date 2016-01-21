@@ -5,8 +5,9 @@
  */
 package Controller.Company;
 
+import databaseapplication.DbWebService;
+import databaseapplication.DbWebService_Service;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +31,10 @@ public class AfficherEtudiants extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-	// request.setAttribute( "etudiants", db.listCandidates());
+        DbWebService_Service dbService = new DbWebService_Service();
+        DbWebService db = dbService.getDbWebServicePort();
+        
+	request.setAttribute( "etudiants",db.getAllStudents());
         this.getServletContext().getRequestDispatcher( "/pagesCompany/etudiants.jsp" ).forward(request, response);
     }
 

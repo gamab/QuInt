@@ -134,7 +134,7 @@
                                 <a href="etat.jsp"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
                             </li>
                             <li>
-                                <a href="offres.jsp"><i class="fa fa-table fa-fw"></i> Mes offres</a>
+                                <a href="afficheroffres.do"><i class="fa fa-table fa-fw"></i> Mes offres</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-sitemap fa-fw"></i> Recherche<span class="fa arrow"></span></a>
@@ -146,7 +146,7 @@
                                         <a href="candidatures.jsp">Par candidatures</a>
                                     </li>
                                     <li>
-                                        <a href="offres.jsp">Par offre de stage</a>
+                                        <a href="afficheroffres.do">Par offre de stage</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -179,25 +179,33 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>Intitulé</th>
-                                                                <th>Candidatures</th>
+                                                                <%--<th>Candidatures</th>--%>
                                                                 <th>Département</th>
                                                                 <th>Date d'Apparition</th>
                                                                 <th>Location</th>
+                                                                <th>Supprimer</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <%!
+                                                                int cp = 0;
+                                                            %>
                                                         <c:forEach var="offre" items="${offres}" varStatus="loop">
+                                                            <%!
+                                                                
+                                                            %>
                                                             <tr>
-                                                                <td><a href="afficherdescription.do?id=${offre.id}">${offre.title}</a></td>
-                                                                <td><a href="#">${offre.applications}</a></td>
-                                                                <td>${offre.departement}</td>
-                                                                <td>${offre.date}</td>
-                                                                <td>${offre.location}</td>
+                                                                <td><a href="afficherdescription.do?id=${offre.getId}">${offre.getTitle}</a></td>
+                                                                <%--<td><a href="#">${offre.applications}</a></td>--%>
+                                                                <td>${offre.getDepartement}</td>
+                                                                <td>${offre.getDate}</td>
+                                                                <td>${offre.getLocation}</td>
+                                                                <td><a href="supprimeroffre.do?id=${offre.getId}">Supprimer</a></td>
                                                             </tr>
                                                         </c:forEach>
                                                         </tbody>
                                                     </table>
-                                                    <a role="button" class="btn btn-primary col-md-2" href="ajouteroffre.do" >Ajouter</a>
+                                                    <a role="button" class="btn btn-primary col-md-2" href="modifier.jsp" >Ajouter</a>
                                                 </div>
                                             </div>
                                             <!-- /.panel-body -->
