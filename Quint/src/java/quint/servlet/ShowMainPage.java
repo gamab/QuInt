@@ -7,7 +7,6 @@ package quint.servlet;
 
 import controller.CorporationWS;
 import controller.CorporationWS_Service;
-import databaseApplication.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,6 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ayyoub
  */
-@WebServlet(name = "ShowMainPage", urlPatterns = {"/ShowMainPage.do"})
 public class ShowMainPage extends HttpServlet {
 
     /**
