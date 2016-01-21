@@ -5,6 +5,8 @@
  */
 package quint.servlet;
 
+import databaseapplication.DbWebService;
+import databaseapplication.DbWebService_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import controller.CorporationWS;

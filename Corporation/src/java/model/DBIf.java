@@ -100,4 +100,35 @@ public interface DBIf {
      * @return result - An arraylist containing all the students uuid (email)
      */
     public ArrayList<String> listCandidates(int id);
+    
+    /**
+     * Set the internship to be provided
+     * 
+     * @param internship_id - The id of the internship
+     * @return result - if it worked or not
+     */
+    public boolean setInternshipProvided(int internship_id);
+    
+    /**
+     * Set the uuid of the selected student for the internship
+     * 
+     * @param uuid
+     * @param internship_id - The id of the internship
+     * @return result - if it worked or not
+     */
+    public boolean setInternshipSelectedStudent(String uuid, int internship_id);
+    
+    /**
+     * List the internship that have not been provided yet
+     * 
+     * @return result - the internships that have not been provided
+     */
+    public ArrayList<InternshipProposal> listUnprovidedInternships();
+    
+    /**
+     * List the internship where uuid applied
+     * 
+     * @return result - the internships where uuid applied
+     */
+    public ArrayList<InternshipProposal> listAppliedInternships(String uuid);
 }

@@ -354,12 +354,16 @@ public class DB implements DBIf {
 
     @Override
     public InternshipProposal getProposedInternship(int id) {
-        String getInternship = "SELECT * FROM " + T_INTERNSHIPS;
+        String setInternshipProvidedSql = "SELECT * FROM " +T_INTERNSHIPS;
+        setInternshipProvidedSql += " WHERE " + T_INTERNSHIPS_FIELDS[0] + " = ? ";
+        PreparedStatement ps;
 
         InternshipProposal res = null;
 
         try {
-            ResultSet rs = this.stmt.executeQuery(getInternship);
+            ps = this.conn.prepareStatement(setInternshipProvidedSql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String postDate = rs.getString(T_INTERNSHIPS_FIELDS[1]);
                 int salary = rs.getInt(T_INTERNSHIPS_FIELDS[2]);
@@ -398,6 +402,79 @@ public class DB implements DBIf {
             G_Log.e(this.getClass().getName(), "getProposedInternship", ex.getMessage());
         }
         return res;
+    }
+
+    @Override
+    public boolean setInternshipProvided(int internship_id) {
+        boolean result;
+        String setInternshipProvidedSql = "UPDATE " +T_INTERNSHIPS + " SET ";
+        setInternshipProvidedSql += T_INTERNSHIPS_FIELDS[10] + " = TRUE";
+        setInternshipProvidedSql += " WHERE " + T_INTERNSHIPS_FIELDS[0] + " = ? ";
+        PreparedStatement ps;
+        try {
+            ps = this.conn.prepareStatement(setInternshipProvidedSql);
+            ps.setInt(1, internship_id);
+            result = (ps.executeUpdate() >= 0);
+        } catch (SQLException ex) {
+            G_Log.e(this.getClass().getName(), "setInternshipProvided", ex.getMessage());
+            result = false;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean setInternshipSelectedStudent(String uuid, int internship_id) {
+        boolean result;
+        String setInternshipSelectedStudentSql = "UPDATE " +T_INTERNSHIPS + " SET ";
+        setInternshipSelectedStudentSql += T_INTERNSHIPS_FIELDS[9] + " = ?";
+        setInternshipSelectedStudentSql += " WHERE " + T_INTERNSHIPS_FIELDS[0] + " = ? ";
+        PreparedStatement ps;
+        try {
+            ps = this.conn.prepareStatement(setInternshipSelectedStudentSql);
+            ps.setString(1, uuid);
+            ps.setInt(2, internship_id);
+            result = (ps.executeUpdate() >= 0);
+        } catch (SQLException ex) {
+            G_Log.e(this.getClass().getName(), "setInternshipSelectedStudent", ex.getMessage());
+            result = false;
+        }
+        return result;
+    }
+
+    @Override
+    public ArrayList<InternshipProposal> listUnprovidedInternships() {
+        ArrayList<InternshipProposal> result = null;
+        String getInternships = "SELECT * FROM " + T_INTERNSHIPS;
+        PreparedStatement ps;
+        try {
+            getInternships += " WHERE " + T_INTERNSHIPS_FIELDS[10] + " = FALSE";
+            ps = this.conn.prepareStatement(getInternships);
+            result = listProposedInternshipsExecute(ps);
+        } catch (SQLException ex) {
+            G_Log.e(this.getClass().getName(), "listUnprovidedInternships", ex.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public ArrayList<InternshipProposal> listAppliedInternships(String uuid) {
+        ArrayList<InternshipProposal> result = null;
+        String getInternships = "SELECT " + T_INTERNSHIPS + ".* FROM " + T_INTERNSHIPS;
+        getInternships += " LEFT JOIN " + T_CANDIDATES + " ON ";
+        getInternships += T_INTERNSHIPS + "." + T_INTERNSHIPS_FIELDS[0] + " = ";
+        getInternships += T_CANDIDATES + "." + T_CANDIDATES_FIELDS[1] + " WHERE ";
+        getInternships += T_CANDIDATES + "." + T_CANDIDATES_FIELDS[0] + " = ?";
+        System.out.println(getInternships);
+
+        PreparedStatement ps;
+        try {
+            ps = this.conn.prepareStatement(getInternships);
+            ps.setString(1, uuid);
+            result = listProposedInternshipsExecute(ps);
+        } catch (SQLException ex) {
+            G_Log.e(this.getClass().getName(), "listAppliedInternships", ex.getMessage());
+        }
+        return result;
     }
 
     public static void main(String[] args) {
@@ -462,15 +539,31 @@ public class DB implements DBIf {
          System.out.println(intProp.toString());
          }*/
         /*System.out.println("List proposed internships for GEI after the 1rst of december in 31100 :");
-        intProps = db.listProposedInternshipsFiltered("2015-12-01", "GEI", "31100");
-        for (InternshipProposal intProp : intProps) {
-            System.out.println(intProp.toString());
-        }*/
+         intProps = db.listProposedInternshipsFiltered("2015-12-01", "GEI", "31100");
+         for (InternshipProposal intProp : intProps) {
+         System.out.println(intProp.toString());
+         }*/
         /*System.out.println("List proposed internships without specifying any filter :");
-        intProps = db.listProposedInternshipsFiltered("", "", "");
+         intProps = db.listProposedInternshipsFiltered("", "", "");
+         for (InternshipProposal intProp : intProps) {
+         System.out.println(intProp.toString());
+         }*/
+        /*System.out.println("List unprovided internships :");
+        intProps = db.listUnprovidedInternships();
         for (InternshipProposal intProp : intProps) {
             System.out.println(intProp.toString());
         }*/
+        /*System.out.println("List internships for mabille :");
+        intProps = db.listAppliedInternships("mabille@etud.insa-toulouse.fr");
+        for (InternshipProposal intProp : intProps) {
+            System.out.println(intProp.toString());
+        }*/
+        /*
+        System.out.println("Set internship 2 to be provided");
+        System.out.println(db.setInternshipProvided(2));*/
+        System.out.println("Set internship 2 selected student to mabille");
+        System.out.println(db.setInternshipSelectedStudent("mabille@etud.insa-toulouse.fr", 2));
         db.closeConnection();
     }
+
 }
