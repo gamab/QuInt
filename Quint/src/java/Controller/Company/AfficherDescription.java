@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package quint.servlet;
+package Controller.Company;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ayyoub
+ * @author Gueldir
  */
-public class ModifierProfil extends HttpServlet {
+public class AfficherDescription extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,10 +29,12 @@ public class ModifierProfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        DbWebService_Service dbserv = new DbWebService_Service();
-        DbWebService debe = dbserv.getDbWebServicePort();
         
+        String[] ids = request.getParameterValues("id");
+        int id = Integer.parseInt(ids[0]);
+	request.setAttribute( "internship", getProposedInternship(id));]);
+	request.setAttribute( "candidats", listCandidates(id));
+        this.getServletContext().getRequestDispatcher( "/pagesCompany/description.jsp" ).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

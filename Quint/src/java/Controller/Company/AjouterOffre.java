@@ -7,6 +7,9 @@ package Controller.Company;
 
 import Model.Company.CorpDB;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -69,7 +72,7 @@ public class AjouterOffre extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         
-        /*if (request.getParameter("publish") != null) {
+        if (request.getParameter("publish") != null) {
             // Récupère les valeurs du formulaire de la requete
             String title = request.getParameter("title");
             String description = request.getParameter("description");
@@ -79,15 +82,15 @@ public class AjouterOffre extends HttpServlet {
             String location = request.getParameter("location");
             int salary = Integer.parseInt(request.getParameter("salary"));
 
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             Date date = new Date();
             String postDate = dateFormat.format(date);
             // Ajoute du stage à la DB
-            // db.proposeInternship(postDate, salary, title, description, personInCharge, phoneNumber, department, location);
+            db.proposeInternship(postDate, salary, title, description, personInCharge, phoneNumber, department, location);
         } else if (request.getParameter("delete") != null) {
             // Suppression du stage dans la DB
             // db.deleteProposedInternship();
-        }*/
+        }
 
         // Redirection vers la page de retour après traitement
         RequestDispatcher rd = request.getRequestDispatcher("/pagesCompany/afficheroffres.do");

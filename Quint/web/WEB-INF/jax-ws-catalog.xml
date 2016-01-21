@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-<<<<<<< HEAD
-    <system systemId="http://localhost:8080/Quint/AppDb?wsdl" uri="wsdl/localhost_8080/Quint/AppDb.wsdl"/>
-    <system systemId="http://localhost:8080/Quint/AppDb?xsd=1" uri="wsdl/localhost_8080/Quint/AppDb.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/Quint/DbWebService?wsdl" uri="wsdl/localhost_8080/Quint/DbWebService.wsdl"/>
     <system systemId="http://localhost:8080/Quint/DbWebService?xsd=1" uri="wsdl/localhost_8080/Quint/DbWebService.xsd_1.xsd"/>
-=======
     <system systemId="http://localhost:8080/Corporation/CorporationWS?wsdl" uri="wsdl/localhost_8080/Corporation/CorporationWS.wsdl"/>
     <system systemId="http://localhost:8080/Corporation/CorporationWS?xsd=1" uri="wsdl/localhost_8080/Corporation/CorporationWS.xsd_1.xsd"/>
->>>>>>> cd26ef30ebe61662da7d28f93f87dfd4ee135020
 </catalog>

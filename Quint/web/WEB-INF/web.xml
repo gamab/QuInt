@@ -21,10 +21,6 @@
         <servlet-class>Controller.Company.AjouterOffre</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
-        <servlet-name>WSApplicationDb</servlet-name>
-        <servlet-class>databaseApplication.WSApplicationDb</servlet-class>
-=======
         <servlet-name>SignOutStudent</servlet-name>
         <servlet-class>quint.servlet.SignOutStudent</servlet-class>
     </servlet>
@@ -37,9 +33,20 @@
         <servlet-class>quint.servlet.ModifierProfil</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AfficherOffresStudent</servlet-name>
+        <servlet-class>quint.servlet.AfficherOffresStudent</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AfficherEtudiants</servlet-name>
         <servlet-class>Controller.Company.AfficherEtudiants</servlet-class>
->>>>>>> cd26ef30ebe61662da7d28f93f87dfd4ee135020
+    </servlet>
+    <servlet>
+        <servlet-name>AfficherDescription</servlet-name>
+        <servlet-class>Controller.Company.AfficherDescription</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModifierOffre</servlet-name>
+        <servlet-class>Controller.Company.ModifierOffre</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AfficherOffres</servlet-name>
@@ -48,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>SignInStudent</servlet-name>
         <url-pattern>/pagesStudent/SignInStudent.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfficherOffresStudent</servlet-name>
+        <url-pattern>/pagesStudent/AfficherOffresStudent.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AjouterOffre</servlet-name>
@@ -62,10 +73,6 @@
         <url-pattern>/afficher.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
-        <servlet-name>WSApplicationDb</servlet-name>
-        <url-pattern>/WSApplicationDb.do</url-pattern>
-=======
         <servlet-name>SignOutStudent</servlet-name>
         <url-pattern>/pagesStudent/SignOutStudent.do</url-pattern>
     </servlet-mapping>
@@ -80,7 +87,14 @@
     <servlet-mapping>
         <servlet-name>AfficherEtudiants</servlet-name>
         <url-pattern>/pagesCompany/afficheretudiants.do</url-pattern>
->>>>>>> cd26ef30ebe61662da7d28f93f87dfd4ee135020
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfficherDescription</servlet-name>
+        <url-pattern>/pagesCompany/afficherdescription.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModifierOffre</servlet-name>
+        <url-pattern>/ModifierOffre</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

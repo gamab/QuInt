@@ -4,6 +4,7 @@
     Author     : Ayyoub
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +41,20 @@
 </head>
 
 <body>
+        <%!
+        String email = "";
+        String pswd = "";
+        String messages = "";
+        HttpSession s = null;
+    %>
+    <%
+        s = request.getSession();
+        if (s != null && !s.isNew() && s.getAttribute("email") != null && s.getAttribute("password") != null) {
+            email = (String) s.getAttribute("email");
+            pswd = (String) s.getAttribute("password");
+            messages = (String) s.getAttribute("messages");
+        }
+    %>
 
     <div id="wrapper">
 

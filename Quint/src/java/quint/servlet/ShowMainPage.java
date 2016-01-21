@@ -5,9 +5,12 @@
  */
 package quint.servlet;
 
-import databaseApplication.DB;
-import databaseApplication.DBInterface;
+import controller.CorporationWS;
+import controller.CorporationWS_Service;
+import databaseApplication.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,12 +49,18 @@ public class ShowMainPage extends HttpServlet {
         if (!email.isEmpty() && !pswd.isEmpty() && !(pswd.length() < 8)) {
             s.setAttribute("email", email);
 
-            DBInterface dbi = new DB();
+//            DBInterface dbi = new DB();
+            CorporationWS_Service corpserv = new CorporationWS_Service();
+            CorporationWS corp = corpserv.getCorporationWSPort();
             
-            //if (dbi.isUserInDB(email)) {
-            System.out.println("In ShowMainPageServlet: user and pass : "+email+"///"+pswd);
+//            DbWebService_Service dbserv = new DbWebService_Service();
+//            DbWebService debe = dbserv.getDbWebServicePort();
+            
+
+            
+            //if (debe.isUserInDB(email)) {
             if(email.equals("Ayoub")){
-                //if(dbi.userPasswordMatch(email, pswd)){
+                //if(debe.userPasswordMatch(email, pswd)){
                 if(pswd.equals("aaaaaaaa")){
                     System.out.println("In ShowMainPageServlet: Login correct.");
                     //dbi.rememberUserLogIn(email);
@@ -71,14 +80,44 @@ public class ShowMainPage extends HttpServlet {
                     String validee = "1";
                     s.setAttribute("validee", validee);
                     
+                    List<String> mess = new ArrayList<String>();
+                    List<String> attentes = new ArrayList<String>();
+                    List<String> validees = new ArrayList<String>();
+                    List<String> refusees = new ArrayList<String>();
+                    List<String> offres = new ArrayList<String>();
+                    
+                    mess.add("Thales Alinea spc : Bonjour Mr Ayyoub, Je me permet de vous contacter suite à notre entretien téléphonique. Je vous confirme notre intérêt et nous\n" +
+"                                                souhaitons vous faire une proposition de stage. J'aimerai avoir votre réponse dans un délai inférieur à une semaine...");
+                    mess.add("Capgemini : Bonjour Mr Ayyoub, Je me permet de vous contacter suite à notre entretien téléphonique. Je vous confirme notre intérêt et nous\n" +
+"                                                souhaitons vous faire une proposition de stage. J'aimerai avoir votre réponse dans un délai inférieur à une semaine...");
+                    
+                    attentes.add("IBM : Votre demande de validation de stage est mise en attente. Elle sera soit validée soit refusée par les responsables d'études dans \n" +
+"                                                    les plus brefs délais.");
+                    validees.add("Capgemini : Votre demande de stage a été validée par les responsables d'études.");
+                    refusees.add("Nuclear Bungladish / Votre demande de stage a été refusée par le responsable de sécurité. / Motif: Localisation du stage dangereuse pour l'étudiant.");
+                    
+                    for(int i=0; i<corp.listProposedInternships().size(); i++){
+                        System.out.println("Main : j'ajoute l'offre : "+corp.listProposedInternships().get(i));
+                        offres.add(corp.listProposedInternships().get(i).getTitle());
+                    }
+                    
+                    s.setAttribute("Msgs", mess);
+                    s.setAttribute("Attente", attentes);
+                    s.setAttribute("Validees", validees);
+                    s.setAttribute("Refusees", refusees);
+                    s.setAttribute("Offres", offres);
+                    
+                    
                     destination = "pagesStudent/index.jsp";
                 }
             }
         }
+        
 
         System.out.println("In ShowMainPageServlet : Destination : "+"/"+destination);
         RequestDispatcher rd = request.getRequestDispatcher("/" + destination);
         rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
