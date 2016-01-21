@@ -37,10 +37,6 @@
         <servlet-class>quint.servlet.SignOutStudent</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ShowMainPage</servlet-name>
-        <servlet-class>quint.servlet.ShowMainPage</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ModifierProfil</servlet-name>
         <servlet-class>quint.servlet.ModifierProfil</servlet-class>
     </servlet>
@@ -60,9 +56,13 @@
         <servlet-name>ModifierOffre</servlet-name>
         <servlet-class>Controller.Company.ModifierOffre</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowMainPageTest</servlet-name>
+        <servlet-class>quint.servlet.ShowMainPageTest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AfficherOffres</servlet-name>
-        <url-pattern>/pagesStudent/afficheroffres.do</url-pattern>
+        <url-pattern>/pagesCompany/afficheroffres.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AfficherEtat</servlet-name>
@@ -74,7 +74,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DemanderAgreement</servlet-name>
-        <url-pattern>/pagesCompany/DemanderAgreement.do</url-pattern>
+        <url-pattern>/pagesStudent/DemanderAgreement.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignInStudent</servlet-name>
@@ -101,10 +101,6 @@
         <url-pattern>/pagesStudent/SignOutStudent.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ShowMainPage</servlet-name>
-        <url-pattern>/pagesStudent/ShowMainPage.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ModifierProfil</servlet-name>
         <url-pattern>/ModifierProfil.do</url-pattern>
     </servlet-mapping>
@@ -119,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>ModifierOffre</servlet-name>
         <url-pattern>/ModifierOffre</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowMainPageTest</servlet-name>
+        <url-pattern>/pagesStudent/ShowMainPageTest.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

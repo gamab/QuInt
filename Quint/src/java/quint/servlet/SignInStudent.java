@@ -8,7 +8,6 @@ package quint.servlet;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +56,7 @@ public class SignInStudent extends HttpServlet {
                     //dbi.rememberUserLogIn(email);
                     //boolean admin = dbi.isUSerAdmin(email);
                     //s.setAttribute("admin", admin);
-                    destination = "pagesStudent/ShowMainPage.do";
+                    destination = "pagesStudent/ShowMainPageTest.do";
                 }else{
                     System.out.println("In SignInServlet : Mot de passe incorrect.");
                     s.setAttribute("msgErreur", "Mot de passe incorrect.");
