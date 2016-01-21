@@ -32,8 +32,8 @@ public class AfficherDescription extends HttpServlet {
         
         String[] ids = request.getParameterValues("id");
         int id = Integer.parseInt(ids[0]);
-	request.setAttribute( "internship", getProposedInternship(id));]);
-	request.setAttribute( "candidats", listCandidates(id));
+//	request.setAttribute( "internship", getProposedInternship(id));
+//	request.setAttribute( "candidats", listCandidates(id));
         this.getServletContext().getRequestDispatcher( "/pagesCompany/description.jsp" ).forward(request, response);
     }
 

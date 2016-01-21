@@ -9,6 +9,18 @@
         <servlet-class>quint.servlet.SignInStudent</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Candidater</servlet-name>
+        <servlet-class>quint.servlet.Candidater</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AfficherEtat</servlet-name>
+        <servlet-class>quint.servlet.AfficherEtat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DemanderAgreement</servlet-name>
+        <servlet-class>quint.servlet.DemanderAgreement</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>afficher</servlet-name>
         <servlet-class>controleur.afficher</servlet-class>
     </servlet>
@@ -50,7 +62,19 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AfficherOffres</servlet-name>
-        <url-pattern>/pagesCompany/afficheroffres.do</url-pattern>
+        <url-pattern>/pagesStudent/afficheroffres.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfficherEtat</servlet-name>
+        <url-pattern>/pagesStudent/AfficherEtat.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Candidater</servlet-name>
+        <url-pattern>/pagesStudent/Candidater.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DemanderAgreement</servlet-name>
+        <url-pattern>/pagesCompany/DemanderAgreement.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignInStudent</servlet-name>

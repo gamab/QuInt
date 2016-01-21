@@ -54,6 +54,8 @@
         String attente = "";
         String refuse = "";
         String validee = "";
+        String offer = "";
+        String msg= "";
         HttpSession s = null;
     %>
     <%
@@ -65,6 +67,7 @@
             attente = (String) s.getAttribute("attente");
             refuse = (String) s.getAttribute("refuse");
             validee = (String) s.getAttribute("validee");
+            msg = (String) s.getAttribute("Message");
         }
     %>
 
@@ -191,6 +194,17 @@
                         <h1 class="page-header">Offres de Stages</h1>
                         <div class="row">
                             <div class="row">
+                                <% if (msg != "") {%>
+                                    <div class ="alert alert-success" role="alert">
+                                        <span class ="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                        <span class ="sr-only">Error</span>
+                                        <%=msg%>
+                                        <%
+                                            s.removeAttribute("Message");
+                                            msg = "";
+                                        %>
+                                    </div>
+                                <% }%>
                                 <div class="col-lg-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
@@ -203,18 +217,20 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Intitulé</th>
-                                                            <th>Entreprise</th>
+                                                            <th>Date d'apparition</th>
                                                             <th>Département</th>
                                                             <th>Location</th>
+                                                            <th>Candidater</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <c:forEach var="offre" items="${Offres}" varStatus="loop">
                                                             <tr class="odd gradeX">
                                                                 <td><a href="#">${offre.getTitle()}</a></td>
-                                                                <td><a href="#">ENTREPRISE</a></td>
+                                                                <td><a href="#">${offre.getPostDate()}</a></td>
                                                                 <td>${offre.getDepartment()}</td>
                                                                 <td>${offre.getLocation()}</td>
+                                                                <td><a href="Candidater.do?offer=${offre.getId()}">Candidater</a></td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>

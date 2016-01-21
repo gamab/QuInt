@@ -60,5 +60,28 @@ public class CorpDB {
         controller.CorporationWS port = service.getCorporationWSPort();
         return port.proposeInternship(postDate, salary, title, description, personInCharge, phoneNumber, department, location);
     }
+
+    public static java.util.List<controller.InternshipProposal> listAppliedInternships(java.lang.String uuid) {
+        controller.CorporationWS_Service service = new controller.CorporationWS_Service();
+        controller.CorporationWS port = service.getCorporationWSPort();
+        return port.listAppliedInternships(uuid);
+    }
     
+    public static java.util.List<controller.InternshipProposal> listUnprovidedInternships() {
+        controller.CorporationWS_Service service = new controller.CorporationWS_Service();
+        controller.CorporationWS port = service.getCorporationWSPort();
+        return port.listUnprovidedInternships();
+    }
+
+    public static boolean setInternshipProvided(int internshipId) {
+        controller.CorporationWS_Service service = new controller.CorporationWS_Service();
+        controller.CorporationWS port = service.getCorporationWSPort();
+        return port.setInternshipProvided(internshipId);
+    }
+
+    public static boolean setInternshipSelectedStudent(java.lang.String uuid, int internshipId) {
+        controller.CorporationWS_Service service = new controller.CorporationWS_Service();
+        controller.CorporationWS port = service.getCorporationWSPort();
+        return port.setInternshipSelectedStudent(uuid, internshipId);
+    }
 }
