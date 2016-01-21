@@ -7,7 +7,6 @@ package quint.servlet;
 
 import controller.CorporationWS;
 import controller.CorporationWS_Service;
-import databaseApplication.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
