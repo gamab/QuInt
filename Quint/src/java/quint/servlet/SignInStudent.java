@@ -5,8 +5,6 @@
  */
 package quint.servlet;
 
-import databaseApplication.DB;
-import databaseApplication.DBInterface;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,7 +18,6 @@ import javax.servlet.http.HttpSession;
  *
  * @author Ayyoub
  */
-@WebServlet(name = "SignInStudent", urlPatterns = {"/SignInStudent.do"})
 public class SignInStudent extends HttpServlet {
 
     /**
