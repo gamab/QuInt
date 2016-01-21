@@ -21,14 +21,10 @@ public class CorporationWS {
 
     /**
      * Function that list what is inside the database
+     *
+     * @WebMethod(operationName = "listDB") public void listDB() { DB db = new
+     * DB(); db.listDB(); db.closeConnection(); }
      */
-    @WebMethod(operationName = "listDB")
-    public void listDB() {
-        DB db = new DB();
-        db.listDB();
-        db.closeConnection();
-    }
-
     //--------------------FOR STUDENTS--------------------
     /**
      * Function that adds an application for a given internship to the list of
@@ -39,7 +35,7 @@ public class CorporationWS {
      * @return result - Wether it has been added or not
      */
     @WebMethod(operationName = "addCandidateApplication")
-    public boolean addCandidateApplication(@WebParam(name = "email") String email,@WebParam(name = "idInternship") int idInternship) {
+    public boolean addCandidateApplication(@WebParam(name = "email") String email, @WebParam(name = "idInternship") int idInternship) {
         DB db = new DB();
         boolean res = db.addCandidateApplication(email, idInternship);
         db.closeConnection();
@@ -55,7 +51,7 @@ public class CorporationWS {
      * @return result - Wether it has been deleted or not
      */
     @WebMethod(operationName = "deleteCandidateApplication")
-    public boolean deleteCandidateApplication(@WebParam(name = "email") String email,@WebParam(name = "idInternship") int idInternship) {
+    public boolean deleteCandidateApplication(@WebParam(name = "email") String email, @WebParam(name = "idInternship") int idInternship) {
         DB db = new DB();
         boolean res = db.deleteCandidateApplication(email, idInternship);
         db.closeConnection();
@@ -78,13 +74,13 @@ public class CorporationWS {
      * @return result - Wether it has been added or not
      */
     @WebMethod(operationName = "proposeInternship")
-    public boolean proposeInternship(@WebParam(name = "postDate") String postDate, @WebParam(name = "salary") int salary, @WebParam(name = "title") String title, @WebParam(name = "description") String description, @WebParam(name = "personInCharge") String personInCharge, @WebParam(name = "phoneNumber") String phoneNumber, @WebParam(name = "department") String department,  @WebParam(name = "location") String location) {
+    public boolean proposeInternship(@WebParam(name = "postDate") String postDate, @WebParam(name = "salary") int salary, @WebParam(name = "title") String title, @WebParam(name = "description") String description, @WebParam(name = "personInCharge") String personInCharge, @WebParam(name = "phoneNumber") String phoneNumber, @WebParam(name = "department") String department, @WebParam(name = "location") String location) {
         DB db = new DB();
-        
+
         boolean res = db.proposeInternship(postDate, salary, title, description, personInCharge, phoneNumber, department, location);
-        
+
         db.closeConnection();
-        
+
         return res;
     }
 
@@ -97,11 +93,11 @@ public class CorporationWS {
     @WebMethod(operationName = "deleteProposedInternship")
     public boolean deleteProposedInternship(@WebParam(name = "id") int id) {
         DB db = new DB();
-        
+
         boolean res = db.deleteProposedInternship(id);
-        
+
         db.closeConnection();
-        
+
         return res;
     }
 
@@ -113,11 +109,11 @@ public class CorporationWS {
     @WebMethod(operationName = "listProposedInternships")
     public ArrayList<InternshipProposal> listProposedInternships() {
         DB db = new DB();
-        
+
         ArrayList<InternshipProposal> res = db.listProposedInternships();
-        
+
         db.closeConnection();
-        
+
         return res;
     }
 
@@ -128,17 +124,18 @@ public class CorporationWS {
      * @param date - The maximum age, older entries will be ignored
      * @param department - The department concerned (GEI, GP, GC, GMM, GM, GB,
      * GPE) can be null or empty
-     * @param location - The location concerned (31100, 31400, ...) can be null or empty
+     * @param location - The location concerned (31100, 31400, ...) can be null
+     * or empty
      * @return result - An arraylist containing every internship
      */
     @WebMethod(operationName = "listProposedInternshipsFiltered")
     public ArrayList<InternshipProposal> listProposedInternshipsFiltered(@WebParam(name = "date") String date, @WebParam(name = "departement") String department, @WebParam(name = "location") String location) {
         DB db = new DB();
-        
-        ArrayList<InternshipProposal> res = db.listProposedInternshipsFiltered(date,department,location);
-        
+
+        ArrayList<InternshipProposal> res = db.listProposedInternshipsFiltered(date, department, location);
+
         db.closeConnection();
-        
+
         return res;
     }
 
@@ -151,11 +148,11 @@ public class CorporationWS {
     @WebMethod(operationName = "getProposedInternship")
     public InternshipProposal getProposedInternship(@WebParam(name = "id") int id) {
         DB db = new DB();
-        
+
         InternshipProposal res = db.getProposedInternship(id);
-        
+
         db.closeConnection();
-        
+
         return res;
     }
 
@@ -166,13 +163,73 @@ public class CorporationWS {
      * @return result - An arraylist containing all the students uuid (email)
      */
     @WebMethod(operationName = "listCandidates")
-    public ArrayList<String> listCandidates(@WebParam(name = "id") int id) {
+    public ArrayList<String> listCandidates(@WebParam(name = "internship_id") int internship_id) {
         DB db = new DB();
-        
-        ArrayList<String> res = db.listCandidates(id);
-        
+
+        ArrayList<String> res = db.listCandidates(internship_id);
+
         db.closeConnection();
-        
+
         return res;
     }
+
+    /**
+     * Set the internship to be provided
+     *
+     * @param internship_id - The id of the internship
+     * @return result - if it worked or not
+     */
+    @WebMethod(operationName = "setInternshipProvided")
+    public boolean setInternshipProvided(@WebParam(name = "internship_id") int internship_id) {
+        DB db = new DB();
+
+        boolean res = db.setInternshipProvided(internship_id);
+
+        return res;
+    }
+
+    /**
+     * Set the uuid of the selected student for the internship
+     *
+     * @param uuid
+     * @param internship_id - The id of the internship
+     * @return result - if it worked or not
+     */
+    @WebMethod(operationName = "setInternshipSelectedStudent")
+    public boolean setInternshipSelectedStudent(@WebParam(name = "uuid") String uuid, @WebParam(name = "internship_id") int internship_id) {
+        DB db = new DB();
+
+        boolean res = db.setInternshipSelectedStudent(uuid, internship_id);
+
+        return res;
+    }
+
+    /**
+     * List the internship that have not been provided yet
+     *
+     * @return result - the internships that have not been provided
+     */
+    @WebMethod(operationName = "listUnprovidedInternships")
+    public ArrayList<InternshipProposal> listUnprovidedInternships() {
+        DB db = new DB();
+
+        ArrayList<InternshipProposal> res = db.listUnprovidedInternships();
+
+        return res;
+    }
+
+    /**
+     * List the internship where uuid applied
+     *
+     * @return result - the internships where uuid applied
+     */
+    @WebMethod(operationName = "listAppliedInternships")
+    public ArrayList<InternshipProposal> listAppliedInternships(@WebParam(name = "uuid") String uuid) {
+        DB db = new DB();
+
+        ArrayList<InternshipProposal> res = db.listAppliedInternships(uuid);
+
+        return res;
+    }
+
 }
