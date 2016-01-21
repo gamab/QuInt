@@ -7,8 +7,7 @@ package quint.servlet;
 
 import controller.CorporationWS;
 import controller.CorporationWS_Service;
-import databaseApplication.DB;
-import databaseApplication.DBInterface;
+import databaseApplication.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,19 +49,19 @@ public class ShowMainPage extends HttpServlet {
         if (!email.isEmpty() && !pswd.isEmpty() && !(pswd.length() < 8)) {
             s.setAttribute("email", email);
 
-            DBInterface dbi = new DB();
+//            DBInterface dbi = new DB();
             CorporationWS_Service corpserv = new CorporationWS_Service();
             CorporationWS corp = corpserv.getCorporationWSPort();
             
-            DbWebService_Service dbserv = new DbWebService_Service();
-            DbWebService debe = dbserv.getDbWebServicePort();
+//            DbWebService_Service dbserv = new DbWebService_Service();
+//            DbWebService debe = dbserv.getDbWebServicePort();
             
 
             
-            if (debe.isUserInDB(email)) {
-            //if(email.equals("Ayoub")){
-                if(debe.userPasswordMatch(email, pswd)){
-                //if(pswd.equals("aaaaaaaa")){
+            //if (debe.isUserInDB(email)) {
+            if(email.equals("Ayoub")){
+                //if(debe.userPasswordMatch(email, pswd)){
+                if(pswd.equals("aaaaaaaa")){
                     System.out.println("In ShowMainPageServlet: Login correct.");
                     //dbi.rememberUserLogIn(email);
                     //boolean admin = dbi.isUSerAdmin(email);

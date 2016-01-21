@@ -33,6 +33,10 @@
         <servlet-class>quint.servlet.ModifierProfil</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AfficherOffresStudent</servlet-name>
+        <servlet-class>quint.servlet.AfficherOffresStudent</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AfficherEtudiants</servlet-name>
         <servlet-class>Controller.Company.AfficherEtudiants</servlet-class>
     </servlet>
@@ -51,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>SignInStudent</servlet-name>
         <url-pattern>/pagesStudent/SignInStudent.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AfficherOffresStudent</servlet-name>
+        <url-pattern>/pagesStudent/AfficherOffresStudent.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AjouterOffre</servlet-name>
