@@ -25,6 +25,15 @@ CREATE TABLE `student` (
 PRIMARY KEY (`email`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE `usermessage` (
+`email` VARCHAR(100),
+`from` VARCHAR(100),
+`to` VARCHAR(100),
+`msg` VARCHAR(1000),
+PRIMARY KEY (`email`)
+) ENGINE=InnoDB ;
+
+
 
 INSERT INTO user (`password`,`email`,`admin`) 
 VALUES ("omar","ghader@etud.insa-toulouse.fr",0);
@@ -32,8 +41,14 @@ VALUES ("omar","ghader@etud.insa-toulouse.fr",0);
 INSERT INTO student(`email`,`password`,`admin`,`prenom`,`nom`) 
 VALUE ("ghader@etud.insa-toulouse.fr","omar",1,"omar","ghader");
 
+
+INSERT INTO usermessage(`email`,`from`,`to`,`msg`) 
+VALUE ("ghader@etud.insa-toulouse.fr","ghader","ayoub","Bonjour, Votre CV nous interesse");
+
+
 SELECT * FROM user;
 SELECT * FROM student;
+SELECT * FROM usermessage;
 
 CREATE USER 'prog'@'localhost' IDENTIFIED BY 'prog';
 GRANT ALL ON quint.* TO 'prog'@'localhost';

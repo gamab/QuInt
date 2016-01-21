@@ -7,13 +7,7 @@ package databaseApplication;
 
 import controller.CorporationWS;
 import controller.CorporationWS_Service;
-import databaseapplication.AppDb_Service;
 import databaseapplication.DbWebService_Service;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 /**
  *
@@ -23,8 +17,14 @@ public class TestDbApplication {
 
     public static void main(String[] args) {
 
+
+
 //        DB dbHelper = new DB();
 //
+//        System.out.println(dbHelper.getAllMessagesForUser("ghader@etud.insa-toulouse.fr").get(0).getMsg());
+//        dbHelper.closeConnection();
+
+
 //        dbHelper.listData();
 //        System.out.println("Password is : "+ dbHelper.getPassword("ghader"));
 //
@@ -39,13 +39,13 @@ public class TestDbApplication {
 //
 //        dbHelper.closeConnection();
 //        
-         DbWebService_Service helloWorldService = new DbWebService_Service();
-         databaseapplication.DbWebService db=helloWorldService.getDbWebServicePort();
-         System.out.println( db.getAllStudents());
-         
-         CorporationWS_Service corporationWS_Service=new CorporationWS_Service();
-         CorporationWS corporationWS=corporationWS_Service.getCorporationWSPort();
-         System.out.println(corporationWS.listCandidates(1));
+//         DbWebService_Service helloWorldService = new DbWebService_Service();
+//         databaseapplication.DbWebService db=helloWorldService.getDbWebServicePort();
+//         System.out.println( db.getAllStudents());
+//         
+//         CorporationWS_Service corporationWS_Service=new CorporationWS_Service();
+//         CorporationWS corporationWS=corporationWS_Service.getCorporationWSPort();
+//         System.out.println(corporationWS.listCandidates(1));
          
     }//end main
 

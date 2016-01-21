@@ -33,6 +33,7 @@ public class DB implements DBInterface {
     static final String TABLE_UTILISATEURS = "user";
     static final String TABLE_STUDENT = "student";
     static final String TABLE_VISITES = "visites";
+    static final String TABLE_MESSAGES = "usermessage";
 
     Connection conn = null;
     Statement stmt = null;
@@ -596,7 +597,6 @@ public class DB implements DBInterface {
         return resultEnd;
     }
 
-
     @Override
     public int getNumberOfUsers() {
         int utilisateurs = 0;
@@ -614,6 +614,26 @@ public class DB implements DBInterface {
         }
 
         return utilisateurs;
+    }
+    
+    public ArrayList<Msg> getAllMessagesForUser(String email){
+        ArrayList<Msg> messages=new ArrayList<>();
+          // on récupère les info du lieu de travail
+        String sqlLieuTravail = "SELECT * From " + TABLE_MESSAGES+" Where email='"+email+"';" ;
+        ResultSet rs;
+
+        try {
+            rs = stmt.executeQuery(sqlLieuTravail);
+     
+            // on place nos resultats dans notre list final
+            while (rs.next()) {
+                messages.add(new Msg(rs.getString("email"), rs.getString("from"), rs.getString("to"), rs.getString("msg")));
+            }
+
+        } catch (Exception ex) {
+            System.err.println("In DB - getAllMessages : could not process query, error :" + ex);
+        }
+        return messages;
     }
 
 }
