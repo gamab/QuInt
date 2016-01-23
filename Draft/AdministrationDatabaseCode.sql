@@ -4,23 +4,14 @@ USE AdminINSA;
 CREATE USER 'prog'@'localhost' IDENTIFIED BY 'prog';
 GRANT ALL ON AdminINSA.* TO 'prog'@'localhost';
 
-DROP TABLE Users;
-DROP TABLE Companies;
+DROP TABLE Internships;
 DROP TABLE Agreements;
-
-/* CREATE TABLE `Users`(
-`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-`login` VARCHAR(20) NOT NULL, 
-`password` VARCHAR(20) NOT NULL,
-PRIMARY KEY (`id`)
-)ENGINE=InnoDB AUTO_INCREMENT=1; */
-
 
 CREATE TABLE `Agreements`(
 `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 `idStudent` VARCHAR(50) NOT NULL,
 `idCompany` VARCHAR(50) NOT NULL,
-`idInternship` VARCHAR(30) NOT NULL,
+`idPendingInternship` VARCHAR(30) NOT NULL,
 `signAdmin` BOOLEAN,
 `signStudent` BOOLEAN,
 `signCorp` BOOLEAN,
@@ -44,7 +35,7 @@ PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 
-INSERT INTO Agreements(`idStudent`, `idCompany`, `idInternship`, 
+INSERT INTO Agreements(`idStudent`, `idCompany`, `idPendingInternship`, 
 `signAdmin`, `signStudent`, `signCorp`) VALUES
 ("meymandi@etud.insa-toulouse.fr","celad@celad.com","Offre7", TRUE, TRUE, TRUE),
 ("mabille@etud.insa-toulouse.fr","thales@thales.com","Offre4", FALSE, FALSE, FALSE),

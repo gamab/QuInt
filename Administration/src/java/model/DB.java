@@ -30,13 +30,13 @@ public class DB {
     static final String PASS = "prog";
 
     static final String T_AGREEMENTS = "Agreements";
-    static final String[] T_AGREEMENTS_FIELDS = {"id", "idStudent",
-        "idPendingInternship", "signAdmin", "signStud", "signCorp"};
-    
+    static final String[] T_AGREEMENTS_FIELDS = {"id", "idStudent", "idCompany",
+        "idPendingInternship", "signAdmin", "signStudent", "signCorp"};
+
     static final String T_INTERNSHIPS = "Internships";
-    static final String[] T_INTERNSHIPS_FIELDS = {"id", "candidate","company" ,
-        "postDate", "salary", "title", "description", "tutor", "phoneNumber", 
-        "department", "location",  "isPending"};
+    static final String[] T_INTERNSHIPS_FIELDS = {"id", "candidate", "company",
+        "postDate", "salary", "title", "description", "tutor", "phoneNumber",
+        "department", "location", "isPending"};
 
     /**
      *
@@ -101,7 +101,6 @@ public class DB {
 
     }
 
-    
 //    @Override
     public ArrayList<Agreement> listAgreement() {
         ArrayList<Agreement> res = new ArrayList<>();
@@ -114,13 +113,14 @@ public class DB {
             while (rs.next()) {
                 int id = rs.getInt(T_AGREEMENTS_FIELDS[0]);
                 String idStudent = rs.getString(T_AGREEMENTS_FIELDS[1]);
-                String idPendingInternship = rs.getString(T_AGREEMENTS_FIELDS[2]);
-                Boolean signAdmin = rs.getBoolean(T_AGREEMENTS_FIELDS[3]);
-                Boolean signStud = rs.getBoolean(T_AGREEMENTS_FIELDS[4]);
-                Boolean signCorp= rs.getBoolean(T_AGREEMENTS_FIELDS[5]);
-                
-                res.add(new Agreement(id, idStudent, idPendingInternship, signAdmin, signStud, signCorp));
-                        
+                String idCompany = rs.getString(T_AGREEMENTS_FIELDS[2]);
+                String idPendingInternship = rs.getString(T_AGREEMENTS_FIELDS[3]);
+                Boolean signAdmin = rs.getBoolean(T_AGREEMENTS_FIELDS[4]);
+                Boolean signStud = rs.getBoolean(T_AGREEMENTS_FIELDS[5]);
+                Boolean signCorp = rs.getBoolean(T_AGREEMENTS_FIELDS[6]);
+
+                res.add(new Agreement(id, idStudent, idCompany, idPendingInternship, signAdmin, signStud, signCorp));
+
                 /*for (String f : T_AGREEMENTS_FIELDS) {
                     System.out.print(f + ":" + rs.getString(f) + "\t");
                 }*/
@@ -133,26 +133,24 @@ public class DB {
         }
         return res;
     }
-    
+
     public ArrayList<Agreement> listAgreementByStudent(String idStudent) {
         ArrayList<Agreement> res = new ArrayList<>();
-        String[] sql = new String[1];
-        sql[0] = "SELECT * FROM " + T_AGREEMENTS + " WHERE " + 
-                T_AGREEMENTS_FIELDS[1] + " = " + idStudent;
-        
+        String sql = "SELECT * FROM " + T_AGREEMENTS + " WHERE "
+                + T_AGREEMENTS_FIELDS[1] + "='" + idStudent + "'";
         ResultSet rs;
         try {
-            rs = stmt.executeQuery(sql[0]);
+            rs = stmt.executeQuery(sql);
             System.out.println("+++ Agreement for student " + idStudent + " +++\n");
-            while (rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt(T_AGREEMENTS_FIELDS[0]);
-                //String idStudent = rs.getString(T_AGREEMENTS_FIELDS[1]);
-                String idPendingInternship = rs.getString(T_AGREEMENTS_FIELDS[2]);
-                Boolean signAdmin = rs.getBoolean(T_AGREEMENTS_FIELDS[3]);
-                Boolean signStud = rs.getBoolean(T_AGREEMENTS_FIELDS[4]);
-                Boolean signCorp= rs.getBoolean(T_AGREEMENTS_FIELDS[5]);
-                
-                res.add(new Agreement(id, idStudent, idPendingInternship, signAdmin, signStud, signCorp));
+                String idCompany = rs.getString(T_AGREEMENTS_FIELDS[2]);
+                String idPendingInternship = rs.getString(T_AGREEMENTS_FIELDS[3]);
+                Boolean signAdmin = rs.getBoolean(T_AGREEMENTS_FIELDS[4]);
+                Boolean signStud = rs.getBoolean(T_AGREEMENTS_FIELDS[5]);
+                Boolean signCorp = rs.getBoolean(T_AGREEMENTS_FIELDS[6]);
+
+                res.add(new Agreement(id, idStudent, idCompany, idPendingInternship, signAdmin, signStud, signCorp));
                 // Display values
                 /*for (String f : T_AGREEMENTS_FIELDS) {
                     System.out.print(f + ":" + rs.getString(f) + "\t");
@@ -165,9 +163,8 @@ public class DB {
         }
         return res;
     }
-    
-    
-    public ArrayList<PendingInternship> listPendingInternship(){
+
+    public ArrayList<PendingInternship> listPendingInternship() {
         ArrayList<PendingInternship> res = new ArrayList<>();
         String[] sql = new String[1];
         sql[0] = "SELECT * FROM " + T_INTERNSHIPS;
@@ -177,20 +174,20 @@ public class DB {
             rs = stmt.executeQuery(sql[0]);
             System.out.println("+++++++++++++++++++++++++++INTERNSHIPS TABLE+++++++++++++++++++++++++++++++\n");
             while (rs.next()) {
-                int id = rs.getInt(T_AGREEMENTS_FIELDS[0]);
-                String candidate = rs.getString(T_AGREEMENTS_FIELDS[1]);
-                String company = rs.getString(T_AGREEMENTS_FIELDS[2]);
-                String postDate = rs.getString(T_AGREEMENTS_FIELDS[3]);
-                int salary = rs.getInt(T_AGREEMENTS_FIELDS[4]);
-                String title = rs.getString(T_AGREEMENTS_FIELDS[5]);
-                String description = rs.getString(T_AGREEMENTS_FIELDS[6]);
-                String tutor = rs.getString(T_AGREEMENTS_FIELDS[7]);
-                String phoneNumber = rs.getString(T_AGREEMENTS_FIELDS[8]);
-                String department = rs.getString(T_AGREEMENTS_FIELDS[9]);
-                String location = rs.getString(T_AGREEMENTS_FIELDS[10]);
-                Boolean isPending = rs.getBoolean(T_AGREEMENTS_FIELDS[11]);
-                
-                res.add(new PendingInternship(id, candidate, company, postDate, 
+                int id = rs.getInt(T_INTERNSHIPS_FIELDS[0]);
+                String candidate = rs.getString(T_INTERNSHIPS_FIELDS[1]);
+                String company = rs.getString(T_INTERNSHIPS_FIELDS[2]);
+                String postDate = rs.getString(T_INTERNSHIPS_FIELDS[3]);
+                int salary = rs.getInt(T_INTERNSHIPS_FIELDS[4]);
+                String title = rs.getString(T_INTERNSHIPS_FIELDS[5]);
+                String description = rs.getString(T_INTERNSHIPS_FIELDS[6]);
+                String tutor = rs.getString(T_INTERNSHIPS_FIELDS[7]);
+                String phoneNumber = rs.getString(T_INTERNSHIPS_FIELDS[8]);
+                String department = rs.getString(T_INTERNSHIPS_FIELDS[9]);
+                String location = rs.getString(T_INTERNSHIPS_FIELDS[10]);
+                Boolean isPending = rs.getBoolean(T_INTERNSHIPS_FIELDS[11]);
+
+                res.add(new PendingInternship(id, candidate, company, postDate,
                         salary, title, description, tutor, phoneNumber, department,
                         location, isPending));
                 /*//Display values
@@ -206,32 +203,31 @@ public class DB {
         }
         return res;
     }
-    
+
     public ArrayList<PendingInternship> listPendingInternshipByStudent(String candidate) {
         ArrayList<PendingInternship> res = new ArrayList<>();
-        String[] sql = new String[1];
-        sql[0] = "SELECT * FROM " + T_INTERNSHIPS + " WHERE " + 
-                T_INTERNSHIPS_FIELDS[1] + " = " + candidate;
-        
+        String sql = "SELECT * FROM " + T_INTERNSHIPS + " WHERE "
+                + T_INTERNSHIPS_FIELDS[1] + "='" + candidate + "'";
+
         ResultSet rs;
         try {
-            rs = stmt.executeQuery(sql[0]);
+            rs = stmt.executeQuery(sql);
             System.out.println("+++++++++++++++++++++++++++INTERNSHIPS TABLE+++++++++++++++++++++++++++++++\n");
             while (rs.next()) {
-                int id = rs.getInt(T_AGREEMENTS_FIELDS[0]);
-                //String candidate = rs.getString(T_AGREEMENTS_FIELDS[1]);
-                String company = rs.getString(T_AGREEMENTS_FIELDS[2]);
-                String postDate = rs.getString(T_AGREEMENTS_FIELDS[3]);
-                int salary = rs.getInt(T_AGREEMENTS_FIELDS[4]);
-                String title = rs.getString(T_AGREEMENTS_FIELDS[5]);
-                String description = rs.getString(T_AGREEMENTS_FIELDS[6]);
-                String tutor = rs.getString(T_AGREEMENTS_FIELDS[7]);
-                String phoneNumber = rs.getString(T_AGREEMENTS_FIELDS[8]);
-                String department = rs.getString(T_AGREEMENTS_FIELDS[9]);
-                String location = rs.getString(T_AGREEMENTS_FIELDS[10]);
-                Boolean isPending = rs.getBoolean(T_AGREEMENTS_FIELDS[11]);
-                
-                res.add(new PendingInternship(id, candidate, company, postDate, 
+                int id = rs.getInt(T_INTERNSHIPS_FIELDS[0]);
+                //String candidate = rs.getString(T_INTERNSHIPS_FIELDS[1]);
+                String company = rs.getString(T_INTERNSHIPS_FIELDS[2]);
+                String postDate = rs.getString(T_INTERNSHIPS_FIELDS[3]);
+                int salary = rs.getInt(T_INTERNSHIPS_FIELDS[4]);
+                String title = rs.getString(T_INTERNSHIPS_FIELDS[5]);
+                String description = rs.getString(T_INTERNSHIPS_FIELDS[6]);
+                String tutor = rs.getString(T_INTERNSHIPS_FIELDS[7]);
+                String phoneNumber = rs.getString(T_INTERNSHIPS_FIELDS[8]);
+                String department = rs.getString(T_INTERNSHIPS_FIELDS[9]);
+                String location = rs.getString(T_INTERNSHIPS_FIELDS[10]);
+                Boolean isPending = rs.getBoolean(T_INTERNSHIPS_FIELDS[11]);
+
+                res.add(new PendingInternship(id, candidate, company, postDate,
                         salary, title, description, tutor, phoneNumber, department,
                         location, isPending));
                 /*
@@ -247,84 +243,80 @@ public class DB {
         }
         return res;
     }
-    
-    
-    
-    public void createPendingInternship(String student, String company, 
-        String postDate, float salary, String description, String tutor,
-        String phoneNumber, String department, String location){
+
+    public void createPendingInternship(String student, String company,
+            String postDate, float salary, String title,String description, String tutor,
+            String phoneNumber, String department, String location) {
         String[] sql = new String[1];
-        sql[0] = "INSERT INTO " + T_INTERNSHIPS + "(`id`, `candidate`,`company`, `postDate`"
+        sql[0] = "INSERT INTO " + T_INTERNSHIPS + "( `candidate`,`company`, `postDate`"
                 + ", `salary`, `title`, `description`, `tutor`, `phoneNumber`,"
-                + "`department`, `location`, `isPending`) VALUES ( " + student +
-                ", " + company + ", " + postDate + ", " + String.valueOf(salary)
-                + ", " + description + ", " + tutor + ", " + phoneNumber+ ", " +
-                department + ", " + location + ", NULL)";
-                
-        ResultSet rs;
+                + "`department`, `location`, `isPending`) VALUES ( "
+                + "'" +student + "','" + company + "','" + postDate + "','" + String.valueOf(salary)
+                + "','" + title+"','" + description + "','" + tutor + "','" + phoneNumber + "','"
+                + department + "','" + location + "', NULL);";
+
+        int rs;
         try {
-            rs = stmt.executeQuery(sql[0]);
-            rs.close();
-        }catch (SQLException ex) {
+            System.out.println(sql[0]);
+            rs = stmt.executeUpdate(sql[0]);
+//            rs.close();
+        } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public boolean acceptPendingInternship(String user, String idInternship) {
         String[] sql = new String[1];
-        sql[0] = "UPDATE " + T_INTERNSHIPS + " SET " + T_INTERNSHIPS_FIELDS[11] +
-                " = TRUE WHERE " + T_INTERNSHIPS_FIELDS[1] + " = " + user + 
-                " AND " + T_INTERNSHIPS_FIELDS[2] + " = " + idInternship;
-        
-        ResultSet rs;
+        sql[0] = "UPDATE " + T_INTERNSHIPS + " SET " + T_INTERNSHIPS_FIELDS[11]
+                + " = TRUE WHERE " + T_INTERNSHIPS_FIELDS[1] + "='" + user
+//                + "' AND " + T_INTERNSHIPS_FIELDS[2] + "='" + idInternship
+                +"'";
+
+        int rs;
         try {
-            rs = stmt.executeQuery(sql[0]);
-            rs.close();
+            System.out.println(sql[0]);
+            rs = stmt.executeUpdate(sql[0]);
         } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
     }
-    
+
     public boolean refusePendingInternship(String user, String idInternship) {
         String[] sql = new String[1];
-        sql[0] = "UPDATE " + T_INTERNSHIPS + " SET " + T_INTERNSHIPS_FIELDS[11] +
-                " = FALSE WHERE " + T_INTERNSHIPS_FIELDS[1] + " = " + user + 
-                " AND " + T_INTERNSHIPS_FIELDS[2] + " = " + idInternship;
-        
-        ResultSet rs;
+        sql[0] = "UPDATE " + T_INTERNSHIPS + " SET " + T_INTERNSHIPS_FIELDS[11]
+                + " = FALSE WHERE " + T_INTERNSHIPS_FIELDS[1] + "='" + user
+//                + "' AND " + T_INTERNSHIPS_FIELDS[2] + "='" + idInternship
+                +"'";
+
+
+        int rs;
         try {
-            rs = stmt.executeQuery(sql[0]);
-            rs.close();
+            rs = stmt.executeUpdate(sql[0]);
         } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
     }
-    
-   
-    
-    public boolean generateAgreement(String student, String pendingInternship) {
+
+    public boolean generateAgreement(String idCompany,String student, String pendingInternship) {
         String[] sql = new String[1];
         boolean res = true;
-        sql[0] = "INSERT INTO " + T_AGREEMENTS + "(`id`, `idEtudiant`, "
-                + "`idPendingInternship`, `signAdmin`, `signEtud`, `signCorp`) "
-                + "VALUES ( " + student + ", " + pendingInternship + ", TRUE,"
-                + " TRUE, TRUE)";
-        
-        ResultSet rs;
+        sql[0] = "INSERT INTO " + T_AGREEMENTS + "(`idCompany`,`idStudent`, "
+                + "`idPendingInternship`, `signAdmin`, `signStudent`, `signCorp`) "
+                + "VALUES ( '" +idCompany+"','"+ student + "','" + pendingInternship + "',TRUE,"
+                + "TRUE, TRUE)";
+
+        int rs;
         try {
-            rs = stmt.executeQuery(sql[0]);
-            rs.close();
+            rs = stmt.executeUpdate(sql[0]);
         } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return res;
     }
-        
-    
-        
-/*  
+
+    /*  
     public boolean signAgreement(String user, String idAgreement) {
         String sql;
         boolean res = false;
@@ -383,5 +375,5 @@ public class DB {
         }
         return res;
     }
-*/
+     */
 }
