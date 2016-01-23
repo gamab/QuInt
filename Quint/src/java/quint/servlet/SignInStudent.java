@@ -5,6 +5,8 @@
  */
 package quint.servlet;
 
+import databaseapplication.DbWebService;
+import databaseapplication.DbWebService_Service;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,18 +47,21 @@ public class SignInStudent extends HttpServlet {
 
 //            DBInterface dbi = new DB();
             
-//            DbWebService_Service dbserv = new DbWebService_Service();
-//            DbWebService debe = dbserv.getDbWebServicePort();
+            DbWebService_Service dbserv = new DbWebService_Service();
+            DbWebService debe = dbserv.getDbWebServicePort();
+            
             //System.out.println("In SignInServlet : Le mot de passe reçu de la base de données est : " + pswd);
-            //if (debe.isUserInDB(email)) {
-            if(email.equals("Ayoub")){
-                //if(debe.userPasswordMatch(email, pswd)){
-                if(pswd.equals("aaaaaaaa")){
+            if (debe.isUserInDB(email)) {
+            //if(email.equals("Ayoub")){
+                if(debe.userPasswordMatch(email, pswd)){
+                //if(pswd.equals("aaaaaaaa")){
                     System.out.println("In SignInServlet : Login correct.");
                     //dbi.rememberUserLogIn(email);
                     //boolean admin = dbi.isUSerAdmin(email);
                     //s.setAttribute("admin", admin);
                     destination = "pagesStudent/ShowMainPageTest.do";
+                    s.setAttribute("email", email);
+                    s.setAttribute("pswd", pswd);
                 }else{
                     System.out.println("In SignInServlet : Mot de passe incorrect.");
                     s.setAttribute("msgErreur", "Mot de passe incorrect.");

@@ -5,13 +5,18 @@
  */
 package quint.servlet;
 
+import controller.CorporationWS;
+import controller.CorporationWS_Service;
+import databaseapplication.DbWebService;
+import databaseapplication.DbWebService_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,19 +35,33 @@ public class Candidater extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Candidater</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Candidater at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        HttpSession s = request.getSession();
+        String email = (String) s.getAttribute("email");
+        
+        String destination = "pagesStudent/offres.jsp";
+        
+        if(email!=null && !email.isEmpty()){
+            DbWebService_Service dbserv = new DbWebService_Service();
+            DbWebService debe = dbserv.getDbWebServicePort();
+
+            CorporationWS_Service corpserv = new CorporationWS_Service();
+            CorporationWS corp = corpserv.getCorporationWSPort();
+
+
+            int offre = Integer.valueOf((String) request.getParameter("offer"));
+
+            System.out.println("In CandidaterServlet : Email/Offre : "+email+"/"+offre);
+            corp.addCandidateApplication(email, offre);
+
+
+            s.setAttribute("Message", "Votre candidature a bien été transmise.");
         }
+
+        
+        System.out.println("In CandidaterServlet : Destination : "+"/"+destination);
+        RequestDispatcher rd = request.getRequestDispatcher("/" + destination);
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

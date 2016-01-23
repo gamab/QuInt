@@ -7,6 +7,8 @@ package quint.servlet;
 
 import controller.CorporationWS;
 import controller.CorporationWS_Service;
+import databaseapplication.DbWebService;
+import databaseapplication.DbWebService_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -40,26 +42,24 @@ public class ShowMainPageTest extends HttpServlet {
 
         //retreive the email and the pswd
         HttpSession s = request.getSession();
-        String email = request.getParameter("email");
-        String pswd = request.getParameter("password");
-        s.setAttribute("password", pswd);
+        String email = (String) s.getAttribute("email");
+        String pswd = (String) s.getAttribute("pswd");
         
-        if (!email.isEmpty() && !pswd.isEmpty() && !(pswd.length() < 8)) {
-            s.setAttribute("email", email);
+        if (email!=null && !email.isEmpty() && !pswd.isEmpty()) {
+            //s.setAttribute("email", email);
 
 //            DBInterface dbi = new DB();
             CorporationWS_Service corpserv = new CorporationWS_Service();
             CorporationWS corp = corpserv.getCorporationWSPort();
             
-//            DbWebService_Service dbserv = new DbWebService_Service();
-//            DbWebService debe = dbserv.getDbWebServicePort();
             
-
+            DbWebService_Service dbserv = new DbWebService_Service();
+            DbWebService debe = dbserv.getDbWebServicePort();
             
-            //if (debe.isUserInDB(email)) {
-            if(email.equals("Ayoub")){
-                //if(debe.userPasswordMatch(email, pswd)){
-                if(pswd.equals("aaaaaaaa")){
+            
+            
+            if (debe.isUserInDB(email)) {
+            //if(email.equals("Ayoub")){
                     System.out.println("In ShowMainPageServlet: Login correct.");
                     //dbi.rememberUserLogIn(email);
                     //boolean admin = dbi.isUSerAdmin(email);
@@ -108,7 +108,6 @@ public class ShowMainPageTest extends HttpServlet {
                     
                     destination = "pagesStudent/index.jsp";
                 }
-            }
         }
         
 
