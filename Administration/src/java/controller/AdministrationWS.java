@@ -100,7 +100,7 @@ public class AdministrationWS {
             @WebParam(name = "department") String department,
             @WebParam(name = "location") String location) {
         DB db = new DB();
-        db.createPendingInternship(company, company, postDate,
+        db.createPendingInternship(student, company, postDate,
                 salary, title, description, tutor, phoneNumber, department, location);
         db.closeConnection();
     }
