@@ -49,14 +49,14 @@ public class DemanderConvention extends HttpServlet {
             AdministrationWS_Service adminWS = new AdministrationWS_Service();
             AdministrationWS admin = adminWS.getAdministrationWSPort();
 
+            CorpDB corp = new CorpDB();
             int offre = Integer.valueOf((String) request.getParameter("demande"));
 
-            System.out.println("In DemanderConventionServlet : Email/Offre : "+email+"/"+offre);
+            
             InternshipProposal internship = CorpDB.getProposedInternship(offre);
             
-            admin.createPendingInternship(email, "", internship.getLocation(), internship.getSalary(), internship.getDescription(),
-                    internship.getPersonInCharge(), internship.getPhoneNumber(), internship.getDepartment(), 
-                    internship.getLocation());
+            System.out.println("In DemanderConventionServlet : Email/Offre : "+email+"/"+offre);
+            admin.createPendingInternship(email, "", internship.getPostDate(), internship.getSalary(), internship.getTitle(), internship.getDescription(), internship.getPersonInCharge(), internship.getPhoneNumber(), internship.getDepartment(), internship.getLocation());
 
             s.setAttribute("Message", "Votre candidature a bien été transmise.");
         }

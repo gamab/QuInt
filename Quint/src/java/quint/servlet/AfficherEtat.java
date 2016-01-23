@@ -56,10 +56,10 @@ public class AfficherEtat extends HttpServlet {
             AdministrationWS admin = adminWS.getAdministrationWSPort();
 
             // TODO
-//            List<PendingInternship> listPending = admin.listPendingInternshipByStudent(email);
-//            if(listPending!=null){
-//                s.setAttribute("Etat", listPending);
-//            }
+            List<PendingInternship> listPending = admin.listPendingInternshipByStudent(email);
+            if(listPending!=null){
+                s.setAttribute("Etat", listPending);
+            }
         }
 
         

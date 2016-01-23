@@ -244,9 +244,9 @@
                                                 <h4>Remunération : </h4> ${etat.getSalary()}
                                                 <h4>Etat : </h4> 
                                                 <c:set var="email" value="<%=email%>" />
-                                                <c:if test="${etat.getIsPending() == null}"> En attente. </c:if>
-                                                <c:if test="${etat.getIsPending() == true}"> Acceptée </c:if>
-                                                <c:if test="${etat.getIsPending() == false}"> Refusée </c:if>
+                                                <c:if test="${etat.isIsPending() == null}"> En attente. </c:if>
+                                                <c:if test="${etat.isIsPending() == true}"> Acceptée. </c:if>
+                                                <c:if test="${etat.isIsPending() == false}"> Refusée. </c:if>
                                                <center>
                                                 <div>
                                                     <button type="button" class="btn btn-primary">Information</button>
