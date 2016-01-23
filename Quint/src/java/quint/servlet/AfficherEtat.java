@@ -5,12 +5,15 @@
  */
 package quint.servlet;
 
-import controller.CorporationWS;
-import controller.CorporationWS_Service;
+import Model.Company.CorpDB;
+import controller.AdministrationWS;
+import controller.AdministrationWS_Service;
+import controller.InternshipProposal;
+import controller.PendingInternship;
 import databaseapplication.DbWebService;
 import databaseapplication.DbWebService_Service;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,22 +41,25 @@ public class AfficherEtat extends HttpServlet {
         HttpSession s = request.getSession();
         String email = (String) s.getAttribute("email");
         
-        String destination = "pagesStudent/offres.jsp";
+        String destination = "pagesStudent/etat.jsp";
         
         if(email!=null && !email.isEmpty()){
             DbWebService_Service dbserv = new DbWebService_Service();
             DbWebService debe = dbserv.getDbWebServicePort();
 
-            CorporationWS_Service corpserv = new CorporationWS_Service();
-            CorporationWS corp = corpserv.getCorporationWSPort();
+            List<InternshipProposal> listProposed = CorpDB.listAppliedInternships(email);
 
+            s.setAttribute("Application", listProposed);
+            System.out.println("In AfficherEtatServlet : Email/listProposed : "+email+"/"+listProposed);
+            
+            AdministrationWS_Service adminWS = new AdministrationWS_Service();
+            AdministrationWS admin = adminWS.getAdministrationWSPort();
 
-            int offre = Integer.valueOf((String) request.getParameter("offer"));
-
-            System.out.println("In AfficherEtatServlet : Email/Offre : "+email+"/"+offre);
-            corp.addCandidateApplication(email, offre);
-
-            s.setAttribute("Message", "Votre candidature a bien été transmise.");
+            // TODO
+//            List<PendingInternship> listPending = admin.listPendingInternshipByStudent(email);
+//            if(listPending!=null){
+//                s.setAttribute("Etat", listPending);
+//            }
         }
 
         

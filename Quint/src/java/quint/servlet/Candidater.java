@@ -5,8 +5,7 @@
  */
 package quint.servlet;
 
-import controller.CorporationWS;
-import controller.CorporationWS_Service;
+import Model.Company.CorpDB;
 import databaseapplication.DbWebService;
 import databaseapplication.DbWebService_Service;
 import java.io.IOException;
@@ -45,8 +44,7 @@ public class Candidater extends HttpServlet {
             DbWebService_Service dbserv = new DbWebService_Service();
             DbWebService debe = dbserv.getDbWebServicePort();
 
-            CorporationWS_Service corpserv = new CorporationWS_Service();
-            CorporationWS corp = corpserv.getCorporationWSPort();
+            CorpDB corp = new CorpDB();
 
 
             int offre = Integer.valueOf((String) request.getParameter("offer"));

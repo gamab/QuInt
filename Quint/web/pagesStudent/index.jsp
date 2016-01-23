@@ -159,7 +159,7 @@
                             <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Accueil</a>
                         </li>
                         <li>
-                            <a href="etat.jsp"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
+                            <a href="AfficherEtat.do"><i class="fa fa-table fa-fw"></i> Etat des demandes</a>
                         </li>
                         <li>
                             <a href="messages.jsp"><i class="fa fa-table fa-fw"></i> Messages</a>
