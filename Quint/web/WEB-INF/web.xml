@@ -60,6 +60,10 @@
         <servlet-name>ShowMainPageTest</servlet-name>
         <servlet-class>quint.servlet.ShowMainPageTest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DemanderConvention</servlet-name>
+        <servlet-class>quint.servlet.DemanderConvention</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AfficherOffres</servlet-name>
         <url-pattern>/pagesCompany/afficheroffres.do</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>ShowMainPageTest</servlet-name>
         <url-pattern>/pagesStudent/ShowMainPageTest.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DemanderConvention</servlet-name>
+        <url-pattern>/pagesStudent/DemanderConvention.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

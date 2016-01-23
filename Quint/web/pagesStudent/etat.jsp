@@ -170,7 +170,6 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
@@ -202,6 +201,7 @@
                                                 <c:set var="accepted" value="${offre.getSelectedCandidate() == email}"/>
                                                 <c:if test="${accepted}">
                                                  <c:out value="Acceptée."/>
+                                                    <a href="DemanderConvention.do?demande=${offre.getId()}">Demander une convention</a>
                                                 </c:if>
                                                 <c:if test="${accepted == false}">
                                                  <c:out value="En attente."/>
@@ -212,7 +212,6 @@
                                                </div>
                                                </center> 
                                             </div>
-
                                         </div>
                                     </div>
                                 </c:forEach>

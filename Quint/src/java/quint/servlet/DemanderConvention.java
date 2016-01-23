@@ -6,6 +6,9 @@
 package quint.servlet;
 
 import Model.Company.CorpDB;
+import controller.AdministrationWS;
+import controller.AdministrationWS_Service;
+import controller.InternshipProposal;
 import databaseapplication.DbWebService;
 import databaseapplication.DbWebService_Service;
 import java.io.IOException;
@@ -19,9 +22,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ayoub
+ * @author gb
  */
-public class Candidater extends HttpServlet {
+public class DemanderConvention extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,28 +37,32 @@ public class Candidater extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         HttpSession s = request.getSession();
         String email = (String) s.getAttribute("email");
         
-        String destination = "pagesStudent/offres.jsp";
+        String destination = "pagesStudent/etat.jsp";
         
         if(email!=null && !email.isEmpty()){
             DbWebService_Service dbserv = new DbWebService_Service();
             DbWebService debe = dbserv.getDbWebServicePort();
+            
+            AdministrationWS_Service adminWS = new AdministrationWS_Service();
+            AdministrationWS admin = adminWS.getAdministrationWSPort();
 
-            CorpDB corp = new CorpDB();
+            int offre = Integer.valueOf((String) request.getParameter("demande"));
 
-            int offre = Integer.valueOf((String) request.getParameter("offer"));
-
-            System.out.println("In CandidaterServlet : Email/Offre : "+email+"/"+offre);
-            corp.addCandidateApplication(email, offre);
+            System.out.println("In DemanderConventionServlet : Email/Offre : "+email+"/"+offre);
+            InternshipProposal internship = CorpDB.getProposedInternship(offre);
+            
+            admin.createPendingInternship(email, "", internship.getLocation(), internship.getSalary(), internship.getDescription(),
+                    internship.getPersonInCharge(), internship.getPhoneNumber(), internship.getDepartment(), 
+                    internship.getLocation());
 
             s.setAttribute("Message", "Votre candidature a bien été transmise.");
         }
 
         
-        System.out.println("In CandidaterServlet : Destination : "+"/"+destination);
+        System.out.println("In DemanderConventionServlet : Destination : "+"/"+destination);
         RequestDispatcher rd = request.getRequestDispatcher("/" + destination);
         rd.forward(request, response);
     }
