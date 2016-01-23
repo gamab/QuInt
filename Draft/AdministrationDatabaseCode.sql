@@ -35,7 +35,7 @@ PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 
-INSERT INTO Agreements(`idStudent`, `idCompany`, `idInternship`, 
+INSERT INTO Agreements(`idStudent`, `idCompany`, `idPendingInternship`, 
 `signAdmin`, `signStudent`, `signCorp`) VALUES
 ("meymandi@etud.insa-toulouse.fr","celad@celad.com","Offre7", TRUE, TRUE, TRUE),
 ("mabille@etud.insa-toulouse.fr","thales@thales.com","Offre4", FALSE, FALSE, FALSE),
