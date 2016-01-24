@@ -141,24 +141,25 @@ public class DB implements DBInterface {
             if (rs.next()) {
                 //Retrieve by column prenom
 
-                String password="";
+                String password = "";
                 int admin = rs.getInt("admin");
-                String prenom=rs.getString("prenom");
-                String nom=rs.getString("nom");
-                String tel=rs.getString("tel");
-                String adresse=rs.getString("adresse");
-                String commune=rs.getString("commune");
-                String cv=rs.getString("cv");
-                String lm=rs.getString("lm");
+                String prenom = rs.getString("prenom");
+                String nom = rs.getString("nom");
+                String tel = rs.getString("tel");
+                String adresse = rs.getString("adresse");
+                String commune = rs.getString("commune");
+                String cv = rs.getString("cv");
+                String lm = rs.getString("lm");
                 int code_postal = rs.getInt("code_postal");
                 int conducteur = rs.getInt("conducteur");
-                String classe=rs.getString("classe");
-                String departement=rs.getString("departement");
-                String dispoDebut=rs.getString("dispoDebut");
-                String dispoFin=rs.getString("dispoFin");
+                String classe = rs.getString("classe");
+                String departement = rs.getString("departement");
+                String dispoDebut = rs.getString("dispoDebut");
+                String dispoFin = rs.getString("dispoFin");
 
                 //Display values
-                info = new Student(email, password, admin, prenom, nom, tel, adresse, commune, cv, lm, code_postal, conducteur, classe, departement, dispoDebut, dispoFin);            }
+                info = new Student(email, password, admin, prenom, nom, tel, adresse, commune, cv, lm, code_postal, conducteur, classe, departement, dispoDebut, dispoFin);
+            }
             rs.close();
 
         } catch (SQLException ex) {
@@ -181,7 +182,6 @@ public class DB implements DBInterface {
 //
 //                System.out.println("In DB - addNewUser : query : " + queryCreeUtilisateur);
 //                int rs = stmt.executeUpdate(queryCreeUtilisateur);
-
                 String queryCreeStudent = " INSERT INTO " + TABLE_STUDENT
                         + " (`cv`,`lm`,`tel`, `admin` ,`prenom` ,`nom` ,`password`"
                         + ",`email` ,`adresse` ,`commune` ,`code_postal` ,`conducteur` ,`classe`,"
@@ -450,15 +450,17 @@ public class DB implements DBInterface {
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
         String sql_lieu = "SELECT * FROM " + TABLE_STUDENT;
+        System.out.println(sql_lieu);
 
         ResultSet rs;
         try {
             rs = stmt.executeQuery(sql_lieu);
             while (rs.next()) {
+                System.out.println("ok");
                 //Retrieve by column prenom
                 int admin = rs.getInt("admin");
                 int conducteur = rs.getInt("conducteur");
-                int notif = rs.getInt("notif");
+                //int notif = rs.getInt("notif");
                 String tel = rs.getString("tel");
                 String prenom = rs.getString("prenom");
                 String nom = rs.getString("nom");
@@ -474,7 +476,13 @@ public class DB implements DBInterface {
             }
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (students.isEmpty()) {
+            System.out.println("empty list");
+        } else {
 
+            System.out.println("Not empty");
         }
         return students;
     }
@@ -578,5 +586,5 @@ public class DB implements DBInterface {
         }
         return 0;
     }
-   
+
 }
